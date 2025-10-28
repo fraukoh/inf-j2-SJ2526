@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suche_Volleyball-Spieler</title>
+    <title>Inf_J1_Datenbanken_SJ_2025_26</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
     <style>
 @import url('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css');
@@ -271,40 +271,17 @@
     <div class="navbar-content">
         <a href="index.html" class="home-link" title="Zur Hauptseite">⌂</a>
         <div class="navbar-links">
-            <a href="Inf_J2_SJ_2025_26.html">Inf_J2_SJ_2025_26</a> | <a href="Inf_J1_Datenbanken_SJ_2025_26.html">Inf_J1_Datenbanken_SJ_2025_26</a>
+            <a href="Inf_J2_SJ_2025_26.html">Inf_J2_SJ_2025_26</a>
         </div>
     </div>
 </div>
 
     <div class="container">
         <div class="content">
-            <h1>Aufgabe [P]</h1>
-<p>Der Trainer der Abteilung Volleyball des Sportvereins Mühlberger SC möchte eine Erweiterung seiner Software.<br>Nach der Eingabe eines Spielernamens möchte er eine Information angezeigt bekommen, ob der Spieler im Mannschaftskader ist oder nicht.<br>Die Namen aller Spieler des Mannschaftskaders sind in dem Array kader erfasst.</p>
-<p><code>kader = [&#39;Armin&#39;, &#39;Batu&#39;, &#39;Kai&#39;, &#39;Sven&#39;, &#39;Paul&#39;, &#39;Milan&#39;, &#39;Goran&#39;, &#39;Chris&#39;, &#39;Nico&#39;, &#39;Dennis&#39;, &#39;Emin&#39;, &#39;Luca&#39;]</code></p>
-<p>Der erforderliche Algorithmus soll so optimiert sein, dass die Suche im Array <code>kader</code> beendet wird, sobald der gesuchte Spieler gefunden wurde.</p>
-<blockquote>
-<p>Erwartete Ausgabe:</p>
-<p>Gesuchter Spielername: Chris<br>Spieler ist im Mannschaftskader</p>
-</blockquote>
-<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">kader = [&quot;Armin&quot;, &quot;Batu&quot;, &quot;Kai&quot;, &quot;Sven&quot;, &quot;Paul&quot;, &quot;Milan&quot;, &quot;Goran&quot;, &quot;Chris&quot;, &quot;Nico&quot;, &quot;Dennis&quot;, &quot;Emin&quot;, &quot;Luca&quot;]
-spielername = input(&quot;Gesuchter Spielername: &quot;)
-gefunden = False
-zaehler = 0
-
-#Suche
-while gefunden == False and zaehler &lt; len(kader):
-    if spielername == kader[zaehler]:
-        gefunden = True
-    else:
-        zaehler = zaehler + 1
-
-#Ausgabe
-if gefunden:
-    print(&quot;Spieler ist im Mannschaftskader&quot;)
-else:
-    print(&quot;Spieler ist nicht im Mannschaftskader&quot;)
-</code></pre>
-<img src="zubehoer/Pasted%20image%2020251028132347.png" alt="Pasted image 20251028132347.png" /></details>
+            <h2>SELECT-Abfragen</h2>
+<img src="zubehoer/Inf_J1_Datenbanken_SJ_2025_26%202025-10-28%2016.22.41.excalidraw.png" alt="Inf_J1_Datenbanken_SJ_2025_26 2025-10-28 16.22.41.excalidraw" />
+<h2>Kartesisches Produkt vermeiden</h2>
+<img src="zubehoer/Inf_J1_Datenbanken_SJ_2025_26%202025-10-28%2016.17.02.excalidraw.png" alt="Inf_J1_Datenbanken_SJ_2025_26 2025-10-28 16.17.02.excalidraw" />
         </div>
     </div>
 </body>
