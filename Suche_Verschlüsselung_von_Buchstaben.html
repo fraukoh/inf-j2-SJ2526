@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inf_J2_SJ_2025_26</title>
+    <title>Suche_Verschlüsselung_von_Buchstaben</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
     <style>
 @import url('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css');
@@ -271,22 +271,94 @@
     <div class="navbar-content">
         <a href="index.html" class="home-link" title="Zur Hauptseite">⌂</a>
         <div class="navbar-links">
-            
+            <a href="Inf_J2_SJ_2025_26.html">Inf_J2_SJ_2025_26</a>
         </div>
     </div>
 </div>
 
     <div class="container">
         <div class="content">
-            <h1>Arrays 🔢</h1>
-<h1>Sortieralgorithmen ⬆️⬇️</h1>
-<p><a href="BubbleSort">BubbleSort</a></p>
-<p><a href="SelectionSort.html">SelectionSort</a></p>
-<h1>Suchalgorithmen 🔍</h1>
-<p><a href="Lineare%20Suche.html">Lineare Suche</a></p>
-<p><a href="Bin%C3%A4re%20Suche">Binäre Suche</a></p>
-<h1>Dynamische Datenstrunkturen 📊</h1>
+            <h1>Aufgabe [P]</h1>
+<p>Die Verschlüsselung wird im Zeitalter der Digitalisierung immer wichtiger. Mit Hilfe einer einfachen Verschlüsselungstechnik (Transposition) sollen einzelne Großbuchstaben verschlüsselt werden.<br>Dazu wurden die Buchstaben des Alphabets im Array <code>alphabet_klar</code> und die Buchstaben für die Verschlüsselung im Array <code>alphabet_geheim</code> erfasst.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Klartext:</td>
+<td>A</td>
+<td>B</td>
+<td>C</td>
+<td>D</td>
+<td>E</td>
+<td>F</td>
+<td>usw.</td>
+<td>Array: alphabet_klar</td>
+</tr>
+<tr>
+<td>verschlüsselt:</td>
+<td>A</td>
+<td>D</td>
+<td>Z</td>
+<td>V</td>
+<td>P</td>
+<td>H</td>
+<td>usw.</td>
+<td>Array: alphabet_geheim</td>
+</tr>
+<tr>
+<td>Gibt der Benutzer beispielsweise den Großbuchstaben B ein, soll er als Ausgabe den verschlüsselten Buchstaben D enthalten, gibt er ein E ein soll er eine Ausgabe mit dem Buchstaben P erhalten usw.</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>So kann der Benutzer nach und nach einen Text verschlüsseln.</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>Implementieren Sie unter Anwendung der linearen Suche eine Lösung für die beschriebene Aufgabenstellung.</p>
+<blockquote>
+<p>Erwartete Ausgabe:</p>
+<p>Klarbuchstabe: D<br>Geheimbuchstabe: V</p>
+</blockquote>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">#Alphabete
+alphabet_klar = [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;, &quot;F&quot;, &quot;G&quot;, &quot;H&quot;, &quot;I&quot;, &quot;J&quot;, &quot;K&quot;, &quot;L&quot;, &quot;M&quot;, &quot;N&quot;, &quot;O&quot;, &quot;P&quot;, &quot;Q&quot;, &quot;R&quot;, &quot;S&quot;, &quot;T&quot;, &quot;U&quot;, &quot;V&quot;, &quot;W&quot;, &quot;X&quot;, &quot;Y&quot;, &quot;Z&quot;]
 
+alphabet_geheim = [&quot;A&quot;, &quot;D&quot;, &quot;Z&quot;, &quot;V&quot;, &quot;P&quot;, &quot;H&quot;, &quot;W&quot;, &quot;X&quot;, &quot;B&quot;, &quot;Q&quot;, &quot;R&quot;, &quot;C&quot;, &quot;O&quot;, &quot;Y&quot;, &quot;E&quot;, &quot;G&quot;, &quot;U&quot;, &quot;L&quot;, &quot;M&quot;, &quot;F&quot;, &quot;J&quot;, &quot;S&quot;, &quot;T&quot;, &quot;I&quot;, &quot;K&quot;, &quot;N&quot;]
+
+#Eingabe
+buchstabe_klar = input(&quot;Klarbuchstabe: &quot;)
+for i in range(len(alphabet_klar)):
+    if buchstabe_klar == alphabet_klar[i]:
+        buchstabe_geheim = alphabet_geheim[i]
+
+#Ausgabe
+print(&quot;Geheimbuchstabe:&quot;, buchstabe_geheim)
+</code></pre>
+<img src="zubehoer/Pasted%20image%2020251028131726.png" alt="Pasted image 20251028131726.png" /></details>
         </div>
     </div>
 </body>
