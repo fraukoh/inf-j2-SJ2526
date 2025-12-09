@@ -1,0 +1,1885 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>Interaktive Binäre Suche 🧭</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #111827;
+      --accent: #22c55e;
+      --accent-2: #38bdf8;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --danger: #f43f5e;
+      --warn: #f59e0b;
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+      --radius: 14px;
+      --mono: "JetBrains Mono", "Fira Code", "Source Code Pro", monospace;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: radial-gradient(circle at 20% 20%, rgba(56,189,248,0.08), transparent 35%),
+                  radial-gradient(circle at 80% 0%, rgba(34,197,94,0.08), transparent 35%),
+                  var(--bg);
+      color: var(--text);
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      padding: 32px 18px 80px;
+    }
+    h1, h2, h3 { font-weight: 800; letter-spacing: -0.02em; }
+    h1 { font-size: clamp(32px, 4vw, 44px); margin-bottom: 8px; }
+    h2 { margin: 32px 0 8px; }
+    h3 { margin: 24px 0 6px; }
+    p { margin: 8px 0 12px; }
+    .grid { display: grid; gap: 18px; }
+    .cards { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .card {
+      background: linear-gradient(145deg, #0b1224, #0c1328);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: var(--radius);
+      padding: 18px 18px 16px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .pill {
+      display: inline-block;
+      background: rgba(56,189,248,0.12);
+      color: var(--accent-2);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .btn {
+      background: linear-gradient(135deg, var(--accent), #16a34a);
+      color: #041007;
+      border: none;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 120ms ease, box-shadow 120ms ease;
+      box-shadow: 0 10px 25px rgba(34,197,94,0.35);
+    }
+    .btn.secondary {
+      background: linear-gradient(135deg, #1f2937, #111827);
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: none;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .array {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin: 10px 0;
+    }
+    .box {
+      flex: 1 1 50px;
+      background: #0b1020;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+      font-family: var(--mono);
+      position: relative;
+      min-width: 58px;
+    }
+    .box.active { border: 4px solid var(--danger); color: var(--danger); font-weight: 700; }
+    .box.range { border-color: var(--accent-2); }
+    .box.excluded { opacity: 0.4; text-decoration: line-through; background: rgba(244,63,94,0.1); }
+    .box.keep { border-color: var(--accent); background: rgba(34,197,94,0.1); }
+    .ornament-search-wrapper {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      margin: 20px 0;
+    }
+    .ornament-container {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(255,255,255,0.02);
+      border-radius: var(--radius);
+      min-height: 200px;
+      flex: 1;
+    }
+    .ornament-instructions {
+      flex: 0 0 350px;
+      background: linear-gradient(145deg, rgba(56,189,248,0.15), rgba(34,197,94,0.1));
+      border: 2px solid rgba(56,189,248,0.3);
+      border-radius: var(--radius);
+      padding: 20px;
+      min-height: 200px;
+      box-shadow: var(--shadow);
+    }
+    @media (max-width: 900px) {
+      .ornament-search-wrapper {
+        flex-direction: column;
+      }
+      .ornament-instructions {
+        flex: 1;
+      }
+    }
+    .ornament {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: move;
+      position: relative;
+      transition: transform 200ms ease, box-shadow 200ms ease;
+      user-select: none;
+      background: linear-gradient(135deg, #dc2626, #b91c1c);
+      color: white;
+      box-shadow: 0 4px 12px rgba(220,38,38,0.4), inset 0 2px 4px rgba(255,255,255,0.2);
+    }
+    .ornament-index {
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      background: rgba(0,0,0,0.5);
+      color: var(--accent-2);
+      font-size: 12px;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-family: var(--mono);
+    }
+    .ornament-value {
+      font-size: 28px;
+      font-weight: 800;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      margin-top: 12px;
+    }
+    .ornament:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 16px rgba(220,38,38,0.6), inset 0 2px 4px rgba(255,255,255,0.3);
+    }
+    .ornament.dragging {
+      opacity: 0.5;
+      transform: scale(1.1);
+      z-index: 1000;
+    }
+    .ornament.sorted {
+      background: linear-gradient(135deg, #16a34a, #15803d);
+      box-shadow: 0 4px 12px rgba(22,163,74,0.4), inset 0 2px 4px rgba(255,255,255,0.2);
+    }
+    .ornament.selectable {
+      cursor: pointer;
+    }
+    .ornament.selectable:hover {
+      border: 3px solid var(--accent-2);
+    }
+    .ornament.selected-start {
+      border: 4px solid var(--accent);
+      box-shadow: 0 0 15px rgba(34,197,94,0.6);
+    }
+    .ornament.selected-end {
+      border: 4px solid var(--accent-2);
+      box-shadow: 0 0 15px rgba(56,189,248,0.6);
+    }
+    .ornament.active {
+      border: 4px solid var(--danger);
+      box-shadow: 0 0 20px rgba(244,63,94,0.8), 0 4px 12px rgba(220,38,38,0.4);
+    }
+    .ornament.range {
+      border: 2px solid var(--accent-2);
+    }
+    .ornament.excluded {
+      opacity: 0.3;
+      filter: grayscale(100%);
+      pointer-events: none;
+    }
+    .search-steps {
+      margin-top: 20px;
+      padding: 16px;
+      background: rgba(56,189,248,0.1);
+      border-radius: var(--radius);
+      border: 1px solid rgba(56,189,248,0.3);
+    }
+    .step-control {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin: 12px 0;
+      flex-wrap: wrap;
+    }
+    .step-info {
+      background: rgba(255,255,255,0.05);
+      padding: 12px;
+      border-radius: 10px;
+      margin: 8px 0;
+      font-family: var(--mono);
+    }
+    .tag { font-weight: 700; font-size: 13px; color: var(--muted); }
+    .input-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 10px 0; }
+    input, select, textarea {
+      background: #0d1325;
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 15px;
+      font-family: inherit;
+    }
+    /* Größere und präsentere Eingabefelder für Aufgabe 3 */
+    #list-input, #target-input {
+      padding: 16px 18px;
+      font-size: 18px;
+      border: 2px solid rgba(56,189,248,0.3);
+      background: rgba(56,189,248,0.05);
+      font-weight: 500;
+    }
+    #list-input:focus, #target-input:focus {
+      border-color: rgba(56,189,248,0.6);
+      background: rgba(56,189,248,0.1);
+      box-shadow: 0 0 15px rgba(56,189,248,0.3);
+    }
+    textarea { width: 100%; min-height: 140px; }
+    .status {
+      padding: 10px 12px;
+      border-radius: 10px;
+      margin-top: 8px;
+      font-weight: 700;
+    }
+    .ok { background: rgba(34,197,94,0.12); color: var(--accent); border: 1px solid rgba(34,197,94,0.35); }
+    .bad { background: rgba(244,63,94,0.12); color: var(--danger); border: 1px solid rgba(244,63,94,0.35); }
+    .hint { color: var(--muted); font-size: 14px; }
+    .timeline-container { display: flex; gap: 24px; align-items: flex-start; }
+    .timeline { border-left: 3px solid rgba(255,255,255,0.08); padding-left: 16px; flex: 1; }
+    .timeline .step { margin-bottom: 12px; cursor: pointer; transition: all 200ms ease; }
+    .timeline .step:hover { transform: translateX(4px); }
+    .timeline .step.active .pill { background: rgba(34,197,94,0.18); color: var(--accent); }
+    .timeline-explanation {
+      flex: 1;
+      background: linear-gradient(145deg, rgba(56,189,248,0.15), rgba(34,197,94,0.1));
+      border: 2px solid rgba(56,189,248,0.3);
+      border-radius: var(--radius);
+      padding: 20px;
+      min-height: 120px;
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+      line-height: 1.6;
+      box-shadow: var(--shadow);
+    }
+    .timeline-explanation:empty::before {
+      content: "👆 Klicke auf einen Schritt, um die Erklärung zu sehen.";
+      color: var(--muted);
+      font-style: italic;
+    }
+    @media (max-width: 720px) {
+      .timeline-container { flex-direction: column; }
+    }
+    .draggable {
+      user-select: none;
+      cursor: grab;
+      background: rgba(255,255,255,0.04);
+      border: 1px dashed rgba(255,255,255,0.1);
+      padding: 8px 10px;
+      border-radius: 10px;
+      white-space: pre;
+      font-family: var(--mono);
+    }
+    .draggable.dragging { opacity: 0.35; }
+    .code-form {
+      background: #0b1020;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 12px;
+      font-family: var(--mono);
+      box-shadow: var(--shadow);
+    }
+    .code-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 6px 0;
+      white-space: pre;
+    }
+    .code-line input {
+      flex: 1;
+      font-family: var(--mono);
+      padding: 6px 8px;
+    }
+    .code-line .lbl { color: var(--muted); min-width: 12px; text-align: right; }
+    .editor {
+      background: #0b1020;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 12px;
+      font-family: var(--mono);
+      min-height: 500px;
+      white-space: pre;
+      outline: none;
+      box-shadow: var(--shadow);
+    }
+    .editor:focus { border-color: rgba(56,189,248,0.4); }
+    code { background: rgba(255,255,255,0.05); padding: 2px 6px; border-radius: 6px; font-family: var(--mono); }
+    .kbd { background: rgba(255,255,255,0.08); padding: 4px 8px; border-radius: 8px; font-family: var(--mono); }
+    .question { margin: 8px 0; }
+    .flex { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .mc { display: grid; gap: 8px; }
+    .bubble {
+      background: rgba(56,189,248,0.12);
+      border: 1px solid rgba(56,189,248,0.35);
+      padding: 10px 12px;
+      border-radius: 12px;
+    }
+    .small { font-size: 14px; color: var(--muted); }
+    .progress { height: 10px; background: rgba(255,255,255,0.06); border-radius: 999px; overflow: hidden; }
+    .progress span { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); width: 0%; transition: width 200ms ease; }
+    .table { width: 100%; border-collapse: collapse; }
+    .table td, .table th { padding: 10px; border: 1px solid rgba(255,255,255,0.06); }
+    .table th { background: rgba(255,255,255,0.04); text-align: left; }
+    .flashcards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 18px;
+      margin: 20px 0;
+    }
+    .mini-checks-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    @media (max-width: 900px) {
+      .mini-checks-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .flashcard {
+      background: linear-gradient(145deg, #0b1224, #0c1328);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      padding: 20px;
+      min-height: 180px;
+      cursor: pointer;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.6s ease;
+      box-shadow: var(--shadow);
+    }
+    .flashcard.flipped {
+      transform: rotateY(180deg);
+    }
+    .flashcard-front, .flashcard-back {
+      position: absolute;
+      width: calc(100% - 40px);
+      height: calc(100% - 40px);
+      backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    .flashcard-back {
+      transform: rotateY(180deg);
+      background: linear-gradient(145deg, rgba(34,197,94,0.15), rgba(56,189,248,0.1));
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+    .flashcard-front {
+      color: var(--text);
+    }
+    .flashcard-back {
+      color: var(--accent);
+    }
+    .flashcard-number {
+      position: absolute;
+      top: 8px;
+      left: 12px;
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+    .flashcard-hint {
+      position: absolute;
+      bottom: 8px;
+      right: 12px;
+      font-size: 11px;
+      color: var(--muted);
+      font-style: italic;
+    }
+    @media (max-width: 720px) {
+      .input-row { flex-direction: column; }
+      .array { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <header class="card">
+    <div class="pill">Binäre Suche – interaktiver Kurs (ca. 80–90 Minuten)</div>
+    <h1>Binäre Suche Schritt für Schritt 🔍</h1>
+    <p>Du lernst heute eine der wichtigsten Such-Strategien kennen. Wir zerlegen sie in super-kleine Schritte, üben sofort, beantworten Zwischenfragen und enden mit einer Python-Implementierung. Viel Spaß!</p>
+    <div class="progress" aria-label="Fortschritt grob nach Abschnitten">
+      <span id="progress-bar"></span>
+    </div>
+  </header>
+
+  <section class="grid cards">
+    <div class="card">
+      <h2>1) Warm-up: Was ist die Idee? 🤔</h2>
+      <p>Stell dir vor, du suchst eine Seite in einem Buch. Statt jede Seite zu blättern, schlägst du die Mitte auf. Binäre Suche macht das Gleiche mit Zahlen – aber nur, wenn sie sortiert sind.</p>
+      <div class="bubble">✅ Voraussetzung: Die Liste ist <b>sortiert</b>. Ohne Sortierung klappt die Methode nicht.</div>
+      <div class="question">
+        <label for="q1">Check: Warum muss die Liste sortiert sein?</label>
+        <select id="q1">
+          <option value="">-- auswählen --</option>
+          <option>Weil wir dann die Mitte sinnvoll bewerten können</option>
+          <option>Weil uns langweilig ist</option>
+          <option>Weil Python sonst abstürzt</option>
+        </select>
+        <button class="btn secondary" onclick="checkSelect('q1','Weil wir dann die Mitte sinnvoll bewerten können','res1')">Prüfen</button>
+        <div id="res1" class="status small"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>2) Visualisiere den Ablauf 🎞️</h2>
+      <p>Klicke auf die Schritte, um die Erklärung rechts zu sehen.</p>
+      <div class="timeline-container">
+        <div class="timeline" id="timeline"></div>
+        <div id="timeline-explanation" class="timeline-explanation"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>3) Interaktive Liste 🧩</h2>
+    <p>Wähle eine Zahl (die gesucht werden soll) und verfolge live, wie die binäre Suche den Bereich eingrenzt.</p>
+    <div class="input-row">
+      <label>Liste (sortiert, Komma-getrennt): <input id="list-input" value="5,10,18,20,25,39,42,50" aria-label="Liste"></label>
+      <label>Gesuchte Zahl: <input id="target-input" type="number" value="42" aria-label="Gesuchte Zahl"></label>
+      <button class="btn" onclick="startDemo()">👀 Starte Suche</button>
+    </div>
+    <div class="array" id="array-view"></div>
+    <div id="log" class="bubble small"></div>
+  </section>
+
+  <section class="card">
+    <h2>4) Weihnachtskugeln sortieren und suchen 🎄</h2>
+    <p>Sortiere die Weihnachtskugeln nach Größe (ziehe sie mit der Maus) und führe dann die binäre Suche durch!</p>
+    
+    <div class="bubble" style="margin-bottom: 16px;">
+      <p style="margin: 0 0 8px;"><b>🎯 Gesuchte Kugel:</b> <span id="target-ornament" style="font-size: 20px; font-weight: 800;">42</span></p>
+      <p style="margin: 0; font-size: 14px; color: var(--muted);">Schritt 1: Sortiere die Kugeln von klein nach groß (ziehe sie mit der Maus)</p>
+    </div>
+
+    <div class="ornament-search-wrapper">
+      <div class="ornament-container" id="ornament-container"></div>
+      
+      <div class="ornament-instructions" id="ornament-instructions">
+        <div id="sort-instructions">
+          <p style="margin: 0 0 8px; font-size: 18px; font-weight: 800;"><b>Sortiere die Kugeln</b></p>
+          <p style="margin: 0; font-size: 15px; line-height: 1.6;">Ziehe die Kugeln mit der Maus, um sie von klein nach groß zu sortieren.</p>
+          <p style="margin: 12px 0 0; font-size: 14px; color: var(--muted);"><b>Wichtig:</b> Die große Zahl ist der <b>Wert</b> der Kugel, die kleine Zahl oben links ist der <b>Index</b> (Position in der Liste).</p>
+          <button class="btn secondary" onclick="checkSorting()" style="margin-top: 12px; width: 100%;">🔍 Sortierung prüfen</button>
+        </div>
+        
+        <div id="search-instructions" style="display: none;">
+          <div id="current-step-info">
+            <p style="margin: 0 0 8px; font-size: 18px; font-weight: 800;"><b>Schritt 1: Bestimme Start und Ende</b></p>
+            <p style="margin: 0; font-size: 15px; line-height: 1.6;">Klicke auf die Kugel mit dem <b>Index</b>, der dein Start sein soll, dann auf die für Ende.</p>
+          </div>
+          
+          <div id="range-info" style="margin-top: 16px; display: none;">
+            <p style="margin: 0; font-size: 14px;"><b>Gewählter Bereich:</b> Start = Index <span id="selected-start">-</span>, Ende = Index <span id="selected-end">-</span></p>
+            <button class="btn" id="confirm-range-btn" onclick="confirmRange()" style="margin-top: 12px; width: 100%;">✅ Start/Ende bestätigen</button>
+          </div>
+          
+          <div id="mitte-section" style="margin-top: 16px; display: none;">
+            <p style="margin: 0 0 8px; font-size: 18px; font-weight: 800;"><b>Schritt 2: Berechne die Mitte</b></p>
+            <p style="margin: 0; font-size: 15px; line-height: 1.6;" id="mitte-calculation"></p>
+            <p style="margin: 12px 0 0; font-size: 15px; line-height: 1.6;">Klicke auf die Kugel mit dem berechneten Index!</p>
+          </div>
+          
+          <div id="compare-section" style="margin-top: 16px; display: none;">
+            <p style="margin: 0 0 8px; font-size: 18px; font-weight: 800;"><b>Schritt 3: Vergleiche und schließe aus</b></p>
+            <p style="margin: 0; font-size: 15px; line-height: 1.6;" id="compare-info"></p>
+            <p style="margin: 12px 0 0; font-size: 15px; line-height: 1.6; color: var(--muted);">Klicke auf die Kugeln, die ausgeschlossen werden sollen.</p>
+            <button class="btn" id="next-round-btn" onclick="nextRound()" style="margin-top: 12px; width: 100%; display: none;">➡️ Nächste Runde</button>
+          </div>
+          
+          <div id="search-status" class="status small" style="margin-top: 16px;"></div>
+          
+          <button class="btn secondary" onclick="resetSearch()" style="margin-top: 16px; width: 100%;">🔄 Zurücksetzen</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cards">
+    <div class="card">
+      <h2>5) Mini-Checks 🧠</h2>
+      <div class="mini-checks-grid">
+        <div class="question">
+          <p>🧩 Frage 1: Wie berechnet man die Mitte bei Start=0, Ende=7?</p>
+          <input id="mid-q" placeholder="z.B. 3">
+          <button class="btn secondary" onclick="checkMid()">Check</button>
+          <div id="mid-res" class="status small"></div>
+        </div>
+        <div class="question">
+          <p>🧩 Frage 4: Was bedeutet es, wenn zahlenreihe[mitte] == gesuchte_zahl?</p>
+          <select id="q4">
+            <option value="">-- auswählen --</option>
+            <option>Das Element wurde gefunden</option>
+            <option>Die Suche muss fortgesetzt werden</option>
+          </select>
+          <button class="btn secondary" onclick="checkSelect('q4','Das Element wurde gefunden','res4')">Prüfen</button>
+          <div id="res4" class="status small"></div>
+        </div>
+        <div class="question">
+          <p>🧩 Frage 2: Wann verkleinern wir den rechten Teil?</p>
+          <select id="q2">
+            <option value="">-- auswählen --</option>
+            <option>Wenn zahlenreihe[m Mitte] > gesucht</option>
+            <option>Wenn Zahlen hübsch sind</option>
+          </select>
+          <button class="btn secondary" onclick="checkSelect('q2','Wenn zahlenreihe[m Mitte] > gesucht','res2')">Prüfen</button>
+          <div id="res2" class="status small"></div>
+        </div>
+        <div class="question">
+          <p>🧩 Frage 5: Wie wird der neue Start berechnet, wenn zahlenreihe[mitte] < gesuchte_zahl?</p>
+          <select id="q5">
+            <option value="">-- auswählen --</option>
+            <option>start = mitte + 1</option>
+            <option>start = mitte - 1</option>
+          </select>
+          <button class="btn secondary" onclick="checkSelect('q5','start = mitte + 1','res5')">Prüfen</button>
+          <div id="res5" class="status small"></div>
+        </div>
+        <div class="question">
+          <p>🧩 Frage 3: Was passiert, wenn Start > Ende?</p>
+          <select id="q3">
+            <option value="">-- auswählen --</option>
+            <option>Suche stoppen, Element nicht gefunden</option>
+            <option>Wir fangen wieder von vorne an</option>
+          </select>
+          <button class="btn secondary" onclick="checkSelect('q3','Suche stoppen, Element nicht gefunden','res3')">Prüfen</button>
+          <div id="res3" class="status small"></div>
+        </div>
+        <div class="question">
+          <p>🧩 Frage 6: Warum verwenden wir int((start+ende)/2) statt (start+ende)//2?</p>
+          <select id="q6">
+            <option value="">-- auswählen --</option>
+            <option>Beide sind gleichwertig, int() ist nur expliziter</option>
+            <option>//2 funktioniert nicht in Python</option>
+          </select>
+          <button class="btn secondary" onclick="checkSelect('q6','Beide sind gleichwertig, int() ist nur expliziter','res6')">Prüfen</button>
+          <div id="res6" class="status small"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>6) Manuelle Runde 🎮</h2>
+      <div class="bubble" style="margin-bottom: 20px;">
+        <h3 style="margin-top: 0;">💡 Warum start = mitte + 1 oder ende = mitte - 1?</h3>
+        <p style="margin: 8px 0;"><b>Wichtig:</b> Die Mitte haben wir bereits geprüft! Sie ist nicht mehr im Suchbereich.</p>
+        <p style="margin: 8px 0;"><b>Beispiel:</b> Liste [5, 10, 18, 20, 25, 39, 42, 50], suche 25</p>
+        <div style="margin: 12px 0;">
+          <p style="margin: 4px 0;"><b>Schritt 1:</b> Mitte = Index 3, Wert = 20</p>
+          <div class="array" id="explain-array-1"></div>
+          <p style="margin: 8px 0; color: var(--muted);">20 &lt; 25 → Die Zahl muss rechts sein! Links von 20 (inklusive 20) können wir ausschließen.</p>
+          <p style="margin: 4px 0;"><b>→ start = mitte + 1 = 3 + 1 = 4</b> ✅</p>
+        </div>
+        <div style="margin: 12px 0;">
+          <p style="margin: 4px 0;"><b>Schritt 2:</b> Mitte = Index 5, Wert = 39</p>
+          <div class="array" id="explain-array-2"></div>
+          <p style="margin: 8px 0; color: var(--muted);">39 &gt; 25 → Die Zahl muss links sein! Rechts von 39 (inklusive 39) können wir ausschließen.</p>
+          <p style="margin: 4px 0;"><b>→ ende = mitte - 1 = 5 - 1 = 4</b> ✅</p>
+        </div>
+      </div>
+      <p>Mach eine komplette Suche <b>ohne Code</b>. Trage nach jedem Schritt die neuen Grenzen ein.</p>
+      
+      <div style="margin-bottom: 24px;">
+        <div class="bubble" style="margin-bottom: 10px;">📋 Aufgabe 1: Liste: [5, 10, 18, 20, 25, 39, 42, 50], Ziel: 25</div>
+        <div class="table-wrap">
+          <table class="table small">
+            <thead><tr><th>Schritt</th><th>Start</th><th>Ende</th><th>Mitte?</th></tr></thead>
+            <tbody id="manual-rows-1"></tbody>
+          </table>
+        </div>
+        <div style="display: flex; gap: 10px; margin-top: 10px;">
+          <button class="btn" onclick="checkManualTask(1)">✅ Aufgabe 1 prüfen</button>
+        </div>
+        <div id="manual-res-1" class="status small" style="margin-top: 10px;"></div>
+      </div>
+
+      <div style="margin-bottom: 24px;">
+        <div class="bubble" style="margin-bottom: 10px;">📋 Aufgabe 2: Liste: [2, 4, 6, 8, 10, 12, 14, 16], Ziel: 16</div>
+        <div class="table-wrap">
+          <table class="table small">
+            <thead><tr><th>Schritt</th><th>Start</th><th>Ende</th><th>Mitte?</th></tr></thead>
+            <tbody id="manual-rows-2"></tbody>
+          </table>
+        </div>
+        <div style="display: flex; gap: 10px; margin-top: 10px;">
+          <button class="btn" onclick="checkManualTask(2)">✅ Aufgabe 2 prüfen</button>
+        </div>
+        <div id="manual-res-2" class="status small" style="margin-top: 10px;"></div>
+      </div>
+
+      <div style="margin-bottom: 24px;">
+        <div class="bubble" style="margin-bottom: 10px;">📋 Aufgabe 3: Liste: [1, 3, 5, 7, 9, 11, 13, 15, 17], Ziel: 9</div>
+        <div class="table-wrap">
+          <table class="table small">
+            <thead><tr><th>Schritt</th><th>Start</th><th>Ende</th><th>Mitte?</th></tr></thead>
+            <tbody id="manual-rows-3"></tbody>
+          </table>
+        </div>
+        <div style="display: flex; gap: 10px; margin-top: 10px;">
+          <button class="btn" onclick="checkManualTask(3)">✅ Aufgabe 3 prüfen</button>
+        </div>
+        <div id="manual-res-3" class="status small" style="margin-top: 10px;"></div>
+      </div>
+
+      <div style="margin-bottom: 24px;">
+        <div class="bubble" style="margin-bottom: 10px;">📋 Aufgabe 4: Liste: [1, 3, 5, 7, 9, 11, 13, 15, 17], Ziel: 20 </div>
+        <div class="table-wrap">
+          <table class="table small">
+            <thead><tr><th>Schritt</th><th>Start</th><th>Ende</th><th>Mitte?</th></tr></thead>
+            <tbody id="manual-rows-4"></tbody>
+          </table>
+        </div>
+        <div style="display: flex; gap: 10px; margin-top: 10px;">
+          <button class="btn" onclick="checkManualTask(4)">✅ Aufgabe 4 prüfen</button>
+        </div>
+        <div id="manual-res-4" class="status small" style="margin-top: 10px;"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="grid cards">
+    <div class="card">
+      <h2>7) Python-Bausteine 🐍</h2>
+      <p>Zieh die Code-Blöcke in die richtige Reihenfolge und klicke auf Check. Alle Teile sind echte Code-Snippets.</p>
+      <ol class="small" id="code-blocks"></ol>
+      <button class="btn secondary" onclick="checkOrder()">Check</button>
+      <div id="order-res" class="status small"></div>
+      <p class="hint">Tipp: Initialisieren → while-Schleife → Mitte → Vergleiche → Grenzen → Ausgabe.</p>
+    </div>
+
+    <div class="card">
+      <h2>8) Was passiert in den Zeilen? 🧐</h2>
+      <p>Kurzfragen zu einzelnen Code-Zeilen. Wähle das Passende, sofortige Korrektur.</p>
+      <div class="question">
+        <p>Zeile <code>start = 0</code> bedeutet…</p>
+        <select id="lq1">
+          <option value="">-- auswählen --</option>
+          <option>linke Grenze auf Index 0 setzen</option>
+          <option>die Suche abbrechen</option>
+        </select>
+      </div>
+      <div class="question">
+        <p>Zeile <code>elif zahlenreihe[mitte] > gesuchte_zahl:</code> führt dazu, dass…</p>
+        <select id="lq2">
+          <option value="">-- auswählen --</option>
+          <option>rechte Grenze nach links rückt</option>
+          <option>linke Grenze nach rechts rückt</option>
+        </select>
+      </div>
+      <div class="question">
+        <p>Zeile <code>while not gefunden and start <= ende:</code> sorgt dafür, dass…</p>
+        <select id="lq3">
+          <option value="">-- auswählen --</option>
+          <option>nur gesucht wird, solange Bereich existiert und nicht gefunden</option>
+          <option>die Schleife endlos läuft</option>
+        </select>
+      </div>
+      <div class="question">
+        <p>Zeile <code>ende = mitte - 1</code> bewirkt…</p>
+        <select id="lq4">
+          <option value="">-- auswählen --</option>
+          <option>rechte Grenze rückt nach links</option>
+          <option>linke Grenze rückt nach rechts</option>
+        </select>
+      </div>
+      <div class="question">
+        <p>Zeile <code>start = mitte + 1</code> bewirkt…</p>
+        <select id="lq5">
+          <option value="">-- auswählen --</option>
+          <option>linke Grenze rückt nach rechts</option>
+          <option>rechte Grenze rückt nach links</option>
+        </select>
+      </div>
+      <div class="question">
+        <p>Zeile <code>if gefunden:</code> bedeutet…</p>
+        <select id="lq6">
+          <option value="">-- auswählen --</option>
+          <option>nur dann Ausgabe des Erfolgs</option>
+          <option>Schleife wird gestartet</option>
+        </select>
+      </div>
+      <button class="btn secondary" onclick="checkLineQuiz()">Check</button>
+      <div id="line-res" class="status small"></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>9) Python-Code ausfüllen ✍️</h2>
+    <p>Wie im Editor: Das Template zeigt dir die Struktur. Fülle die Lücken aus (z.B. <code>start = </code> und <code>ende = </code>). Tab funktioniert zum Einrücken. Wir prüfen Zeile für Zeile.</p>
+    <div id="code-editor" class="editor" contenteditable="true" spellcheck="false" aria-label="Code-Editor"></div>
+    <div class="input-row">
+      <button class="btn secondary" onclick="resetEditor()">🧹 Leeren</button>
+      <button class="btn" onclick="checkFill()">🧪 Code prüfen</button>
+    </div>
+    <div id="code-res" class="status small"></div>
+    <p class="hint">Fülle die Lücken aus (z.B. bei <code>start = </code> und <code>ende = </code>). Einrückung mit Tab. Alle Zeilen müssen vollständig sein.</p>
+  </section>
+
+  <section class="card">
+    <h2>10) Flash-Cards: Verständnis-Check 🎴</h2>
+    <p>Klicke auf eine Karte, um sie umzudrehen und die Antwort zu sehen. Teste dein Verständnis! 💡</p>
+    <div class="flashcards-container" id="flashcards"></div>
+    <p class="hint">💡 Tipp: Versuche die Antwort selbst zu finden, bevor du die Karte umdrehst!</p>
+  </section>
+
+  <section class="card">
+    <h2>10) Dein Spickzettel 📌</h2>
+      <ul class="small">
+        <li>Nur in <b>sortierten</b> Listen anwenden.</li>
+        <li>Mitte = int((Start + Ende) / 2)</li>
+        <li>Vergleich: kleiner → rechts abschneiden, größer → links abschneiden.</li>
+        <li>Stop: gefunden ODER Start &gt; Ende.</li>
+        <li>Laufzeit: O(log n), weil der Suchraum halbiert wird.</li>
+      </ul>
+      <div class="bubble">👍 Tipp: Erkläre die Methode jemand anderem. Wenn du es erklären kannst, hast du es verstanden!</div>
+    </div>
+  </section>
+
+  <footer class="card">
+    <h2>Fertig? 🚀</h2>
+    <p>Starte jetzt dein eigenes Skript in Python und teste mehrere Ziele. Wenn du magst, erweitere die Suche um die Ausgabe aller Zwischenschritte.</p>
+    <p class="small">Made for dich – keep coding & stay curious! 😎</p>
+  </footer>
+
+  <script>
+    const steps = [
+      "👀 Start & Ende merken",
+      "➗ Mitte berechnen",
+      "🔍 Vergleichen: Mitte vs. Ziel",
+      "✂️ Hälfte verwerfen",
+      "🔁 Wiederholen bis gefunden oder leer"
+    ];
+    const stepInfo = {
+      0: "Wir starten mit start=0 und ende=len(liste)-1.",
+      1: "mitte = int((start+ende)/2) (ganzzahlig).",
+      2: "Wenn liste[mitte] == ziel → fertig 🎉",
+      3: "Wenn liste[mitte] > ziel → rechte Grenze = mitte-1, sonst linke Grenze = mitte+1.",
+      4: "Solange wiederholen, bis gefunden oder start > ende."
+    };
+    const codeLines = [
+      "zahlenreihe = [5,10,18,20,25,39,42,50]",
+      "gesuchte_zahl = int(input('Gesuchte Zahl: '))",
+      "gefunden = False",
+      "start = 0",
+      "ende = len(zahlenreihe)-1",
+      "while not gefunden and start <= ende:",
+      "    mitte = int((start+ende)/2)",
+      "    if zahlenreihe[mitte] == gesuchte_zahl:",
+      "        gefunden = True",
+      "    elif zahlenreihe[mitte] > gesuchte_zahl:",
+      "        ende = mitte - 1",
+      "    else:",
+      "        start = mitte + 1",
+      "if gefunden:",
+      "    print('Gefunden bei Index', mitte)",
+      "else:",
+      "    print('Nicht gefunden')"
+    ];
+
+    function renderTimeline() {
+      const tl = document.getElementById("timeline");
+      const explanation = document.getElementById("timeline-explanation");
+      tl.innerHTML = "";
+      steps.forEach((s, i) => {
+        const div = document.createElement("div");
+        div.className = "step";
+        div.innerHTML = `<div class="pill">${s}</div>`;
+        div.onclick = () => {
+          tl.querySelectorAll(".step").forEach(st => st.classList.remove("active"));
+          div.classList.add("active");
+          explanation.textContent = stepInfo[i];
+        };
+        tl.appendChild(div);
+      });
+      explanation.textContent = "";
+    }
+
+    function paintArray(arr, start, ende, mitte, target) {
+      const view = document.getElementById("array-view");
+      view.innerHTML = "";
+      arr.forEach((val, idx) => {
+        const el = document.createElement("div");
+        el.className = "box";
+        if (idx >= start && idx <= ende) el.classList.add("range");
+        if (idx === mitte) el.classList.add("active");
+        el.innerHTML = `<div class="tag">${idx}</div><div>${val}</div>`;
+        view.appendChild(el);
+      });
+      document.getElementById("log").innerHTML =
+        `Start: ${start}, Ende: ${ende}, Mitte: ${mitte}, Wert(Mitte): ${arr[mitte]} → ` +
+        (arr[mitte] === target ? "🎯 gefunden!" : arr[mitte] > target ? "Links weitersuchen ⬅️" : "Rechts weitersuchen ➡️");
+    }
+
+    function startDemo() {
+      const listStr = document.getElementById("list-input").value;
+      const arr = listStr.split(",").map(n => Number(n.trim())).filter(n => !Number.isNaN(n));
+      const target = Number(document.getElementById("target-input").value);
+      if (!arr.length) return alert("Bitte Zahlen eingeben.");
+      let start = 0, ende = arr.length - 1;
+      let step = 0;
+      const interval = setInterval(() => {
+        if (start > ende) {
+          document.getElementById("log").innerHTML = "😢 Element nicht gefunden.";
+          clearInterval(interval);
+          return;
+        }
+        const mitte = Math.floor((start + ende) / 2);
+        paintArray(arr, start, ende, mitte, target);
+        if (arr[mitte] === target) {
+          document.getElementById("log").innerHTML = "🎉 Gefunden bei Index " + mitte;
+          clearInterval(interval);
+        } else if (arr[mitte] > target) {
+          ende = mitte - 1;
+        } else {
+          start = mitte + 1;
+        }
+        step++;
+        if (step > 20) clearInterval(interval);
+      }, 900);
+    }
+
+    function checkSelect(id, correct, outId) {
+      const val = document.getElementById(id).value;
+      const box = document.getElementById(outId);
+      if (val === correct) {
+        box.textContent = "Richtig! 🎉";
+        box.className = "status ok";
+      } else if (!val) {
+        box.textContent = "Bitte auswählen 🙂";
+        box.className = "status bad";
+      } else {
+        box.textContent = "Nope, nochmal überlegen. 😅";
+        box.className = "status bad";
+      }
+      updateProgress();
+    }
+
+    function checkMid() {
+      const val = document.getElementById("mid-q").value.trim();
+      const res = document.getElementById("mid-res");
+      if (val === "3" || val === "3.5" || val === "3,5") {
+        res.textContent = "Fast! Mit int((0+7)/2) = int(3.5) = 3. ✅";
+        res.className = "status ok";
+      } else if (val === "3") {
+        res.textContent = "Ja, 3. ✅";
+        res.className = "status ok";
+      } else {
+        res.textContent = "Nicht ganz. int((0+7)/2) = int(3.5) = 3.";
+        res.className = "status bad";
+      }
+      updateProgress();
+    }
+
+    function addManualRow(tbodyId) {
+      const tbody = document.getElementById(tbodyId);
+      const idx = tbody.children.length + 1;
+      const tr = document.createElement("tr");
+      tr.innerHTML = `<td>${idx}</td>
+        <td><input aria-label="Start ${idx}" class="small"></td>
+        <td><input aria-label="Ende ${idx}" class="small"></td>
+        <td><input aria-label="Mitte ${idx}" class="small"></td>`;
+      tbody.appendChild(tr);
+    }
+
+    function checkManualTask(taskNumber) {
+      const solutions = [
+        [[0,7,3], [4,7,5], [4,4,4]], // Aufgabe 1: [5,10,18,20,25,39,42,50], Ziel: 25
+        [[0,7,3], [4,7,5], [6,7,6], [7,7,7]], // Aufgabe 2: [2,4,6,8,10,12,14,16], Ziel: 16
+        [[0,8,4]], // Aufgabe 3: [1,3,5,7,9,11,13,15,17], Ziel: 9
+        [[0,8,4], [5,8,6], [7,8,7], [8,8,8], [9,8,-1]] // Aufgabe 4: [1,3,5,7,9,11,13,15,17], Ziel: 20 (nicht vorhanden, Start > Ende)
+      ];
+      const tbodyIds = ["manual-rows-1", "manual-rows-2", "manual-rows-3", "manual-rows-4"];
+      const resultIds = ["manual-res-1", "manual-res-2", "manual-res-3", "manual-res-4"];
+      
+      const taskIdx = taskNumber - 1;
+      const solution = solutions[taskIdx];
+      const tbody = document.getElementById(tbodyIds[taskIdx]);
+      const res = document.getElementById(resultIds[taskIdx]);
+      const rows = Array.from(tbody.querySelectorAll("tr"));
+      let taskCorrect = 0;
+      
+      if (rows.length < solution.length) {
+        res.textContent = `⚠️ Bitte mindestens ${solution.length} Schritte ausfüllen.`;
+        res.className = "status bad";
+        return;
+      }
+      
+      rows.slice(0, solution.length).forEach((tr, i) => {
+        const vals = Array.from(tr.querySelectorAll("input")).map(inp => Number.parseInt(inp.value, 10));
+        if (Number.isNaN(vals[0]) || Number.isNaN(vals[1]) || Number.isNaN(vals[2])) return;
+        // Für Aufgabe 4 (Index 3): Wenn Start > Ende, dann ist das korrekt (nicht gefunden), Mitte wird ignoriert
+        if (taskNumber === 4 && i === solution.length - 1) {
+          if (vals[0] > vals[1]) {
+            taskCorrect++;
+          }
+        } else if (vals[0] === solution[i][0] && vals[1] === solution[i][1] && vals[2] === solution[i][2]) {
+          taskCorrect++;
+        }
+      });
+      
+      if (taskCorrect === solution.length) {
+        res.textContent = `🎉 Alle ${solution.length} Schritte richtig! Perfekt! ✅`;
+        res.className = "status ok";
+      } else {
+        res.textContent = `${taskCorrect}/${solution.length} Schritte richtig. Tipp: Mitte = int((start+ende)/2)!`;
+        res.className = "status bad";
+      }
+      updateProgress();
+    }
+
+    function initManualTasks() {
+      const rowCounts = [3, 4, 1, 5]; // Anzahl der Zeilen für jede Aufgabe
+      const tbodyIds = ["manual-rows-1", "manual-rows-2", "manual-rows-3", "manual-rows-4"];
+      
+      tbodyIds.forEach((tbodyId, idx) => {
+        const tbody = document.getElementById(tbodyId);
+        if (tbody && tbody.children.length === 0) {
+          for (let i = 0; i < rowCounts[idx]; i++) {
+            addManualRow(tbodyId);
+          }
+        }
+      });
+    }
+
+    function checkManual() {
+      const solutions = [
+        [[0,7,3], [4,7,5], [4,4,4]], // Aufgabe 1: [5,10,18,20,25,39,42,50], Ziel: 25
+        [[0,7,3], [4,7,5], [6,7,6], [7,7,7]], // Aufgabe 2: [2,4,6,8,10,12,14,16], Ziel: 16
+        [[0,8,4]], // Aufgabe 3: [1,3,5,7,9,11,13,15,17], Ziel: 9
+        [[0,8,4], [5,8,6], [7,8,7], [8,8,8], [9,8,-1]] // Aufgabe 4: [1,3,5,7,9,11,13,15,17], Ziel: 20 (nicht vorhanden)
+      ];
+      const tbodyIds = ["manual-rows-1", "manual-rows-2", "manual-rows-3", "manual-rows-4"];
+      let totalCorrect = 0;
+      let totalExpected = 0;
+      const results = [];
+      
+      solutions.forEach((solution, taskIdx) => {
+        const tbody = document.getElementById(tbodyIds[taskIdx]);
+        const rows = Array.from(tbody.querySelectorAll("tr"));
+        let taskCorrect = 0;
+        totalExpected += solution.length;
+        
+        if (rows.length < solution.length) {
+          results.push(`Aufgabe ${taskIdx + 1}: Bitte mindestens ${solution.length} Schritte ausfüllen.`);
+          return;
+        }
+        
+        rows.slice(0, solution.length).forEach((tr, i) => {
+          const vals = Array.from(tr.querySelectorAll("input")).map(inp => Number.parseInt(inp.value, 10));
+          if (Number.isNaN(vals[0]) || Number.isNaN(vals[1]) || Number.isNaN(vals[2])) return;
+          if (vals[0] === solution[i][0] && vals[1] === solution[i][1] && vals[2] === solution[i][2]) {
+            taskCorrect++;
+            totalCorrect++;
+          }
+        });
+        
+        if (taskCorrect === solution.length) {
+          results.push(`Aufgabe ${taskIdx + 1}: ✅ Richtig!`);
+        } else {
+          results.push(`Aufgabe ${taskIdx + 1}: ${taskCorrect}/${solution.length} richtig.`);
+        }
+      });
+      
+      const res = document.getElementById("manual-res");
+      if (totalCorrect === totalExpected) {
+        res.textContent = `🎉 Alle ${totalExpected} Schritte richtig! Perfekt! 🏅`;
+        res.className = "status ok";
+      } else {
+        res.innerHTML = results.join("<br>") + `<br><br>Gesamt: ${totalCorrect}/${totalExpected} richtig. Tipp: Mitte = int((start+ende)/2)!`;
+        res.className = "status bad";
+      }
+      updateProgress();
+    }
+
+    function renderCodeBlocks() {
+      const list = document.getElementById("code-blocks");
+      list.innerHTML = "";
+      const shuffled = [...codeLines].map((line, idx) => ({ line, id: idx + 1 }))
+        .sort(() => Math.random() - 0.5);
+      shuffled.forEach(item => {
+        const li = document.createElement("li");
+        li.className = "draggable";
+        li.setAttribute("draggable", "true");
+        li.dataset.id = item.id;
+        li.textContent = `${item.line}`;
+        list.appendChild(li);
+      });
+      enableDrag(list);
+    }
+
+    function enableDrag(list) {
+      let dragEl = null;
+      list.querySelectorAll(".draggable").forEach(el => {
+        el.addEventListener("dragstart", e => {
+          dragEl = el;
+          el.classList.add("dragging");
+          e.dataTransfer.effectAllowed = "move";
+        });
+        el.addEventListener("dragend", () => {
+          dragEl = null;
+          el.classList.remove("dragging");
+        });
+      });
+      list.addEventListener("dragover", e => {
+        e.preventDefault();
+        const afterEl = getDragAfterElement(list, e.clientY);
+        if (!dragEl) return;
+        if (afterEl == null) {
+          list.appendChild(dragEl);
+        } else {
+          list.insertBefore(dragEl, afterEl);
+        }
+      });
+    }
+
+    function getDragAfterElement(list, y) {
+      const els = [...list.querySelectorAll(".draggable:not(.dragging)")];
+      return els.reduce((closest, child) => {
+        const box = child.getBoundingClientRect();
+        const offset = y - box.top - box.height / 2;
+        if (offset < 0 && offset > closest.offset) {
+          return { offset, element: child };
+        } else {
+          return closest;
+        }
+      }, { offset: Number.NEGATIVE_INFINITY }).element;
+    }
+
+    function checkOrder() {
+      const order = [...document.querySelectorAll("#code-blocks li")].map(li => Number(li.dataset.id));
+      const res = document.getElementById("order-res");
+      const allIds = new Set(order);
+      const needed = codeLines.map((_, i) => i + 1);
+      const hasAll = needed.every(n => allIds.has(n));
+      if (!hasAll || order.length !== needed.length) {
+        res.textContent = "Es fehlen Bausteine. Bitte alle nutzen. 🙂";
+        res.className = "status bad";
+        updateProgress();
+        return;
+      }
+      const pos = n => order.indexOf(n);
+      const pre = [1,2,3,4,5];
+      const whileSeq = [6,7,8,9,10,11,12,13];
+      const postSeq = [14,15,16,17];
+      const condPreBeforeWhile = pre.every(id => pos(id) < pos(6));
+      const condWhileOrder = whileSeq.every((id, idx) => idx === 0 || pos(id) > pos(whileSeq[idx-1]));
+      const condPostOrder = postSeq.every((id, idx) => idx === 0 || pos(id) > pos(postSeq[idx-1]));
+      const condWhileBeforePost = pos(6) < pos(14);
+      if (condPreBeforeWhile && condWhileOrder && condPostOrder && condWhileBeforePost) {
+        res.textContent = "Yep! Reihenfolge passt. 🎯";
+        res.className = "status ok";
+      } else {
+        res.textContent = "Reihenfolge passt nicht ganz. Init-Teil (erste 5 Zeilen) vor der while, danach Block in Reihenfolge, dann Ausgabe.";
+        res.className = "status bad";
+      }
+      updateProgress();
+    }
+
+    function checkLineQuiz() {
+      const ok1 = document.getElementById("lq1").value === "linke Grenze auf Index 0 setzen";
+      const ok2 = document.getElementById("lq2").value === "rechte Grenze nach links rückt";
+      const ok3 = document.getElementById("lq3").value.startsWith("nur gesucht");
+      const ok4 = document.getElementById("lq4").value === "rechte Grenze rückt nach links";
+      const ok5 = document.getElementById("lq5").value === "linke Grenze rückt nach rechts";
+      const ok6 = document.getElementById("lq6").value === "nur dann Ausgabe des Erfolgs";
+      const res = document.getElementById("line-res");
+      const score = [ok1,ok2,ok3,ok4,ok5,ok6].filter(Boolean).length;
+      if (score === 6) {
+        res.textContent = "Alles richtig! 🎉";
+        res.className = "status ok";
+      } else {
+        res.textContent = `Noch nicht perfekt (${score}/6). Hinweise: Grenzen verschieben und Bedingung verstehen.`;
+        res.className = "status bad";
+      }
+      updateProgress();
+    }
+
+    function normalize(line) {
+      return line.replace(/\t/g, "    ").trimEnd();
+    }
+
+    function resetEditor() {
+      const editor = document.getElementById("code-editor");
+      editor.innerText = "zahlenreihe = [5,10,18,20,25,39,42,50]\ngesuchte_zahl = int(input('Gesuchte Zahl: '))\n\ngefunden = \nstart = \nende = \n\nwhile \n    mitte = \n    if \n        \n    elif \n        \n    else:\n        \n\nif gefunden:\n    \nelse:\n    ";
+    }
+
+    function checkFill() {
+      const expected = [
+        "zahlenreihe = [5,10,18,20,25,39,42,50]",
+        "gesuchte_zahl = int(input('Gesuchte Zahl: '))",
+        "gefunden = False",
+        "start = 0",
+        "ende = len(zahlenreihe) - 1",
+        "while not gefunden and start <= ende:",
+        "    mitte = int((start+ende)/2)",
+        "    if zahlenreihe[mitte] == gesuchte_zahl:",
+        "        gefunden = True",
+        "    elif zahlenreihe[mitte] > gesuchte_zahl:",
+        "        ende = mitte - 1",
+        "    else:",
+        "        start = mitte + 1",
+        "if gefunden:",
+        "    print('Gefunden bei Index', mitte)",
+        "else:",
+        "    print('Nicht gefunden')"
+      ];
+      const res = document.getElementById("code-res");
+      const text = document.getElementById("code-editor").innerText.replace(/\r/g,"");
+      const lines = text.split("\n").map(normalize).filter((_,i) => i < expected.length);
+      if (lines.length < expected.length) {
+        res.textContent = `Es fehlen Zeilen (${lines.length}/${expected.length}).`;
+        res.className = "status bad";
+        updateProgress();
+        return;
+      }
+      let correct = 0;
+      expected.forEach((exp, idx) => {
+        if (normalize(lines[idx]) === exp) correct++;
+      });
+      if (correct === expected.length) {
+        res.textContent = "Alle Zeilen passen! 🚀";
+        res.className = "status ok";
+      } else {
+        res.textContent = `Richtig: ${correct}/${expected.length}. Achte auf Einrückung (Tab/Spaces) und Syntax.`;
+        res.className = "status bad";
+      }
+      updateProgress();
+    }
+
+    const flashcardQuestions = [
+      {
+        q: "Was passiert, wenn das Element nicht in der Liste existiert?",
+        a: "Die Schleife läuft weiter, bis start > ende wird. Dann stoppt die Suche und das Element wurde nicht gefunden."
+      },
+      {
+        q: "Warum verwenden wir int((start+ende)/2) statt (start+ende)/2?",
+        a: "Weil Array-Indizes ganze Zahlen sein müssen. int() rundet ab, sodass wir einen gültigen Index erhalten."
+      },
+      {
+        q: "Was bedeutet die Bedingung 'while not gefunden and start <= ende:'?",
+        a: "Die Schleife läuft, solange das Element noch nicht gefunden wurde UND der Suchbereich noch gültig ist (start ist kleiner oder gleich ende)."
+      },
+      {
+        q: "Warum setzen wir 'ende = mitte - 1' und nicht 'ende = mitte'?",
+        a: "Weil wir die Mitte bereits geprüft haben. Sie ist nicht mehr im Suchbereich, daher schließen wir sie aus (mitte - 1)."
+      },
+      {
+        q: "Warum setzen wir 'start = mitte + 1' und nicht 'start = mitte'?",
+        a: "Weil wir die Mitte bereits geprüft haben. Sie ist nicht mehr im Suchbereich, daher starten wir bei mitte + 1."
+      },
+      {
+        q: "Was passiert, wenn zahlenreihe[mitte] == gesuchte_zahl?",
+        a: "Das Element wurde gefunden! Die Variable 'gefunden' wird auf True gesetzt und die Schleife stoppt beim nächsten Check."
+      },
+      {
+        q: "Was bedeutet 'gefunden = False' am Anfang?",
+        a: "Wir initialisieren eine Flag-Variable, die anzeigt, ob das Element bereits gefunden wurde. Am Anfang ist es noch nicht gefunden."
+      },
+      {
+        q: "Warum ist 'ende = len(zahlenreihe) - 1' und nicht 'ende = len(zahlenreihe)'?",
+        a: "Weil Array-Indizes bei 0 beginnen. Bei einer Liste mit 8 Elementen sind die Indizes 0-7, nicht 0-8."
+      },
+      {
+        q: "Was bedeutet 'elif zahlenreihe[mitte] > gesuchte_zahl:'?",
+        a: "Wenn der Wert an der Mitte größer ist als das gesuchte Element, muss das gesuchte Element links von der Mitte liegen."
+      },
+      {
+        q: "Was passiert im 'else'-Zweig der if-elif-Struktur?",
+        a: "Wenn die Mitte weder gleich noch größer ist, muss sie kleiner sein. Dann liegt das gesuchte Element rechts von der Mitte."
+      },
+      {
+        q: "Warum funktioniert binäre Suche nur in sortierten Listen?",
+        a: "Nur in sortierten Listen können wir sicher sein: Wenn die Mitte größer ist, liegt das Ziel links. Ohne Sortierung ist diese Logik nicht gültig."
+      },
+      {
+        q: "Was bedeutet 'start <= ende' in der while-Bedingung?",
+        a: "Solange start kleiner oder gleich ende ist, existiert noch ein Suchbereich. Wenn start > ende wird, ist der Bereich leer."
+      },
+      {
+        q: "Was passiert nach der while-Schleife mit 'if gefunden:'?",
+        a: "Wir prüfen, ob das Element gefunden wurde. Wenn ja, geben wir den Index aus. Sonst geben wir 'Nicht gefunden' aus."
+      },
+      {
+        q: "Warum halbiert sich der Suchbereich bei jedem Schritt?",
+        a: "Weil wir die Mitte prüfen und dann eine Hälfte ausschließen. Dadurch wird der Suchbereich immer kleiner, bis wir das Element finden oder der Bereich leer ist."
+      },
+      {
+        q: "Was ist der Unterschied zwischen 'if' und 'elif'?",
+        a: "'if' prüft immer. 'elif' wird nur geprüft, wenn alle vorherigen if/elif-Bedingungen falsch waren. Das spart unnötige Vergleiche."
+      }
+    ];
+
+    function renderFlashcards() {
+      const container = document.getElementById("flashcards");
+      if (!container) return;
+      container.innerHTML = "";
+      flashcardQuestions.forEach((card, idx) => {
+        const div = document.createElement("div");
+        div.className = "flashcard";
+        div.innerHTML = `
+          <div class="flashcard-number">${idx + 1}/15</div>
+          <div class="flashcard-front">
+            <p style="font-size: 16px; font-weight: 700; margin: 0 0 12px;">❓ Frage</p>
+            <p style="font-size: 15px; line-height: 1.5;">${card.q}</p>
+          </div>
+          <div class="flashcard-back">
+            <p style="font-size: 16px; font-weight: 700; margin: 0 0 12px;">✅ Antwort</p>
+            <p style="font-size: 14px; line-height: 1.6;">${card.a}</p>
+          </div>
+          <div class="flashcard-hint">👆 Klicken zum Umdrehen</div>
+        `;
+        div.onclick = () => {
+          div.classList.toggle("flipped");
+        };
+        container.appendChild(div);
+      });
+    }
+
+
+    function updateProgress() {
+      const checks = ["res1","mid-res","res2","res3","manual-res","order-res","line-res","code-res","quiz-res"];
+      const done = checks.filter(id => {
+        const el = document.getElementById(id);
+        return el && el.className.includes("ok");
+      }).length;
+      const pct = Math.min(100, Math.round((done / checks.length) * 100));
+      document.getElementById("progress-bar").style.width = pct + "%";
+    }
+
+    function initEditorKeyHandling() {
+      const editor = document.getElementById("code-editor");
+      editor.addEventListener("keydown", e => {
+        if (e.key === "Tab") {
+          e.preventDefault();
+          const sel = window.getSelection();
+          const range = sel.getRangeAt(0);
+          const tabNode = document.createTextNode("    ");
+          range.insertNode(tabNode);
+          range.setStartAfter(tabNode);
+          range.setEndAfter(tabNode);
+          sel.removeAllRanges();
+          sel.addRange(range);
+        }
+      });
+    }
+
+    function renderExplanationArrays() {
+      const arr = [5, 10, 18, 20, 25, 39, 42, 50];
+      
+      // Beispiel 1: Mitte zu klein, start = mitte + 1
+      const view1 = document.getElementById("explain-array-1");
+      if (view1) {
+        view1.innerHTML = "";
+        arr.forEach((val, idx) => {
+          const el = document.createElement("div");
+          el.className = "box";
+          if (idx <= 3) el.classList.add("excluded");
+          if (idx === 3) el.classList.add("active");
+          if (idx >= 4) el.classList.add("keep");
+          el.innerHTML = `<div class="tag">${idx}</div><div>${val}</div>`;
+          view1.appendChild(el);
+        });
+      }
+      
+      // Beispiel 2: Mitte zu groß, ende = mitte - 1
+      const view2 = document.getElementById("explain-array-2");
+      if (view2) {
+        view2.innerHTML = "";
+        arr.forEach((val, idx) => {
+          const el = document.createElement("div");
+          el.className = "box";
+          if (idx === 5) {
+            el.classList.add("active");
+          } else if (idx >= 5) {
+            el.classList.add("excluded");
+          } else if (idx >= 4) {
+            el.classList.add("keep");
+          } else {
+            el.classList.add("excluded");
+          }
+          el.innerHTML = `<div class="tag">${idx}</div><div>${val}</div>`;
+          view2.appendChild(el);
+        });
+      }
+    }
+
+    let ornamentValues = [];
+    let searchState = { 
+      start: null, 
+      ende: null, 
+      step: "select-range", 
+      found: false,
+      selectedStart: null,
+      selectedEnd: null,
+      currentMitte: null,
+      excludedIndices: [],
+      expectedStart: undefined,
+      expectedEnd: undefined,
+      expectedMitte: undefined
+    };
+    const targetOrnament = 42;
+
+    function shuffleArray(array) {
+      const shuffled = [...array];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled;
+    }
+
+    function renderOrnaments() {
+      if (ornamentValues.length === 0) {
+        const sorted = [3, 8, 15, 19, 25, 28, 33, 42, 50];
+        ornamentValues = shuffleArray(sorted);
+      }
+      const container = document.getElementById("ornament-container");
+      container.innerHTML = "";
+      // Prüfe, ob sortiert
+      const sorted = ornamentValues.slice().sort((a, b) => a - b);
+      const isSorted = JSON.stringify(ornamentValues) === JSON.stringify(sorted);
+      
+      ornamentValues.forEach((val, idx) => {
+        const div = document.createElement("div");
+        div.className = "ornament";
+        if (isSorted) {
+          div.classList.add("sorted");
+        }
+        div.draggable = true;
+        div.dataset.value = val;
+        div.dataset.index = idx;
+        div.innerHTML = `
+          <div class="ornament-index">${idx}</div>
+          <div class="ornament-value">${val}</div>
+        `;
+        div.addEventListener("dragstart", handleDragStart);
+        div.addEventListener("dragover", handleDragOver);
+        div.addEventListener("drop", handleDrop);
+        div.addEventListener("dragend", handleDragEnd);
+        
+        // Setze Click-Handler basierend auf dem aktuellen Schritt
+        // WICHTIG: Entferne alle möglichen Click-Handler zuerst
+        div.onclick = null;
+        div.removeEventListener("click", handleOrnamentClick);
+        div.removeEventListener("click", handleMitteClick);
+        div.removeEventListener("click", handleExcludeClick);
+        
+        if (searchState.step === "select-range") {
+          div.classList.add("selectable");
+          div.addEventListener("click", handleOrnamentClick);
+        } else if (searchState.step === "select-mitte") {
+          div.classList.add("selectable");
+          div.addEventListener("click", handleMitteClick);
+        } else if (searchState.step === "exclude") {
+          if (!searchState.excludedIndices.includes(idx)) {
+            div.classList.add("selectable");
+            div.addEventListener("click", handleExcludeClick);
+          }
+        }
+        container.appendChild(div);
+      });
+      updateOrnamentDisplay();
+      checkSorting();
+    }
+
+    let draggedElement = null;
+
+    function handleDragStart(e) {
+      draggedElement = this;
+      this.classList.add("dragging");
+      e.dataTransfer.effectAllowed = "move";
+      e.dataTransfer.setData("text/html", this.innerHTML);
+    }
+
+    function handleDragOver(e) {
+      if (e.preventDefault) e.preventDefault();
+      e.dataTransfer.dropEffect = "move";
+      if (this !== draggedElement && this.classList.contains("ornament")) {
+        const rect = this.getBoundingClientRect();
+        const midX = rect.left + rect.width / 2;
+        if (e.clientX < midX) {
+          this.parentNode.insertBefore(draggedElement, this);
+        } else {
+          this.parentNode.insertBefore(draggedElement, this.nextSibling);
+        }
+      }
+    }
+
+    function handleDrop(e) {
+      if (e.stopPropagation) e.stopPropagation();
+      return false;
+    }
+
+    function handleDragEnd(e) {
+      this.classList.remove("dragging");
+      updateOrnamentValues();
+      checkSorting();
+    }
+
+    function updateOrnamentValues() {
+      const ornaments = Array.from(document.querySelectorAll("#ornament-container .ornament"));
+      // Aktualisiere ornamentValues aus dem DOM
+      ornamentValues = ornaments.map(el => {
+        const val = el.dataset.value;
+        if (val) {
+          const parsed = parseInt(val, 10);
+          if (!isNaN(parsed)) return parsed;
+        }
+        // Fallback: Versuche aus dem Text zu lesen
+        const valueEl = el.querySelector(".ornament-value");
+        if (valueEl) {
+          const textVal = parseInt(valueEl.textContent.trim(), 10);
+          if (!isNaN(textVal)) return textVal;
+        }
+        return 0;
+      });
+      // Indizes aktualisieren
+      ornaments.forEach((el, idx) => {
+        el.dataset.index = idx;
+        el.dataset.value = ornamentValues[idx]; // Stelle sicher, dass dataset.value gesetzt ist
+        const indexEl = el.querySelector(".ornament-index");
+        if (indexEl) {
+          indexEl.textContent = idx;
+        }
+      });
+    }
+
+    function handleOrnamentClick(e) {
+      if (searchState.step !== "select-range") return;
+      const idx = parseInt(this.dataset.index);
+      if (searchState.selectedStart === null) {
+        // Validiere Start
+        const expectedStart = searchState.expectedStart !== undefined ? searchState.expectedStart : 0;
+        if (idx !== expectedStart) {
+          document.getElementById("search-status").textContent = `❌ Falsch! Überlege nochmal, welcher Index der Start sein sollte.`;
+          document.getElementById("search-status").className = "status bad";
+          return;
+        }
+        searchState.selectedStart = idx;
+        this.classList.add("selected-start");
+        const expectedEnd = searchState.expectedEnd !== undefined ? searchState.expectedEnd : (ornamentValues.length - 1);
+        document.getElementById("current-step-info").innerHTML = 
+          `<p style="margin: 0 0 8px; font-size: 18px; font-weight: 800;"><b>Schritt 1: Bestimme Start und Ende</b></p>
+           <p style="margin: 0; font-size: 15px; line-height: 1.6;">Start gewählt: Index ${idx} ✅. Klicke jetzt auf die Kugel für <b>Ende</b>.</p>`;
+        document.getElementById("search-status").textContent = "✅ Richtig! Jetzt wähle Ende.";
+        document.getElementById("search-status").className = "status ok";
+      } else if (searchState.selectedEnd === null) {
+        // Validiere Ende
+        const expectedEnd = searchState.expectedEnd !== undefined ? searchState.expectedEnd : (ornamentValues.length - 1);
+        if (idx !== expectedEnd) {
+          document.getElementById("search-status").textContent = `❌ Falsch! Überlege nochmal, welcher Index das Ende sein sollte.`;
+          document.getElementById("search-status").className = "status bad";
+          return;
+        }
+        if (idx < searchState.selectedStart) {
+          document.getElementById("search-status").textContent = `❌ Falsch! Ende muss größer oder gleich Start sein!`;
+          document.getElementById("search-status").className = "status bad";
+          return;
+        }
+        searchState.selectedEnd = idx;
+        this.classList.add("selected-end");
+        document.getElementById("selected-start").textContent = searchState.selectedStart;
+        document.getElementById("selected-end").textContent = searchState.selectedEnd;
+        document.getElementById("search-status").textContent = "✅ Richtig! Weiter zum nächsten Schritt...";
+        document.getElementById("search-status").className = "status ok";
+        // Automatisch zum nächsten Schritt wechseln
+        setTimeout(() => {
+          confirmRange();
+        }, 500);
+      }
+    }
+
+    function handleExcludeClick(e) {
+      if (searchState.step !== "exclude") return;
+      const idx = parseInt(this.dataset.index);
+      if (searchState.excludedIndices.includes(idx)) return;
+      
+      const mitte = searchState.currentMitte;
+      const mitteWert = ornamentValues[mitte];
+      
+      // Wenn die Mitte die gesuchte Kugel ist, sollte sie nicht ausgeschlossen werden
+      // (aber das sollte bereits in handleMitteClick abgefangen werden)
+      if (mitteWert === targetOrnament) {
+        document.getElementById("search-status").textContent = "❌ Die Mitte ist die gesuchte Kugel! Sie wurde bereits gefunden.";
+        document.getElementById("search-status").className = "status bad";
+        return;
+      }
+      
+      const shouldExcludeRight = mitteWert > targetOrnament;
+      const shouldExcludeLeft = mitteWert < targetOrnament;
+      
+      // Prüfe, ob die richtige Kugel ausgeschlossen wird
+      let isCorrect = false;
+      if (shouldExcludeRight) {
+        // Rechts von Mitte (inklusive Mitte) sollten ausgeschlossen sein
+        isCorrect = (idx >= mitte && idx <= searchState.ende);
+      } else if (shouldExcludeLeft) {
+        // Links von Mitte (inklusive Mitte) sollten ausgeschlossen sein
+        isCorrect = (idx >= searchState.start && idx <= mitte);
+      }
+      
+      if (!isCorrect) {
+        document.getElementById("search-status").textContent = `❌ Falsch! Diese Kugel sollte nicht ausgeschlossen werden. Überlege nochmal, welche Seite ausgeschlossen werden muss.`;
+        document.getElementById("search-status").className = "status bad";
+        return;
+      }
+      
+      searchState.excludedIndices.push(idx);
+      this.classList.add("excluded");
+      updateExcludeStatus();
+    }
+
+    function confirmRange() {
+      searchState.start = parseInt(searchState.selectedStart);
+      searchState.ende = parseInt(searchState.selectedEnd);
+      searchState.step = "select-mitte";
+      document.getElementById("mitte-section").style.display = "block";
+      document.getElementById("range-info").style.display = "none";
+      // Berechne Mitte (ohne Formel anzuzeigen)
+      // Formel: int((start + ende) / 2)
+      const mitte = Math.floor((searchState.start + searchState.ende) / 2);
+      searchState.expectedMitte = mitte;
+      searchState.currentMitte = null; // Wird gesetzt, wenn Benutzer die Mitte auswählt
+      document.getElementById("mitte-calculation").style.display = "none"; // Formel nicht anzeigen
+      document.getElementById("current-step-info").innerHTML = 
+        `<p style="margin: 0 0 8px; font-size: 18px; font-weight: 800;"><b>Schritt 2: Wähle die mittige Kugel</b></p>
+         <p style="margin: 0; font-size: 15px; line-height: 1.6;">Berechne die Mitte zwischen Index ${searchState.start} und Index ${searchState.ende} und klicke auf die entsprechende Kugel!</p>`;
+      document.getElementById("search-status").textContent = "💭 Berechne die Mitte und wähle die entsprechende Kugel aus.";
+      document.getElementById("search-status").className = "status";
+      renderOrnaments();
+      updateOrnamentDisplay();
+    }
+    
+    function int(value) {
+      return Math.floor(value);
+    }
+
+    function handleMitteClick(e) {
+      if (searchState.step !== "select-mitte") return;
+      const idx = parseInt(this.dataset.index);
+      const expectedMitte = searchState.expectedMitte;
+      
+      if (idx !== expectedMitte) {
+        document.getElementById("search-status").textContent = `❌ Falsch! Berechne nochmal die Mitte zwischen Index ${searchState.start} und Index ${searchState.ende}.`;
+        document.getElementById("search-status").className = "status bad";
+        return;
+      }
+      
+      searchState.currentMitte = idx;
+      searchState.step = "exclude";
+      document.getElementById("compare-section").style.display = "block";
+      const mitteWert = ornamentValues[idx];
+      document.getElementById("compare-info").innerHTML = 
+        `Mitte: Index ${idx}, Wert = ${mitteWert}<br>
+         Gesucht: ${targetOrnament}<br>
+         Vergleich: ${mitteWert} ${mitteWert === targetOrnament ? "==" : mitteWert > targetOrnament ? ">" : "<"} ${targetOrnament}`;
+      
+      if (mitteWert === targetOrnament) {
+        document.getElementById("search-status").textContent = `🎉 Gefunden! Die Kugel mit Wert ${targetOrnament} ist bei Index ${idx}!`;
+        document.getElementById("search-status").className = "status ok";
+        searchState.found = true;
+        document.getElementById("next-round-btn").style.display = "none";
+      } else {
+        document.getElementById("current-step-info").innerHTML = 
+          `<p style="margin: 0 0 8px; font-size: 18px; font-weight: 800;"><b>Schritt 3: Vergleiche und schließe aus</b></p>
+           <p style="margin: 0; font-size: 15px; line-height: 1.6;">${mitteWert} ${mitteWert > targetOrnament ? ">" : "<"} ${targetOrnament}, daher muss die gesuchte Kugel ${mitteWert > targetOrnament ? "links" : "rechts"} von Index ${idx} sein.</p>
+           <p style="margin: 12px 0 0; font-size: 15px; line-height: 1.6; color: var(--muted);">Klicke auf die Kugeln, die ausgeschlossen werden sollen.</p>`;
+        document.getElementById("search-status").textContent = "✅ Richtig! Jetzt schließe die richtigen Kugeln aus.";
+        document.getElementById("search-status").className = "status ok";
+        renderOrnaments();
+      }
+      updateOrnamentDisplay();
+    }
+
+    function updateExcludeStatus() {
+      const mitte = searchState.currentMitte;
+      const mitteWert = ornamentValues[mitte];
+      const shouldExcludeRight = mitteWert > targetOrnament;
+      const shouldExcludeLeft = mitteWert < targetOrnament;
+      
+      let correct = true;
+      let missingIndices = [];
+      
+      if (shouldExcludeRight) {
+        // Rechts von Mitte (inklusive Mitte) sollten ausgeschlossen sein
+        for (let i = mitte; i <= searchState.ende; i++) {
+          if (!searchState.excludedIndices.includes(i)) {
+            correct = false;
+            missingIndices.push(i);
+          }
+        }
+        // Prüfe, ob alle Indizes im aktuellen Bereich ausgeschlossen sind
+        const expectedCount = searchState.ende - mitte + 1;
+        const excludedInRange = searchState.excludedIndices.filter(idx => idx >= mitte && idx <= searchState.ende).length;
+        if (correct && excludedInRange === expectedCount) {
+          searchState.ende = mitte - 1;
+          document.getElementById("search-status").textContent = "✅ Richtig ausgeschlossen! Weiter zum nächsten Schritt...";
+          document.getElementById("search-status").className = "status ok";
+          // Automatisch zur nächsten Runde wechseln
+          setTimeout(() => {
+            nextRound();
+          }, 800);
+        } else if (!correct && missingIndices.length > 0) {
+          document.getElementById("search-status").textContent = `⚠️ Noch nicht fertig! Es fehlen noch die Indizes: ${missingIndices.join(", ")}.`;
+          document.getElementById("search-status").className = "status bad";
+        }
+      } else if (shouldExcludeLeft) {
+        // Links von Mitte (inklusive Mitte) sollten ausgeschlossen sein
+        for (let i = searchState.start; i <= mitte; i++) {
+          if (!searchState.excludedIndices.includes(i)) {
+            correct = false;
+            missingIndices.push(i);
+          }
+        }
+        // Prüfe, ob alle Indizes im aktuellen Bereich ausgeschlossen sind
+        const expectedCount = mitte - searchState.start + 1;
+        const excludedInRange = searchState.excludedIndices.filter(idx => idx >= searchState.start && idx <= mitte).length;
+        if (correct && excludedInRange === expectedCount) {
+          searchState.start = mitte + 1;
+          document.getElementById("search-status").textContent = "✅ Richtig ausgeschlossen! Weiter zum nächsten Schritt...";
+          document.getElementById("search-status").className = "status ok";
+          // Automatisch zur nächsten Runde wechseln
+          setTimeout(() => {
+            nextRound();
+          }, 800);
+        } else if (!correct && missingIndices.length > 0) {
+          document.getElementById("search-status").textContent = `⚠️ Noch nicht fertig! Es fehlen noch die Indizes: ${missingIndices.join(", ")}.`;
+          document.getElementById("search-status").className = "status bad";
+        }
+      }
+    }
+
+    function nextRound() {
+      if (searchState.start > searchState.ende) {
+        document.getElementById("search-status").textContent = "❌ Nicht gefunden! Der Suchbereich ist leer.";
+        document.getElementById("search-status").className = "status bad";
+        return;
+      }
+      
+      const expectedStart = searchState.start;
+      const expectedEnd = searchState.ende;
+      
+      searchState.selectedStart = null;
+      searchState.selectedEnd = null;
+      searchState.currentMitte = null;
+      // excludedIndices NICHT zurücksetzen - ausgeschlossene Kugeln bleiben ausgegraut
+      searchState.step = "select-range";
+      searchState.expectedStart = expectedStart;
+      searchState.expectedEnd = expectedEnd;
+      
+      document.getElementById("mitte-section").style.display = "none";
+      document.getElementById("compare-section").style.display = "none";
+      document.getElementById("range-info").style.display = "none";
+      document.getElementById("next-round-btn").style.display = "none";
+      document.getElementById("confirm-range-btn").style.display = "none";
+      document.getElementById("search-status").textContent = "";
+      document.getElementById("search-status").className = "status small";
+      
+      document.getElementById("current-step-info").innerHTML = 
+        `<p style="margin: 0 0 8px; font-size: 18px; font-weight: 800;"><b>Nächste Runde: Bestimme neuen Start und Ende</b></p>
+         <p style="margin: 0; font-size: 15px; line-height: 1.6;">Nach dem Ausschließen hat sich der Suchbereich verändert. Klicke auf die Kugeln für den neuen Start und Ende (automatisch weiter).</p>`;
+      
+      renderOrnaments();
+    }
+
+    function updateOrnamentDisplay() {
+      document.querySelectorAll(".ornament").forEach((el, idx) => {
+        el.classList.remove("selected-start", "selected-end", "active", "range", "excluded");
+        
+        if (searchState.excludedIndices.includes(idx)) {
+          el.classList.add("excluded");
+        } else if (searchState.currentMitte !== null && idx === searchState.currentMitte) {
+          el.classList.add("active");
+        } else if (searchState.start !== null && searchState.ende !== null && 
+                   idx >= searchState.start && idx <= searchState.ende) {
+          el.classList.add("range");
+        }
+      });
+    }
+
+    function checkSorting() {
+      const ornaments = Array.from(document.querySelectorAll("#ornament-container .ornament"));
+      if (ornaments.length === 0) return;
+      
+      // Hole die Werte direkt aus ornamentValues (wird von updateOrnamentValues aktualisiert)
+      // oder aus dem DOM als Fallback
+      let currentValues = [];
+      if (ornamentValues && ornamentValues.length === ornaments.length) {
+        currentValues = ornamentValues;
+      } else {
+        currentValues = ornaments.map(el => {
+          const val = el.dataset.value;
+          if (val) {
+            const parsed = parseInt(val, 10);
+            if (!isNaN(parsed)) return parsed;
+          }
+          // Fallback: Versuche aus dem Text zu lesen
+          const valueEl = el.querySelector(".ornament-value");
+          if (valueEl) {
+            const textVal = parseInt(valueEl.textContent.trim(), 10);
+            if (!isNaN(textVal)) return textVal;
+          }
+          return 0;
+        });
+      }
+      
+      // Prüfe, ob alle Werte gültig sind
+      if (currentValues.length !== ornaments.length || currentValues.some(v => isNaN(v))) {
+        return;
+      }
+      
+      // Prüfe, ob sortiert: Jeder Wert muss >= dem vorherigen sein
+      let isSorted = true;
+      for (let i = 1; i < currentValues.length; i++) {
+        if (currentValues[i] < currentValues[i-1]) {
+          isSorted = false;
+          break;
+        }
+      }
+      
+      const status = document.getElementById("sort-status");
+      const sortInstructions = document.getElementById("sort-instructions");
+      const searchInstructions = document.getElementById("search-instructions");
+      
+      if (isSorted) {
+        // Aktualisiere ornamentValues
+        ornamentValues = currentValues;
+        
+        // Kugeln grün machen
+        ornaments.forEach(el => {
+          el.classList.add("sorted");
+        });
+        
+        // Nur State zurücksetzen, wenn wir noch nicht aktiv in einem Suchschritt sind
+        // (d.h. wenn start/ende noch nicht gesetzt sind oder wir noch nicht in select-mitte/exclude sind)
+        const isInActiveSearch = (searchState.start !== null && searchState.ende !== null) || 
+                                 searchState.step === "select-mitte" || 
+                                 searchState.step === "exclude";
+        
+        if (!isInActiveSearch) {
+          if (status) {
+            status.textContent = "✅ Perfekt sortiert! Du kannst jetzt die binäre Suche starten.";
+            status.className = "status ok";
+          }
+          
+          if (sortInstructions) sortInstructions.style.display = "none";
+          if (searchInstructions) searchInstructions.style.display = "block";
+          
+          // State zurücksetzen
+          searchState.start = null;
+          searchState.ende = null;
+          searchState.step = "select-range";
+          searchState.selectedStart = null;
+          searchState.selectedEnd = null;
+          searchState.currentMitte = null;
+          searchState.excludedIndices = [];
+          searchState.expectedStart = undefined;
+          searchState.expectedEnd = undefined;
+          searchState.expectedMitte = undefined;
+        
+          // Initialisiere die Such-Anweisungen
+          const currentStepInfo = document.getElementById("current-step-info");
+          if (currentStepInfo) {
+            currentStepInfo.innerHTML = 
+              `<p style="margin: 0 0 8px; font-size: 18px; font-weight: 800;"><b>Schritt 1: Bestimme Start und Ende</b></p>
+               <p style="margin: 0; font-size: 15px; line-height: 1.6;">Klicke auf die Kugel mit dem <b>Index</b>, der dein Start sein soll, dann auf die für Ende.</p>`;
+          }
+          
+          // Stelle sicher, dass Kugeln klickbar sind für die Suche
+          ornaments.forEach((el) => {
+            el.classList.add("selectable");
+            // Entferne alte Click-Handler (falls vorhanden) und füge neuen hinzu
+            const newEl = el.cloneNode(true);
+            el.parentNode.replaceChild(newEl, el);
+            newEl.addEventListener("dragstart", handleDragStart);
+            newEl.addEventListener("dragover", handleDragOver);
+            newEl.addEventListener("drop", handleDrop);
+            newEl.addEventListener("dragend", handleDragEnd);
+            newEl.addEventListener("click", handleOrnamentClick);
+          });
+        }
+        // Wenn wir bereits in einem Suchschritt sind, werden die Event-Handler von renderOrnaments() gesetzt
+      } else {
+        if (status) {
+          status.textContent = "🔄 Noch nicht sortiert. Ziehe die Kugeln, um sie von klein nach groß zu sortieren.";
+          status.className = "status bad";
+        }
+        if (sortInstructions) sortInstructions.style.display = "block";
+        if (searchInstructions) searchInstructions.style.display = "none";
+        ornaments.forEach(el => {
+          el.classList.remove("sorted");
+        });
+      }
+    }
+
+    function resetSearch() {
+      searchState.start = null;
+      searchState.ende = null;
+      searchState.step = "select-range";
+      searchState.found = false;
+      searchState.selectedStart = null;
+      searchState.selectedEnd = null;
+      searchState.currentMitte = null;
+      searchState.excludedIndices = [];
+      searchState.expectedStart = undefined;
+      searchState.expectedEnd = undefined;
+      searchState.expectedMitte = undefined;
+      
+      document.getElementById("mitte-section").style.display = "none";
+      document.getElementById("compare-section").style.display = "none";
+      document.getElementById("range-info").style.display = "none";
+      document.getElementById("next-round-btn").style.display = "none";
+      document.getElementById("confirm-range-btn").style.display = "none";
+      document.getElementById("search-status").textContent = "";
+      document.getElementById("search-status").className = "status small";
+      
+      document.getElementById("current-step-info").innerHTML = 
+        `<p style="margin: 0 0 8px; font-size: 18px; font-weight: 800;"><b>Schritt 1: Bestimme Start und Ende</b></p>
+         <p style="margin: 0; font-size: 15px; line-height: 1.6;">Klicke auf die Kugel mit dem <b>Index</b>, der dein Start sein soll, dann auf die für Ende.</p>`;
+      
+      renderOrnaments();
+    }
+
+    function init() {
+      renderTimeline();
+      renderCodeBlocks();
+      initManualTasks(); // Zeilen für manuelle Aufgaben automatisch erstellen
+      updateProgress();
+      initEditorKeyHandling();
+      resetEditor(); // Vorgefertigten Code einfügen
+      renderExplanationArrays(); // Visualisierungen für Erklärung
+      renderFlashcards(); // Flash-Cards rendern
+      renderOrnaments(); // Weihnachtskugeln rendern
+    }
+    init();
+  </script>
+</body>
+</html>
+
