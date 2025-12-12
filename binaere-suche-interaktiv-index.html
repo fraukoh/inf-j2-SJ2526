@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <title>Interaktive Binäre Suche 🧭</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js" onerror="console.error('Fehler beim Laden von Pyodide')"></script>
   <style>
     :root {
       --bg: #0f172a;
@@ -361,41 +362,44 @@
       }
     }
     .flashcard {
-      background: linear-gradient(145deg, #0b1224, #0c1328);
+      background: transparent;
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: var(--radius);
-      padding: 20px;
+      padding: 0;
       min-height: 180px;
       cursor: pointer;
       position: relative;
       transform-style: preserve-3d;
       transition: transform 0.6s ease;
       box-shadow: var(--shadow);
+      perspective: 1000px;
     }
     .flashcard.flipped {
       transform: rotateY(180deg);
     }
     .flashcard-front, .flashcard-back {
       position: absolute;
-      width: calc(100% - 40px);
-      height: calc(100% - 40px);
+      width: 100%;
+      height: 100%;
       backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
+      border-radius: var(--radius);
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .flashcard-front {
+      transform: rotateY(0deg);
+      background: linear-gradient(145deg, #0b1224, #0c1328);
+      color: var(--text);
     }
     .flashcard-back {
       transform: rotateY(180deg);
       background: linear-gradient(145deg, rgba(34,197,94,0.15), rgba(56,189,248,0.1));
-      border-radius: var(--radius);
-      padding: 20px;
-    }
-    .flashcard-front {
-      color: var(--text);
-    }
-    .flashcard-back {
       color: var(--accent);
     }
     .flashcard-number {
@@ -405,6 +409,8 @@
       font-size: 12px;
       color: var(--muted);
       font-weight: 700;
+      z-index: 10;
+      pointer-events: none;
     }
     .flashcard-hint {
       position: absolute;
@@ -413,6 +419,8 @@
       font-size: 11px;
       color: var(--muted);
       font-style: italic;
+      z-index: 10;
+      pointer-events: none;
     }
     @media (max-width: 720px) {
       .input-row { flex-direction: column; }
@@ -439,9 +447,9 @@
         <label for="q1">Check: Warum muss die Liste sortiert sein?</label>
         <select id="q1">
           <option value="">-- auswählen --</option>
-          <option>Weil wir dann die Mitte sinnvoll bewerten können</option>
-          <option>Weil uns langweilig ist</option>
           <option>Weil Python sonst abstürzt</option>
+          <option>Weil uns langweilig ist</option>
+          <option>Weil wir dann die Mitte sinnvoll bewerten können</option>
         </select>
         <button class="btn secondary" onclick="checkSelect('q1','Weil wir dann die Mitte sinnvoll bewerten können','res1')">Prüfen</button>
         <div id="res1" class="status small"></div>
@@ -527,7 +535,7 @@
       <h2>5) Mini-Checks 🧠</h2>
       <div class="mini-checks-grid">
         <div class="question">
-          <p>🧩 Frage 1: Wie berechnet man die Mitte bei Start=0, Ende=7?</p>
+          <p>🧩 Frage 1: Welcher mittige Index ergibt sich bei Start=0, Ende=7?</p>
           <input id="mid-q" placeholder="z.B. 3">
           <button class="btn secondary" onclick="checkMid()">Check</button>
           <div id="mid-res" class="status small"></div>
@@ -536,8 +544,8 @@
           <p>🧩 Frage 4: Was bedeutet es, wenn zahlenreihe[mitte] == gesuchte_zahl?</p>
           <select id="q4">
             <option value="">-- auswählen --</option>
-            <option>Das Element wurde gefunden</option>
             <option>Die Suche muss fortgesetzt werden</option>
+            <option>Das Element wurde gefunden</option>
           </select>
           <button class="btn secondary" onclick="checkSelect('q4','Das Element wurde gefunden','res4')">Prüfen</button>
           <div id="res4" class="status small"></div>
@@ -546,8 +554,8 @@
           <p>🧩 Frage 2: Wann verkleinern wir den rechten Teil?</p>
           <select id="q2">
             <option value="">-- auswählen --</option>
-            <option>Wenn zahlenreihe[m Mitte] > gesucht</option>
             <option>Wenn Zahlen hübsch sind</option>
+            <option>Wenn zahlenreihe[m Mitte] > gesucht</option>
           </select>
           <button class="btn secondary" onclick="checkSelect('q2','Wenn zahlenreihe[m Mitte] > gesucht','res2')">Prüfen</button>
           <div id="res2" class="status small"></div>
@@ -556,8 +564,8 @@
           <p>🧩 Frage 5: Wie wird der neue Start berechnet, wenn zahlenreihe[mitte] < gesuchte_zahl?</p>
           <select id="q5">
             <option value="">-- auswählen --</option>
-            <option>start = mitte + 1</option>
             <option>start = mitte - 1</option>
+            <option>start = mitte + 1</option>
           </select>
           <button class="btn secondary" onclick="checkSelect('q5','start = mitte + 1','res5')">Prüfen</button>
           <div id="res5" class="status small"></div>
@@ -566,8 +574,8 @@
           <p>🧩 Frage 3: Was passiert, wenn Start > Ende?</p>
           <select id="q3">
             <option value="">-- auswählen --</option>
-            <option>Suche stoppen, Element nicht gefunden</option>
             <option>Wir fangen wieder von vorne an</option>
+            <option>Suche stoppen, Element nicht gefunden</option>
           </select>
           <button class="btn secondary" onclick="checkSelect('q3','Suche stoppen, Element nicht gefunden','res3')">Prüfen</button>
           <div id="res3" class="status small"></div>
@@ -576,8 +584,8 @@
           <p>🧩 Frage 6: Warum verwenden wir int((start+ende)/2) statt (start+ende)//2?</p>
           <select id="q6">
             <option value="">-- auswählen --</option>
-            <option>Beide sind gleichwertig, int() ist nur expliziter</option>
             <option>//2 funktioniert nicht in Python</option>
+            <option>Beide sind gleichwertig, int() ist nur expliziter</option>
           </select>
           <button class="btn secondary" onclick="checkSelect('q6','Beide sind gleichwertig, int() ist nur expliziter','res6')">Prüfen</button>
           <div id="res6" class="status small"></div>
@@ -681,48 +689,48 @@
         <p>Zeile <code>start = 0</code> bedeutet…</p>
         <select id="lq1">
           <option value="">-- auswählen --</option>
-          <option>linke Grenze auf Index 0 setzen</option>
           <option>die Suche abbrechen</option>
+          <option>linke Grenze auf Index 0 setzen</option>
         </select>
       </div>
       <div class="question">
         <p>Zeile <code>elif zahlenreihe[mitte] > gesuchte_zahl:</code> führt dazu, dass…</p>
         <select id="lq2">
           <option value="">-- auswählen --</option>
-          <option>rechte Grenze nach links rückt</option>
           <option>linke Grenze nach rechts rückt</option>
+          <option>rechte Grenze nach links rückt</option>
         </select>
       </div>
       <div class="question">
         <p>Zeile <code>while not gefunden and start <= ende:</code> sorgt dafür, dass…</p>
         <select id="lq3">
           <option value="">-- auswählen --</option>
-          <option>nur gesucht wird, solange Bereich existiert und nicht gefunden</option>
           <option>die Schleife endlos läuft</option>
+          <option>nur gesucht wird, solange Bereich existiert und nicht gefunden</option>
         </select>
       </div>
       <div class="question">
         <p>Zeile <code>ende = mitte - 1</code> bewirkt…</p>
         <select id="lq4">
           <option value="">-- auswählen --</option>
-          <option>rechte Grenze rückt nach links</option>
           <option>linke Grenze rückt nach rechts</option>
+          <option>rechte Grenze rückt nach links</option>
         </select>
       </div>
       <div class="question">
         <p>Zeile <code>start = mitte + 1</code> bewirkt…</p>
         <select id="lq5">
           <option value="">-- auswählen --</option>
-          <option>linke Grenze rückt nach rechts</option>
           <option>rechte Grenze rückt nach links</option>
+          <option>linke Grenze rückt nach rechts</option>
         </select>
       </div>
       <div class="question">
         <p>Zeile <code>if gefunden:</code> bedeutet…</p>
         <select id="lq6">
           <option value="">-- auswählen --</option>
-          <option>nur dann Ausgabe des Erfolgs</option>
           <option>Schleife wird gestartet</option>
+          <option>nur dann Ausgabe des Erfolgs</option>
         </select>
       </div>
       <button class="btn secondary" onclick="checkLineQuiz()">Check</button>
@@ -732,14 +740,15 @@
 
   <section class="card">
     <h2>9) Python-Code ausfüllen ✍️</h2>
-    <p>Wie im Editor: Das Template zeigt dir die Struktur. Fülle die Lücken aus (z.B. <code>start = </code> und <code>ende = </code>). Tab funktioniert zum Einrücken. Wir prüfen Zeile für Zeile.</p>
+    <p>Wie im Editor: Das Template zeigt dir die Struktur. Fülle die Lücken aus (z.B. <code>start = </code> und <code>ende = </code>). Tab funktioniert zum Einrücken. Der Code wird tatsächlich ausgeführt und getestet! 🐍</p>
     <div id="code-editor" class="editor" contenteditable="true" spellcheck="false" aria-label="Code-Editor"></div>
     <div class="input-row">
       <button class="btn secondary" onclick="resetEditor()">🧹 Leeren</button>
-      <button class="btn" onclick="checkFill()">🧪 Code prüfen</button>
+      <button class="btn" onclick="checkFill()" id="check-fill-btn">🧪 Code prüfen</button>
     </div>
     <div id="code-res" class="status small"></div>
-    <p class="hint">Fülle die Lücken aus (z.B. bei <code>start = </code> und <code>ende = </code>). Einrückung mit Tab. Alle Zeilen müssen vollständig sein.</p>
+    <div id="code-output" class="bubble small" style="margin-top: 10px; display: none; font-family: var(--mono); white-space: pre-wrap;"></div>
+    <p class="hint">Fülle die Lücken aus (z.B. bei <code>start = </code> und <code>ende = </code>). Einrückung mit Tab. Der Code wird mit verschiedenen Testfällen ausgeführt.</p>
   </section>
 
   <section class="card">
@@ -884,14 +893,14 @@
     function checkMid() {
       const val = document.getElementById("mid-q").value.trim();
       const res = document.getElementById("mid-res");
-      if (val === "3" || val === "3.5" || val === "3,5") {
-        res.textContent = "Fast! Mit int((0+7)/2) = int(3.5) = 3. ✅";
+      if (val === "3") {
+        res.textContent = "Richtig: Der mittige Index ist 3. ✅";
         res.className = "status ok";
-      } else if (val === "3") {
-        res.textContent = "Ja, 3. ✅";
-        res.className = "status ok";
+      } else if (!val) {
+        res.textContent = "Bitte trage den Index ein. 🙂";
+        res.className = "status bad";
       } else {
-        res.textContent = "Nicht ganz. int((0+7)/2) = int(3.5) = 3.";
+        res.textContent = "Nicht ganz. Der mittige Index zwischen 0 und 7 ist 3.";
         res.className = "status bad";
       }
       updateProgress();
@@ -1130,46 +1139,258 @@
       editor.innerText = "zahlenreihe = [5,10,18,20,25,39,42,50]\ngesuchte_zahl = int(input('Gesuchte Zahl: '))\n\ngefunden = \nstart = \nende = \n\nwhile \n    mitte = \n    if \n        \n    elif \n        \n    else:\n        \n\nif gefunden:\n    \nelse:\n    ";
     }
 
-    function checkFill() {
-      const expected = [
-        "zahlenreihe = [5,10,18,20,25,39,42,50]",
-        "gesuchte_zahl = int(input('Gesuchte Zahl: '))",
-        "gefunden = False",
-        "start = 0",
-        "ende = len(zahlenreihe) - 1",
-        "while not gefunden and start <= ende:",
-        "    mitte = int((start+ende)/2)",
-        "    if zahlenreihe[mitte] == gesuchte_zahl:",
-        "        gefunden = True",
-        "    elif zahlenreihe[mitte] > gesuchte_zahl:",
-        "        ende = mitte - 1",
-        "    else:",
-        "        start = mitte + 1",
-        "if gefunden:",
-        "    print('Gefunden bei Index', mitte)",
-        "else:",
-        "    print('Nicht gefunden')"
-      ];
+    let pyodideReady = false;
+    let pyodideLoading = false;
+    let pyodideError = null;
+
+    async function loadPyodideInterpreter() {
+      if (pyodideReady && window.pyodide) return window.pyodide;
+      if (pyodideLoading) {
+        // Warte, bis Pyodide geladen ist (max. 30 Sekunden)
+        let waitCount = 0;
+        while (!pyodideReady && waitCount < 300) {
+          await new Promise(resolve => setTimeout(resolve, 100));
+          waitCount++;
+        }
+        if (pyodideReady && window.pyodide) return window.pyodide;
+        throw new Error("Pyodide konnte nicht geladen werden (Timeout nach 30 Sekunden)");
+      }
+      if (pyodideError) {
+        throw pyodideError;
+      }
+      
+      pyodideLoading = true;
+      try {
+        // Warte, bis loadPyodide verfügbar ist (max. 5 Sekunden)
+        let waitForScript = 0;
+        while (typeof loadPyodide === 'undefined' && waitForScript < 50) {
+          await new Promise(resolve => setTimeout(resolve, 100));
+          waitForScript++;
+        }
+        
+        if (typeof loadPyodide === 'undefined') {
+          throw new Error("Pyodide-Bibliothek konnte nicht geladen werden. Bitte lade die Seite neu oder prüfe deine Internetverbindung.");
+        }
+        
+        // Timeout für das Laden (30 Sekunden)
+        const loadPromise = loadPyodide({
+          indexURL: "https://cdn.jsdelivr.net/pyodide/v0.24.1/full/"
+        });
+        
+        const timeoutPromise = new Promise((_, reject) => {
+          setTimeout(() => reject(new Error("Timeout: Pyodide konnte nicht innerhalb von 30 Sekunden geladen werden. Bitte versuche es erneut.")), 30000);
+        });
+        
+        window.pyodide = await Promise.race([loadPromise, timeoutPromise]);
+        pyodideReady = true;
+        pyodideLoading = false;
+        return window.pyodide;
+      } catch (error) {
+        console.error("Fehler beim Laden von Pyodide:", error);
+        pyodideError = error;
+        pyodideLoading = false;
+        throw error;
+      }
+    }
+
+    async function checkFill() {
       const res = document.getElementById("code-res");
-      const text = document.getElementById("code-editor").innerText.replace(/\r/g,"");
-      const lines = text.split("\n").map(normalize).filter((_,i) => i < expected.length);
-      if (lines.length < expected.length) {
-        res.textContent = `Es fehlen Zeilen (${lines.length}/${expected.length}).`;
+      const outputDiv = document.getElementById("code-output");
+      const btn = document.getElementById("check-fill-btn");
+      
+      // Zeige Ladeanzeige
+      btn.disabled = true;
+      btn.textContent = "⏳ Prüfe...";
+      res.textContent = "⏳ Lade Python-Interpreter...";
+      res.className = "status small";
+      outputDiv.style.display = "none";
+
+      let usePyodide = false;
+      let pyodide = null;
+
+      try {
+        // Versuche Pyodide zu laden
+        pyodide = await loadPyodideInterpreter();
+        usePyodide = true;
+
+        res.textContent = "⏳ Führe Code aus...";
+      } catch (pyodideError) {
+        // Pyodide konnte nicht geladen werden - verwende Fallback
+        console.warn("Pyodide nicht verfügbar, verwende Fallback-Methode:", pyodideError);
+        usePyodide = false;
+        res.textContent = "⚠️ Python-Interpreter nicht verfügbar. Verwende vereinfachte Prüfung...";
+      }
+
+      let text = document.getElementById("code-editor").innerText.replace(/\r/g, "");
+      
+      if (!text.trim()) {
+        res.textContent = "⚠️ Bitte Code eingeben.";
         res.className = "status bad";
-        updateProgress();
+        btn.disabled = false;
+        btn.textContent = "🧪 Code prüfen";
         return;
       }
-      let correct = 0;
-      expected.forEach((exp, idx) => {
-        if (normalize(lines[idx]) === exp) correct++;
-      });
-      if (correct === expected.length) {
-        res.textContent = "Alle Zeilen passen! 🚀";
-        res.className = "status ok";
+
+      if (usePyodide && pyodide) {
+        // Verwende Pyodide für echte Code-Ausführung
+        try {
+          // Testfälle: [liste, gesuchte_zahl, erwarteter_index]
+          const testCases = [
+            [[5,10,18,20,25,39,42,50], 42, 6],
+            [[5,10,18,20,25,39,42,50], 25, 4],
+            [[5,10,18,20,25,39,42,50], 5, 0],
+            [[5,10,18,20,25,39,42,50], 50, 7],
+            [[2,4,6,8,10,12,14,16], 8, 3],
+            [[1,3,5,7,9,11,13,15,17], 9, 4]
+          ];
+
+          // Erstelle Test-Code
+          const escapedCode = text.replace(/\\/g, '\\\\').replace(/`/g, '\\`').replace(/\${/g, '\\${').replace(/"/g, '\\"');
+          
+          const testCode = `
+import sys
+from io import StringIO
+
+# Test-Ergebnisse
+test_results = []
+test_outputs = []
+
+# Code aus dem Editor
+user_code = """${escapedCode}"""
+
+# Testfälle
+test_cases = ${JSON.stringify(testCases)}
+
+# Führe Tests durch
+for i, (liste, gesuchte_zahl, erwarteter_index) in enumerate(test_cases):
+    try:
+        # Ersetze input() durch den Testwert
+        test_code = user_code.replace(
+            "int(input('Gesuchte Zahl: '))",
+            str(gesuchte_zahl)
+        )
+        
+        # Setze zahlenreihe
+        test_code = test_code.replace(
+            "zahlenreihe = [5,10,18,20,25,39,42,50]",
+            f"zahlenreihe = {liste}"
+        )
+        
+        # Führe den Code aus
+        output_buffer = StringIO()
+        old_stdout = sys.stdout
+        sys.stdout = output_buffer
+        
+        # Lokaler Namespace
+        namespace = {}
+        exec(test_code, namespace)
+        
+        sys.stdout = old_stdout
+        output = output_buffer.getvalue()
+        test_outputs.append(output.strip() if output.strip() else "(keine Ausgabe)")
+        
+        # Prüfe, ob der erwartete Index in der Ausgabe ist
+        output_str = str(output)
+        if (str(erwarteter_index) in output_str or 
+            f"Index {erwarteter_index}" in output_str or 
+            f"Index, {erwarteter_index}" in output_str or
+            f"bei Index {erwarteter_index}" in output_str):
+            test_results.append(True)
+        else:
+            test_results.append(False)
+    except Exception as e:
+        test_results.append(False)
+        test_outputs.append(f"Fehler: {str(e)}")
+
+# Gib Ergebnisse zurück
+passed = sum(test_results)
+total = len(test_results)
+print(f"Tests bestanden: {passed}/{total}")
+for i, (passed_test, output) in enumerate(zip(test_results, test_outputs)):
+    status = "✅" if passed_test else "❌"
+    liste_str = str(test_cases[i][0])
+    gesucht = test_cases[i][1]
+    erwartet = test_cases[i][2]
+    print(f"{status} Test {i+1}: Liste {liste_str}, gesucht {gesucht}, erwartet Index {erwartet}")
+    print(f"   Ausgabe: {output}")
+`;
+
+          // Führe den Test-Code aus
+          pyodide.runPython(`
+import sys
+from io import StringIO
+sys.stdout = StringIO()
+`);
+
+          pyodide.runPython(testCode);
+          
+          // Hole die Ausgabe
+          const output = pyodide.runPython("sys.stdout.getvalue()");
+          const passedTests = pyodide.runPython("passed");
+          const totalTests = pyodide.runPython("total");
+
+          outputDiv.textContent = output || "Keine Ausgabe";
+          outputDiv.style.display = "block";
+
+          if (passedTests === totalTests && totalTests > 0) {
+            res.textContent = `🎉 Perfekt! Alle ${totalTests} Tests bestanden! 🚀`;
+            res.className = "status ok";
+          } else if (passedTests > 0) {
+            res.textContent = `⚠️ ${passedTests}/${totalTests} Tests bestanden. Schaue dir die Ausgabe an.`;
+            res.className = "status bad";
+          } else {
+            res.textContent = "❌ Code hat Fehler oder funktioniert nicht korrekt. Schaue dir die Ausgabe an.";
+            res.className = "status bad";
+          }
+        } catch (error) {
+          console.error("Fehler bei Code-Ausführung:", error);
+          res.textContent = `❌ Fehler: ${error.message}. Bitte prüfe deinen Code auf Syntaxfehler.`;
+          res.className = "status bad";
+          outputDiv.textContent = `Fehler-Details: ${error.toString()}\n\nStelle sicher, dass:\n- Alle Zeilen vollständig sind\n- Die Einrückung korrekt ist (Tab oder 4 Leerzeichen)\n- Keine Syntaxfehler vorhanden sind`;
+          outputDiv.style.display = "block";
+        }
       } else {
-        res.textContent = `Richtig: ${correct}/${expected.length}. Achte auf Einrückung (Tab/Spaces) und Syntax.`;
-        res.className = "status bad";
+        // Fallback: Verwende String-Vergleich (alte Methode)
+        const expected = [
+          "zahlenreihe = [5,10,18,20,25,39,42,50]",
+          "gesuchte_zahl = int(input('Gesuchte Zahl: '))",
+          "gefunden = False",
+          "start = 0",
+          "ende = len(zahlenreihe) - 1",
+          "while not gefunden and start <= ende:",
+          "    mitte = int((start+ende)/2)",
+          "    if zahlenreihe[mitte] == gesuchte_zahl:",
+          "        gefunden = True",
+          "    elif zahlenreihe[mitte] > gesuchte_zahl:",
+          "        ende = mitte - 1",
+          "    else:",
+          "        start = mitte + 1",
+          "if gefunden:",
+          "    print('Gefunden bei Index', mitte)",
+          "else:",
+          "    print('Nicht gefunden')"
+        ];
+        const lines = text.split("\n").map(normalize).filter((_,i) => i < expected.length);
+        if (lines.length < expected.length) {
+          res.textContent = `Es fehlen Zeilen (${lines.length}/${expected.length}).`;
+          res.className = "status bad";
+        } else {
+          let correct = 0;
+          expected.forEach((exp, idx) => {
+            if (normalize(lines[idx]) === exp) correct++;
+          });
+          if (correct === expected.length) {
+            res.textContent = "Alle Zeilen passen! 🚀 (Hinweis: Python-Interpreter nicht verfügbar, daher nur Syntax-Prüfung)";
+            res.className = "status ok";
+          } else {
+            res.textContent = `Richtig: ${correct}/${expected.length}. Achte auf Einrückung (Tab/Spaces) und Syntax.`;
+            res.className = "status bad";
+          }
+        }
       }
+
+      btn.disabled = false;
+      btn.textContent = "🧪 Code prüfen";
       updateProgress();
     }
 
@@ -1877,6 +2098,12 @@
       renderExplanationArrays(); // Visualisierungen für Erklärung
       renderFlashcards(); // Flash-Cards rendern
       renderOrnaments(); // Weihnachtskugeln rendern
+      
+      // Lade Pyodide im Hintergrund (nicht-blockierend)
+      loadPyodideInterpreter().catch(err => {
+        console.warn("Pyodide konnte nicht geladen werden:", err);
+        // Das ist okay - wir verwenden dann den Fallback
+      });
     }
     init();
   </script>
