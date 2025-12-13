@@ -91,11 +91,34 @@
       font-family: var(--mono);
       position: relative;
       min-width: 58px;
+      transition: all 0.3s ease;
     }
-    .box.active { border: 4px solid var(--danger); color: var(--danger); font-weight: 700; }
-    .box.range { border-color: var(--accent-2); }
-    .box.excluded { opacity: 0.4; text-decoration: line-through; background: rgba(244,63,94,0.1); }
-    .box.keep { border-color: var(--accent); background: rgba(34,197,94,0.1); }
+    .box.active { 
+      border: 4px solid var(--danger); 
+      color: var(--danger); 
+      font-weight: 700; 
+      background: rgba(244,63,94,0.2);
+      box-shadow: 0 0 15px rgba(244,63,94,0.5);
+      transform: scale(1.05);
+    }
+    .box.range { 
+      border: 3px solid #fbbf24;
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      color: #1f2937;
+      font-weight: 700;
+      box-shadow: 0 4px 12px rgba(251,191,36,0.4);
+    }
+    .box.excluded { 
+      opacity: 0.3; 
+      text-decoration: line-through; 
+      background: rgba(107,114,128,0.2);
+      border-color: rgba(107,114,128,0.3);
+      filter: grayscale(80%);
+    }
+    .box.keep { 
+      border-color: var(--accent); 
+      background: rgba(34,197,94,0.15); 
+    }
     .ornament-search-wrapper {
       display: flex;
       gap: 24px;
@@ -836,8 +859,20 @@
       arr.forEach((val, idx) => {
         const el = document.createElement("div");
         el.className = "box";
-        if (idx >= start && idx <= ende) el.classList.add("range");
-        if (idx === mitte) el.classList.add("active");
+        
+        // Markiere ausgeschlossene Elemente
+        if (idx < start || idx > ende) {
+          el.classList.add("excluded");
+        } else {
+          // Elemente im Suchbereich bekommen gelben Hintergrund
+          el.classList.add("range");
+        }
+        
+        // Aktive Mitte (wird über range gezeichnet, daher nachher)
+        if (idx === mitte) {
+          el.classList.add("active");
+        }
+        
         el.innerHTML = `<div class="tag">${idx}</div><div>${val}</div>`;
         view.appendChild(el);
       });
