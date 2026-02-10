@@ -279,7 +279,7 @@
     <div class="container">
         <div class="content">
             <h1>Eingabe von Zahlen mit <em>input()</em></h1>
-<p>Die Funktion <em>input()</em> hat eine auf den ersten Blick überraschende<br>Eigenschaft: Sie interpretiert alle eingegebenen Zahlen als Zeichen,<br>d.h. auch Ziffern werden als Zeichen und nicht als Zahlen betrachtet.<br>Das wird im folgenden Programm deutlich:</p>
+<p>Die Funktion <em>input()</em> hat eine auf den ersten Blick überraschende Eigenschaft: Sie interpretiert alle eingegebenen Zahlen als Zeichen, d.h. auch Ziffern werden als Zeichen und nicht als Zahlen betrachtet.<br>Das wird im folgenden Programm deutlich:</p>
 <pre><code class="language-python">#Beispiel
 zahl = input(&quot;Bitte geben Sie eine Zahl ein: &quot;)
 haelfte = zahl / 2
@@ -289,8 +289,8 @@ print(&quot;Die Hälfte der eingegebenen Zahl ist: &quot;, haelfte)
 
 TypeError: unsupported operand type(s) for /: &#39;str&#39; and &#39;int&#39;
 </code></pre>
-<p>Hier wird ausgesagt, dass die Operation „/“, also die Division, mit den<br>Datentypen „str“ (= String, Zeichenkette) und „int“ (= Ganzzahl) nicht<br>durchgeführt werden kann, was ja auch stimmt – Es macht ja auch keinen<br>Sinn, eine Zeichenkette durch die Zahl 2 zu teilen!</p>
-<p>Lösung: Da Python Werte der Funktion <em>input()</em> immer als Text („String“)<br>interpretiert, muss man die eingegebenen Zeichen beim Abspeichern in der<br>Variablen mittels der Funktion <em>float()</em> in eine Dezimalzahl umwandeln:</p>
+<p>Hier wird ausgesagt, dass die Operation „/“, also die Division, mit den Datentypen „str“ (= String, Zeichenkette) und „int“ (= Ganzzahl) nicht durchgeführt werden kann, was ja auch stimmt – Es macht ja auch keinen Sinn, eine Zeichenkette durch die Zahl 2 zu teilen!</p>
+<p>Lösung: Da Python Werte der Funktion <em>input()</em> immer als Text („String“) interpretiert, muss man die eingegebenen Zeichen beim Abspeichern in der Variablen mittels der Funktion <em>float()</em> in eine Dezimalzahl umwandeln:</p>
 <pre><code>zahl_zeichenkette = input(&quot;Bitte geben Sie eine Zahl ein: &quot;)
 zahl_dezimalzahl = float(zahl_zeichenkette)
 </code></pre>
@@ -310,12 +310,7 @@ print(&quot;Die Hälfte der eingegebenen Zahl ist:&quot;, haelfte)
 Die Hälfte der eingegebenen Zahl ist: 5.0
 </code></pre>
 <h2>Struktogramm:</h2>
-<figure>
-<img
-src="07-Ein-und-Ausgabe-Zahlen_files/figure-markdown_strict/cell-7-1-7afa0d1b-286d-43ab-a94c-6be163d5cdd1.png"
-alt="image.png" />
-<figcaption aria-hidden="true">image.png</figcaption>
-</figure>
+<img src="zubehoer/struktog_2026-02-10%20(8).png" alt="struktog_2026-02-10 (8).png" />
 
 <h2>Wichtiger Hinweis:</h2>
 <p>Soll eine Ganzzahl eingegeben werden, muss die Funktion <em>int()</em> benutzt<br>werden, also z.B.:</p>
