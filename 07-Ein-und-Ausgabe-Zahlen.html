@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inf_J1_Python_SJ_2025_26</title>
+    <title>07-Ein-und-Ausgabe-Zahlen</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
     <style>
 @import url('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css');
@@ -271,46 +271,56 @@
     <div class="navbar-content">
         <a href="index.html" class="home-link" title="Zur Hauptseite">⌂</a>
         <div class="navbar-links">
-            
+            <a href="Inf_J1_Python_SJ_2025_26.html">Inf_J1_Python_SJ_2025_26</a>
         </div>
     </div>
 </div>
 
     <div class="container">
         <div class="content">
-            <h1>Einführung in jupyter</h1>
-<p>Speichern Sie das folgende Arbeitsblatt am PC, laden Sie es auf den jupyter-Server hoch und bearbeiten Sie es.</p>
-<p><a href="00_Einf%C3%BChrung-in-Jupyter.ipynb">00_Einführung-in-Jupyter.ipynb</a></p>
-<h1>Ausgabe von Zeichen mit print</h1>
-<p><a href="01_Ausgabe_von_Zeichen_mit_print.html">01_Ausgabe_von_Zeichen_mit_print</a></p>
-<h3>Übung</h3>
-<p><a href="01-Aufgabe-LSG.html">01-Aufgabe-LSG</a></p>
-<h1>Variablen in python</h1>
-<h3>Variablen als Zeichenkette</h3>
-<p><a href="02_Variablen_Zeichenkette.html">02_Variablen_Zeichenkette</a></p>
-<h3>Variablen als Zahl</h3>
-<p><a href="03_Variable_als_Zahl.html">03_Variable_als_Zahl</a></p>
-<h3>Variablen als Wahrheitswert</h3>
-<p><a href="04_Variable_als_Wahrheitswert.html">04_Variable_als_Wahrheitswert</a></p>
-<h3>Übung</h3>
-<p><a href="04-Variablen-Aufgabe-LSG.html">04-Variablen-Aufgabe-LSG</a></p>
-<h1>Rechenoperatoren</h1>
-<p><a href="05_Rechenoperatoren.html">05_Rechenoperatoren</a></p>
-<h3>Übung</h3>
-<p><a href="05-Rechenoperatoren-Aufgabe-LSG.html">05-Rechenoperatoren-Aufgabe-LSG</a></p>
-<p><a href="06-Modulo-Ganzzahldivision-Aufgabe-LSG.html">06-Modulo-Ganzzahldivision-Aufgabe-LSG</a></p>
-<p><a href="07-Gummibaerchen-Teilen-Aufgabe-LSG.html">07-Gummibaerchen-Teilen-Aufgabe-LSG</a></p>
-<h1>Ein- und Ausgabe von Zeichenketten und Zahlen</h1>
-<p><a href="06_Ein-und-Ausgabe-Zeichenketten.html">06_Ein-und-Ausgabe-Zeichenketten</a></p>
-<p><a href="07-Ein-und-Ausgabe-Zahlen.html">07-Ein-und-Ausgabe-Zahlen</a></p>
-<h3>Übung</h3>
-<p><a href="071-Aufgabe-LSG.html">071-Aufgabe-LSG</a></p>
-<p><a href="072-Aufgabe-LSG.html">072-Aufgabe-LSG</a></p>
-<h1>Funktionen oder Unterprogramme in python</h1>
-<h1>IF-Anweisung</h1>
-<h1>FOR-Schleife (Zählerschleife)</h1>
-<h1>WHILE-Schleife (Wiederholschleife)</h1>
-<h1>Vorbereitung auf die Klassenarbeit</h1>
+            <h1>Eingabe von Zahlen mit <em>input()</em></h1>
+<p>Die Funktion <em>input()</em> hat eine auf den ersten Blick überraschende<br>Eigenschaft: Sie interpretiert alle eingegebenen Zahlen als Zeichen,<br>d.h. auch Ziffern werden als Zeichen und nicht als Zahlen betrachtet.<br>Das wird im folgenden Programm deutlich:</p>
+<pre><code class="language-python">#Beispiel
+zahl = input(&quot;Bitte geben Sie eine Zahl ein: &quot;)
+haelfte = zahl / 2
+print(&quot;Die Hälfte der eingegebenen Zahl ist: &quot;, haelfte)
+</code></pre>
+<pre><code>Bitte geben Sie eine Zahl ein:  10
+
+TypeError: unsupported operand type(s) for /: &#39;str&#39; and &#39;int&#39;
+</code></pre>
+<p>Hier wird ausgesagt, dass die Operation „/“, also die Division, mit den<br>Datentypen „str“ (= String, Zeichenkette) und „int“ (= Ganzzahl) nicht<br>durchgeführt werden kann, was ja auch stimmt – Es macht ja auch keinen<br>Sinn, eine Zeichenkette durch die Zahl 2 zu teilen!</p>
+<p>Lösung: Da Python Werte der Funktion <em>input()</em> immer als Text („String“)<br>interpretiert, muss man die eingegebenen Zeichen beim Abspeichern in der<br>Variablen mittels der Funktion <em>float()</em> in eine Dezimalzahl umwandeln:</p>
+<pre><code>zahl_zeichenkette = input(&quot;Bitte geben Sie eine Zahl ein: &quot;)
+zahl_dezimalzahl = float(zahl_zeichenkette)
+</code></pre>
+<p>Alternativ kann die Zeile</p>
+<pre><code>zahl = input(&quot;Bitte geben Sie eine Zahl ein: &quot;)
+</code></pre>
+<p>erweitert werden zu:</p>
+<pre><code>zahl = float(input(&quot;Bitte geben Sie eine Zahl ein: &quot;))
+</code></pre>
+<p>Das korrigierte und funktionierende Programm sieht jetzt so aus:</p>
+<pre><code class="language-python">zahl = float(input(&quot;Bitte geben Sie eine Zahl ein: &quot;))
+haelfte = zahl / 2
+print(&quot;Die Hälfte der eingegebenen Zahl ist:&quot;, haelfte)
+</code></pre>
+<pre><code>Bitte geben Sie eine Zahl ein:  10
+
+Die Hälfte der eingegebenen Zahl ist: 5.0
+</code></pre>
+<h2>Struktogramm:</h2>
+<figure>
+<img
+src="07-Ein-und-Ausgabe-Zahlen_files/figure-markdown_strict/cell-7-1-7afa0d1b-286d-43ab-a94c-6be163d5cdd1.png"
+alt="image.png" />
+<figcaption aria-hidden="true">image.png</figcaption>
+</figure>
+
+<h2>Wichtiger Hinweis:</h2>
+<p>Soll eine Ganzzahl eingegeben werden, muss die Funktion <em>int()</em> benutzt<br>werden, also z.B.:</p>
+<pre><code>anzahlAutos = int(input(&quot;Anzahl Autos: &quot;))
+</code></pre>
 
         </div>
     </div>
