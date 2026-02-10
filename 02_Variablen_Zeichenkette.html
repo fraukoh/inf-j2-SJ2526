@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inf_J1_Python_SJ_2025_26</title>
+    <title>02_Variablen_Zeichenkette</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
     <style>
 @import url('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css');
@@ -271,30 +271,40 @@
     <div class="navbar-content">
         <a href="index.html" class="home-link" title="Zur Hauptseite">⌂</a>
         <div class="navbar-links">
-            
+            <a href="Inf_J1_Python_SJ_2025_26.html">Inf_J1_Python_SJ_2025_26</a>
         </div>
     </div>
 </div>
 
     <div class="container">
         <div class="content">
-            <h1>Einführung in jupyter</h1>
-<p>Speichern Sie das folgende Arbeitsblatt am PC, laden Sie es auf den jupyter-Server hoch und bearbeiten Sie es.</p>
-<p><a href="00_Einf%C3%BChrung-in-Jupyter.ipynb">00_Einführung-in-Jupyter.ipynb</a></p>
-<h1>Ausgabe von Zeichen mit print</h1>
-<p><a href="01_Ausgabe_von_Zeichen_mit_print.html">01_Ausgabe_von_Zeichen_mit_print</a></p>
-<h3>Übung</h3>
-<p><a href="01-Aufgabe-LSG.html">01-Aufgabe-LSG</a></p>
-<h1>Variablen in python</h1>
-<h3>Variablen als Zeichenkette</h3>
-<p><a href="02_Variablen_Zeichenkette.html">02_Variablen_Zeichenkette</a></p>
-<h3>Variablen als Zahl</h3>
-<p><a href="03_Variable_als_Zahl.html">03_Variable_als_Zahl</a></p>
-<h3>Variablen als Wahrheitswert</h3>
-<p><a href="04_Variable_als_Wahrheitswert.html">04_Variable_als_Wahrheitswert</a></p>
-<h3>Übung</h3>
-<p><a href="04-Variablen-Aufgabe-LSG.html">04-Variablen-Aufgabe-LSG</a></p>
+            <h1>Variable als Zeichenkette</h1>
+<p>Werte wie Zeichenketten, Zahlen oder Wahrheitswerte werden in Variablen gespeichert. Variablen machen Programme leichter lesbar, weil durch die Bezeichnung der Variablen deutlich wird, wofür die verschiedenen Werte stehen. Zudem dienen Variablen dazu, Werte für spätere Operationen<br>verfügbar zu halten. Sie sind also ein Speicher für Werte, die man im Laufe des Programms immer wieder benötigt. Möchte man eine Zeichenkette in einer Variablen speichern, dann muss dafür ein Speicherplatz geschaffen werden. Diesen Speicherplatz kann man sich wie eine Schublade vorstellen. Außerdem braucht man einen Namen für die Variable, damit man auf den Inhalt später wieder zugreifen kann. Im folgenden Beispiel wird die Vorgehensweise erläutert:</p>
+<pre><code class="language-python"># Beispiel für die Verwendung einer Variablen
+name = &quot;Peter&quot;   # Deklaration und Initialisierung
+print(name)      # Ausgabe der Variablen &quot;name&quot; auf dem Bildschirm
+</code></pre>
+<pre><code>Peter
+</code></pre>
+<p>Dieses kleine Python-Programm enthält zwei unterschiedliche Anweisungen. Zu beachten ist, * dass jede Anweisung in einer neuen Zeile steht, * dass eine Zeichenkette immer zwischen doppelten (oder einfachen) Anführungsstrichen geschrieben wird, * dass mit dem Zeichen „#“ ein<br>Kommentar zur Beschreibung der einzelnen Teile des Programms eingeleitet wird. Kommentare werden nicht als Programmcode interpretiert.</p>
+<h2>Struktogramm zum Programm:</h2>
+<img src="zubehoer/Pasted%20image%2020260210165337.png" alt="Pasted image 20260210165337.png" />
 
+<h3>Namensregeln für Variablen:</h3>
+<ul>
+<li>Am Anfang sollte ein Kleinbuchstabe stehen. Ziffern sind nicht zulässig.</li>
+<li>Danach dürfen Groß- und Kleinbuchstaben sowie Ziffern und Unterstriche verwendet werden.</li>
+<li>Umlaute wie ä, ö, ü das ß, Leerzeichen und weitere Sonderzeichen sind nicht erlaubt.</li>
+<li>Schlüsselwörter aus Programmiersprachen, z.B. for dürfen nicht verwendet werden.</li>
+<li>Der Name sollte etwas über den Inhalt der Variablen aussagen. Dabei hat sich in Python als Standard ergeben, dass bei zusammengesetzten Wörtern die einzelnen Wörter durch einen Unterstrich getrennt  werden, also z.B. <em>alter_in_jahren</em> oder <em>gewicht_in_kg</em>.</li>
+</ul>
+<h3>Ausgabe mehrerer Variablen in einer Bildschirmausgabe</h3>
+<pre><code class="language-python">subjekt = &quot;Ich&quot;
+praedikat = &quot;spiele&quot;
+objekt = &quot;Fußball&quot;
+print(subjekt, praedikat, objekt, &quot;auf der Wiese.&quot;)
+</code></pre>
+<img src="zubehoer/Pasted%20image%2020260210165451.png" alt="Pasted image 20260210165451.png" />
         </div>
     </div>
 </body>
