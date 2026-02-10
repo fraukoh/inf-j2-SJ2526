@@ -279,22 +279,22 @@
     <div class="container">
         <div class="content">
             <h1>Ein- und Ausgabe von Zeichenketten</h1>
-<p>Bisher haben wir in unseren Programmen Daten an die Benutzer ausgegeben,<br>haben aber noch keine Daten durch die Benutzer eingeben lassen. Das ist<br>aber eine sehr häufig benötigte Funktion. Diese soll daher nun in unsere<br>Programme integriert werden.</p>
-<p>Für die Benutzereingabe sind in der Regel zwei Elemente nötig: Man<br>benötigt eine Nachricht an die Benutzer, dass nun etwas eingegeben<br>werden soll und außerdem muss die Benutzereingabe in einer Variablen<br>abgespeichert werden, damit die eingegebenen Daten im Programm später<br>weiterberarbeitet werden können.</p>
-<p>In Python wird dafür die Funktion <em>input()</em> verwendet. Diese Funktion<br>gibt eine Nachricht auf dem Bildschirm aus und wartet dann auf<br>Tastatureingaben, die mit der Taste „Enter“ abgeschlossen werden. Die<br>eingegebenen Zeichen werden dann als Text in einer Variablen<br>abgespeichert. Das folgende Beispiel macht die Funktionsweise deutlich:</p>
+<p>Bisher haben wir in unseren Programmen Daten an die Benutzer ausgegeben, haben aber noch keine Daten durch die Benutzer eingeben lassen. Das ist aber eine sehr häufig benötigte Funktion. Diese soll daher nun in unsere Programme integriert werden.</p>
+<p>Für die Benutzereingabe sind in der Regel zwei Elemente nötig:  benötigt eine Nachricht an die Benutzer, dass nun etwas eingegeben werden soll und außerdem muss die Benutzereingabe in einer Variablen abgespeichert werden, damit die eingegebenen Daten im Programm später<br>weiterberarbeitet werden können.</p>
+<p>In Python wird dafür die Funktion <em>input()</em> verwendet. Diese Funktion gibt eine Nachricht auf dem Bildschirm aus und wartet dann auf Tastatureingaben, die mit der Taste „Enter“ abgeschlossen werden. Die eingegebenen Zeichen werden dann als Text in einer Variablen abgespeichert. Das folgende Beispiel macht die Funktionsweise deutlich:</p>
 <pre><code class="language-python">#Beispiel:
 vorname = input(&quot;Bitte Vornamen eingeben: &quot;)
 print(&quot;Willkommen&quot;, vorname)
 </code></pre>
 <h3>Erklärung:</h3>
 <blockquote>
-<p>Mit der Anweisung input wird der Text „Bitte Vornamen eingeben: “ auf<br>dem Bildschirm ausgegeben. Die Benutzer des Programms haben dann<br>Gelegenheit, Daten mittels Tastatur einzugeben und die Eingabe mit<br>Taste „Enter“ abzuschließen. Sobald das geschieht, werden die<br>eingegebenen Daten in der Variablen vorname abgespeichert, so dass sie<br>in der anschließenden Ausgabe verwendet werden können.</p>
+<p>Mit der Anweisung input wird der Text „Bitte Vornamen eingeben: “  auf  dem Bildschirm ausgegeben. Die Benutzer des Programms haben dann  Gelegenheit, Daten mittels Tastatur einzugeben und die Eingabe mit Taste „Enter“ abzuschließen. Sobald das geschieht, werden die<br>eingegebenen Daten in der Variablen vorname abgespeichert, so dass in der anschließenden Ausgabe verwendet werden können.</p>
 </blockquote>
 <h2>Struktogramm:</h2>
 <img src="zubehoer/struktog_2026-02-10%20(6).png" alt="struktog_2026-02-10 (6).png" />
 
 <h2>Aufgabe:</h2>
-<p>Erweitern Sie das Beispielprogramm so, dass es zusätzlich nach dem<br>Nachnamen fragt und anschließend die Meldung „Willkommen vorname<br>nachname“ ausgibt:</p>
+<p>Erweitern Sie das Beispielprogramm so, dass es zusätzlich nach dem Nachnamen fragt und anschließend die Meldung „Willkommen vorname nachname“ ausgibt:</p>
 <h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">vorname = input(&quot;Bitte Vornamen eingeben: &quot;)
 nachname = input(&quot;Bitte Nachname eingeben: &quot;)
 print(&quot;Willkommen&quot;, vorname, nachname)
