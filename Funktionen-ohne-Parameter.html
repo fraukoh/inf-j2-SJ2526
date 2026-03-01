@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inf_J1_Python_SJ_2025_26</title>
+    <title>Funktionen-ohne-Parameter</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
     <style>
 @import url('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css');
@@ -271,53 +271,44 @@
     <div class="navbar-content">
         <a href="index.html" class="home-link" title="Zur Hauptseite">⌂</a>
         <div class="navbar-links">
-            
+            <a href="Inf_J1_Python_SJ_2025_26.html">Inf_J1_Python_SJ_2025_26</a>
         </div>
     </div>
 </div>
 
     <div class="container">
         <div class="content">
-            <h1>Einführung in jupyter</h1>
-<p>Speichern Sie das folgende Arbeitsblatt am PC, laden Sie es auf den jupyter-Server hoch und bearbeiten Sie es.</p>
-<p><a href="zubehoer/00_Einf%C3%BChrung-in-Jupyter.ipynb" download="00_Einführung-in-Jupyter.ipynb">00_Einführung-in-Jupyter.ipynb</a></p>
-<h1>Ausgabe von Zeichen mit print</h1>
-<p><a href="01_Ausgabe_von_Zeichen_mit_print.html">01_Ausgabe_von_Zeichen_mit_print</a></p>
-<h3>Übung</h3>
-<p><a href="01-Aufgabe-LSG.html">01-Aufgabe-LSG</a></p>
-<h1>Variablen in python</h1>
-<h3>Variablen als Zeichenkette</h3>
-<p><a href="02_Variablen_Zeichenkette.html">02_Variablen_Zeichenkette</a></p>
-<h3>Variablen als Zahl</h3>
-<p><a href="03_Variable_als_Zahl.html">03_Variable_als_Zahl</a></p>
-<h3>Variablen als Wahrheitswert</h3>
-<p><a href="04_Variable_als_Wahrheitswert.html">04_Variable_als_Wahrheitswert</a></p>
-<h3>Übung</h3>
-<p><a href="04-Variablen-Aufgabe-LSG.html">04-Variablen-Aufgabe-LSG</a></p>
-<h1>Rechenoperatoren</h1>
-<p><a href="05_Rechenoperatoren.html">05_Rechenoperatoren</a></p>
-<h3>Übung</h3>
-<p><a href="05-Rechenoperatoren-Aufgabe-LSG.html">05-Rechenoperatoren-Aufgabe-LSG</a></p>
-<p><a href="06-Modulo-Ganzzahldivision-Aufgabe-LSG.html">06-Modulo-Ganzzahldivision-Aufgabe-LSG</a></p>
-<p><a href="07-Gummibaerchen-Teilen-Aufgabe-LSG.html">07-Gummibaerchen-Teilen-Aufgabe-LSG</a></p>
-<h1>Ein- und Ausgabe von Zeichenketten und Zahlen</h1>
-<p><a href="06_Ein-und-Ausgabe-Zeichenketten.html">06_Ein-und-Ausgabe-Zeichenketten</a></p>
-<p><a href="07-Ein-und-Ausgabe-Zahlen.html">07-Ein-und-Ausgabe-Zahlen</a></p>
-<h3>Übung</h3>
-<p><a href="071-Aufgabe-LSG.html">071-Aufgabe-LSG</a></p>
-<p><a href="072-Aufgabe-LSG.html">072-Aufgabe-LSG</a></p>
-<h1>Funktionen oder Unterprogramme in python</h1>
-<p><a href="Funktionen-ohne-Parameter.html">Funktionen-ohne-Parameter</a></p>
-<p><a href="Funktionen-mit-Parameter.html">Funktionen-mit-Parameter</a></p>
-<h3>Übung</h3>
-<p><a href="Aufgabe-Funktionen-mit-ohne-Parameter.html">Aufgabe-Funktionen-mit-ohne-Parameter</a></p>
-<p><a href="10_Funktionen-mit-R%C3%BCckgabewert.html">10_Funktionen-mit-Rückgabewert</a></p>
-<h3>Übung</h3>
-<p><a href="Aufgaben-Funktionen-mit-Rueckgabewert.html">Aufgaben-Funktionen-mit-Rueckgabewert</a></p>
-<h1>IF-Anweisung</h1>
-<h1>FOR-Schleife (Zählerschleife)</h1>
-<h1>WHILE-Schleife (Wiederholschleife)</h1>
-<h1>Vorbereitung auf die Klassenarbeit</h1>
+            <h1>Funktionen ohne Parameter</h1>
+<p>Eine Funktion ist ein ausgelagertes Unterprogramm, das beliebig oft im Hauptprogramm aufgerufen werden kann. Dadurch wird das ganze Programm übersichtlicher und einfacher zu entwickeln. Bestimmte Vorgänge, die immer wieder benötigt werden, können so ausgelagert werden und von jeder beliebigen Programmstelle aus immer wieder aufgerufen werden, anstatt<br>sie jedes Mal neu zu erstellen.</p>
+<pre><code class="language-python"># Beispiel:
+# Hier ist die Funktion:
+def sag_hallo():
+    print(&quot;*********&quot;)
+    print(&quot;* Hallo *&quot;)
+    print(&quot;*********&quot;)
+# Hier beginnt das Hauptprogramm:
+sag_hallo()
+sag_hallo()
+sag_hallo()
+</code></pre>
+<pre><code>*********
+* Hallo *
+*********
+*********
+* Hallo *
+*********
+*********
+* Hallo *
+*********
+</code></pre>
+<h2>Struktogramm</h2>
+<img src="zubehoer/Pasted%20image%2020260301113145.png" alt="Pasted image 20260301113145.png" />
+
+<p>Die Definition der Funktion beginnt mit dem Schlüsselwort <strong>def</strong>. Danach folgt der Name der Funktion. (Für die Namensgebung gelten die gleichen Regeln wie für Variablen.) Anschließend folgen runde Klammern, in denen sogenannte Funktionsparameter stehen können. Da hier im Beispiel keine Funktionsparameter übergeben werden, bleiben die Klammern leer. (In den<br>folgenden Beispielen ändert sich das dann.) Hinter den Klammern folgt ein Doppelpunkt, um anzuzeigen, dass danach die Anweisungen folgen, mit denen die Funktion die Aufgaben durchführt, für die sie geschrieben wird. Im Beispiel hier ist das nur eine Anweisung: <code>print(&quot;Hallo miteinander!&quot;)</code>.</p>
+<h2>Wichtig:</h2>
+<blockquote>
+<p>Die zur Funktion gehörigen Anweisungen müssen auf einer Ebene eingerückt sein. Im Hauptteil des Programms wird die Funktion hallo() dreimal aufgerufen. Der Aufruf besteht aus dem Namen der Funktion, gefolgt von den runden Klammern. Bei jedem Aufruf springt das<br>Programm zur Funktion und führt sie aus. Nach der Ausführung der Funktion springt das Programm wieder zur Aufrufstelle zurück und führt die Anweisung aus, die auf den Funktionsaufruf folgt. Auf diese Weise wird im vorliegenden Beispiel dreimal die Funktion hallo()<br>aufgerufen und gibt dabei jedes Mal den Text &quot;Hallo miteinander!&quot; aus.</p>
+</blockquote>
 
         </div>
     </div>
