@@ -279,8 +279,15 @@
     <div class="container">
         <div class="content">
             <h1>Aufgabe 1:</h1>
-<p>Die Funktion <strong>print_cow()</strong> soll eine Kuh auf der Konsole ausgeben. Die<br>Kuh besteht aus mehreren Zeilen, die jeweils ein Teil der Kuh<br>darstellen.<br>Die Funktion soll keine Parameter entgegennehmen. Sie soll die Kuh auf<br>der Konsole ausgeben.</p>
-<pre><code class="language-python">def print_cow():
+<p>Die Funktion <strong>print_cow()</strong> soll eine Kuh auf der Konsole ausgeben. Die Kuh besteht aus mehreren Zeilen, die jeweils ein Teil der Kuh darstellen.  Die Funktion soll keine Parameter entgegennehmen. Sie soll die Kuh auf der Konsole ausgeben.</p>
+<h4>Erwartete Ausgabe:</h4>
+<pre><code>^__^
+(oo)\_______
+(__)\       )\/\/
+    ||----w |
+    ||     ||
+</code></pre>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">def print_cow():
     print(&quot;^__^&quot;)
     print(&quot;(oo)\_______&quot;)
     print(&quot;(__)\       )\/\/&quot;)
@@ -289,38 +296,38 @@
 
 print_cow()
 </code></pre>
-<pre><code>^__^
-(oo)\_______
-(__)\       )\/\/
-    ||----w |
-    ||     ||
-</code></pre>
-<p><a href="Aufgabe-Funktionen-mit-ohne-Parameter_files/figure-html/cell-3-1-image.png">Struktogramm</a></p>
 <h1>Aufgabe 2:</h1>
-<p>Schreiben Sie ein Unterprogramm <strong>dreiecksFlaeche</strong>, welches die Länge<br>der Grundseite g und die zugehörige Höhe h übergeben bekommt.<br>Das Unterprogramm zeigt in der Konsole die Fläche A=0.5<em>g</em>h.<br>Testen Sie Ihr Unterprogramm indem Sie es aufrufen.</p>
-<pre><code class="language-python">def dreiecksFlaeche(g,h):
+<p>Schreiben Sie ein Unterprogramm <strong>dreiecksFlaeche</strong>, welches die Länge der Grundseite g und die zugehörige Höhe h übergeben bekommt.  Das Unterprogramm zeigt in der Konsole die Fläche A=0.5<em>g</em>h.  Testen Sie Ihr Unterprogramm, indem Sie es aufrufen.</p>
+<h4>Erwartete Ausgabe:</h4>
+<pre><code>Die Fläche beträgt:  6.0
+</code></pre></details><h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">def dreiecksFlaeche(g,h):
     flaeche = 0.5*g*h
     print(&quot;Die Fläche beträgt: &quot;, flaeche)
 
 dreiecksFlaeche(3,4)
 </code></pre>
-<pre><code>Die Fläche beträgt:  6.0
-</code></pre>
-<p><a href="Aufgabe-Funktionen-mit-ohne-Parameter_files/figure-html/cell-6-1-image.png">Struktogramm</a></p>
 <h1>Aufgabe 3:</h1>
-<p>Erstellen Sie eine Funktion, die den jährlichen Zinsbetrag berechnet.<br>Die Funktion soll die Parameter Kapital und Zinssatz in Prozent haben.</p>
-<pre><code class="language-python">def zinsbetrag(kapital, zinssatz):
+<p>Erstellen Sie eine Funktion, die den jährlichen Zinsbetrag berechnet. Die Funktion soll die Parameter Kapital und Zinssatz in Prozent haben.</p>
+<h4>Erwartete Ausgabe:</h4>
+<pre><code>Der Zinsbetrag beträgt:  50.0 Euro
+</code></pre></details><h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">def zinsbetrag(kapital, zinssatz):
     zins = kapital * zinssatz/100
     print(&quot;Der Zinsbetrag beträgt: &quot;, zins, &quot;Euro&quot;)
 
 zinsbetrag(1000, 5)
 </code></pre>
-<pre><code>Der Zinsbetrag beträgt:  50.0 Euro
-</code></pre>
-<p><a href="Aufgabe-Funktionen-mit-ohne-Parameter_files/figure-html/cell-9-1-image.png">Struktogramm</a></p>
 <h1>Aufgabe 4:</h1>
-<p>Erstellen Sie eine Funktion <strong>cow_say(text)</strong>, die eine ASCII-Kuh mit<br>einer Sprechblase ausgibt. Der übergebene Text soll in der Sprechblase<br>erscheinen.</p>
-<pre><code class="language-python">def cow_say(text): 
+<p>Erstellen Sie eine Funktion <strong>cow_say(text)</strong>, die eine ASCII-Kuh mit einer Sprechblase ausgibt. Der übergebene Text soll in der Sprechblase erscheinen.</p>
+<h4>Erwartete Ausgabe:</h4>
+<pre><code>----------------
+&lt; Hallo Welt! &gt;
+---------------
+^__^
+(oo)\_______
+(__)\       )\/\/
+   ||----w |
+   ||     ||
+</code></pre></details><h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">def cow_say(text): 
     # Erstelle die Sprechblase
     print(&quot;----------------&quot;)
     print(&quot;&lt;&quot; , text , &quot;&gt;&quot;)
@@ -335,18 +342,7 @@ zinsbetrag(1000, 5)
 
 # Beispielaufruf
 cow_say(&quot;Hallo Welt!&quot;)
-</code></pre>
-<pre><code>----------------
-&lt; Hallo Welt! &gt;
----------------
-^__^
-(oo)\_______
-(__)\       )\/\/
-   ||----w |
-   ||     ||
-</code></pre>
-<p><a href="Aufgabe-Funktionen-mit-ohne-Parameter_files/figure-html/cell-12-1-image.png">Struktogramm</a></p>
-
+</code></pre></details>
         </div>
     </div>
 </body>
