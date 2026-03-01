@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inf_J1_Python_SJ_2025_26</title>
+    <title>Funktionen-mit-Rückgabewert</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
     <style>
 @import url('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css');
@@ -271,58 +271,38 @@
     <div class="navbar-content">
         <a href="index.html" class="home-link" title="Zur Hauptseite">⌂</a>
         <div class="navbar-links">
-            
+            <a href="Inf_J1_Python_SJ_2025_26.html">Inf_J1_Python_SJ_2025_26</a>
         </div>
     </div>
 </div>
 
     <div class="container">
         <div class="content">
-            <h1>Einführung in jupyter</h1>
-<p>Speichern Sie das folgende Arbeitsblatt am PC, laden Sie es auf den jupyter-Server hoch und bearbeiten Sie es.</p>
-<p><a href="zubehoer/00_Einf%C3%BChrung-in-Jupyter.ipynb" download="00_Einführung-in-Jupyter.ipynb">00_Einführung-in-Jupyter.ipynb</a></p>
-<h1>Ausgabe von Zeichen mit print</h1>
-<p><a href="01_Ausgabe_von_Zeichen_mit_print.html">01_Ausgabe_von_Zeichen_mit_print</a></p>
-<h3>Übung</h3>
-<p><a href="01-Aufgabe-LSG.html">01-Aufgabe-LSG</a></p>
-<h1>Variablen in python</h1>
-<h3>Variablen als Zeichenkette</h3>
-<p><a href="02_Variablen_Zeichenkette.html">02_Variablen_Zeichenkette</a></p>
-<h3>Variablen als Zahl</h3>
-<p><a href="03_Variable_als_Zahl.html">03_Variable_als_Zahl</a></p>
-<h3>Variablen als Wahrheitswert</h3>
-<p><a href="04_Variable_als_Wahrheitswert.html">04_Variable_als_Wahrheitswert</a></p>
-<h3>Übung</h3>
-<p><a href="04-Variablen-Aufgabe-LSG.html">04-Variablen-Aufgabe-LSG</a></p>
-<h1>Rechenoperatoren</h1>
-<p><a href="05_Rechenoperatoren.html">05_Rechenoperatoren</a></p>
-<h3>Übung</h3>
-<p><a href="05-Rechenoperatoren-Aufgabe-LSG.html">05-Rechenoperatoren-Aufgabe-LSG</a></p>
-<p><a href="06-Modulo-Ganzzahldivision-Aufgabe-LSG.html">06-Modulo-Ganzzahldivision-Aufgabe-LSG</a></p>
-<p><a href="07-Gummibaerchen-Teilen-Aufgabe-LSG.html">07-Gummibaerchen-Teilen-Aufgabe-LSG</a></p>
-<h1>Ein- und Ausgabe von Zeichenketten und Zahlen</h1>
-<p><a href="06_Ein-und-Ausgabe-Zeichenketten.html">06_Ein-und-Ausgabe-Zeichenketten</a></p>
-<p><a href="07-Ein-und-Ausgabe-Zahlen.html">07-Ein-und-Ausgabe-Zahlen</a></p>
-<h3>Übung</h3>
-<p><a href="071-Aufgabe-LSG.html">071-Aufgabe-LSG</a></p>
-<p><a href="072-Aufgabe-LSG.html">072-Aufgabe-LSG</a></p>
-<h1>Funktionen oder Unterprogramme in python</h1>
-<h2>Funktionen ohne und mit Parameter</h2>
-<p><a href="Funktionen-ohne-Parameter.html">Funktionen-ohne-Parameter</a></p>
-<p><a href="Funktionen-mit-Parameter.html">Funktionen-mit-Parameter</a></p>
-<h3>Übung</h3>
-<p><a href="Aufgabe-Kuh-ohne-Paremeter.html">Aufgabe-Kuh-ohne-Paremeter</a></p>
-<p><a href="Aufgabe-DreiecksFlaeche.html">Aufgabe-DreiecksFlaeche</a></p>
-<p><a href="Aufgabe-Zinsbetrag.html">Aufgabe-Zinsbetrag</a></p>
-<p><a href="Aufgabe-Kuh-mit-Paremeter.html">Aufgabe-Kuh-mit-Paremeter</a></p>
-<h2>Funktionen mit Rückgabewert</h2>
-<p><a href="Funktionen-mit-R%C3%BCckgabewert.html">Funktionen-mit-Rückgabewert</a></p>
-<h3>Übung</h3>
-<p><a href="Aufgaben-Funktionen-mit-Rueckgabewert.html">Aufgaben-Funktionen-mit-Rueckgabewert</a></p>
-<h1>IF-Anweisung</h1>
-<h1>FOR-Schleife (Zählerschleife)</h1>
-<h1>WHILE-Schleife (Wiederholschleife)</h1>
-<h1>Vorbereitung auf die Klassenarbeit</h1>
+            <h1>Funktionen mit Rückgabewert</h1>
+<p>Programmierer können nicht nur Parameter an eine Funktion übergeben, sondern auch Ergebnisse mit einer Funktion an den Aufrufort zurückliefern. Diese Ergebnisse heißen Rückgabewerte. Rückgabewerte können sowohl Zahlen, Zeichenketten als auch Wahrheitswerte sein. Als Beispiel hier ein Programm, welches das Quadrat einer eingegebenen Zahl errechnet und ausgibt:</p>
+<pre><code class="language-python">def berechne_quadratzahl(pZahl):
+    quadratzahl = pZahl * pZahl
+    return quadratzahl
+
+zahl = float(input(&quot;Geben Sie bitte eine Zahl ein: &quot;))
+ergebnis = berechne_quadratzahl(zahl)
+print(&quot;Die Quadratzahl von&quot;, zahl, &quot;ist&quot;, ergebnis) 
+</code></pre>
+<pre><code>Die Quadratzahl von 4.0 ist 16.0
+</code></pre>
+<p>Die Funktion ´berechne_quadratzahl()´ empfängt einen Parameter (´pZahl´). Dieser Parameter wird innerhalb der Funktion mit sich selbst multipliziert, um die Quadratzahl zu errechnen, und anschließend in der Variablen quadratzahl gespeichert. Danach kommt das Schlüssel wort ´return´ zum Einsatz, welches die Aufgabe hat, den Inhalt der Variablen ´quadratzahl´ an die Stelle zurückzuliefern, von der die Funktion aufgerufen wurde. Das bedeutet hier, dass der Wert von ´quadratzahl´ an die Variable ´ergebnis´ zurückgeliefert und dort abgespeichert wird. Die Anweisung, mit der Python ein Wert an die aufrufende Stelle zurückgegeben wird, heißt also ´return´.</p>
+<h2>Struktogramm</h2>
+<img src="zubehoer/Pasted%20image%2020260301121402.png" alt="Pasted image 20260301121402.png" />
+
+<h2>Aufgabe:</h2>
+<p>Erweitern Sie das Programm um eine Funktion ´berechne_QuadratUmfang(pSeitenlaenge)´, die als Parameter die Seitenlänge empfängt, die von den Benutzern eingegeben wird, daraus den<br>Umfang des Quadrats berechnet und diesen Wert zurückgibt. Das Hauptprogramm soll diese Funktion aufrufen und den zurückgegebenen Wert ausgeben. Die Ausgabe des erweiterten Programms sieht dann so aus:</p>
+<pre><code>Geben Sie eine Zahl ein: 6
+Die Quadratzahl von 6.0 ist 36.0
+Die Seitenlänge eines Quadrats eingeben: 5
+Der Umfang des Quadrats ist: 20.0
+</code></pre>
+<pre><code class="language-python">#Hier den Programmcode eingeben und mit STRG+ENTER ausführen
+</code></pre>
 
         </div>
     </div>
