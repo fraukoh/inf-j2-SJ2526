@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verknuepfte-Bedingungen-UND-ODER-NICHT-Aufgabe-LSG</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <style>
+@import url('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css');
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+    body {
+      font-family: 'Courier New', 'Consolas', 'Monaco', monospace;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #000;
+      background: #fff;
+      padding: 0;
+    }
+    
+    /* Navigation */
+    .navbar {
+      background: #f8f8f8;
+      border-bottom: 1px solid #ddd;
+      padding: 8px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    
+    .navbar-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+    }
+    
+    .home-link {
+      font-size: 16px;
+      color: #333;
+      text-decoration: none;
+      margin-right: 20px;
+      padding: 4px 8px;
+      border-radius: 3px;
+      transition: all 0.2s;
+    }
+    
+    .home-link:hover {
+      background: #e0e0e0;
+      color: #000;
+    }
+    
+    .navbar-links {
+      font-size: 13px;
+    }
+    
+    .navbar-links a {
+      color: #666;
+      text-decoration: none;
+      margin: 0 8px;
+      padding: 2px 6px;
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+    
+    .navbar-links a:hover {
+      background: #e0e0e0;
+      color: #000;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 30px;
+      border: 1px solid #000;
+      margin-top: 0;
+    }
+    h1 { 
+      color: #000; 
+      margin-bottom: 15px; 
+      font-size: 1.8em; 
+      font-weight: bold;
+      border-bottom: 2px solid #000;
+      padding-bottom: 5px;
+    }
+    h2 { 
+      color: #000; 
+      margin-top: 20px; 
+      margin-bottom: 10px; 
+      font-size: 1.4em;
+      font-weight: bold;
+    }
+    h3 { 
+      color: #000; 
+      margin-top: 15px; 
+      margin-bottom: 8px; 
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+    p { 
+      margin-bottom: 10px; 
+    }
+    pre {
+      background: #1e1e1e;
+      border: 1px solid #000;
+      padding: 12px;
+      overflow-x: auto;
+      margin: 15px 0;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+    }
+    pre code {
+      color: #d4d4d4;
+    }
+    code {
+      background: #f5f5f5;
+      border: 1px solid #ccc;
+      padding: 2px 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+    }
+    pre code {
+      background: none;
+      border: none;
+      padding: 0;
+    }
+    ul, ol { 
+      margin-left: 25px; 
+      margin-bottom: 10px; 
+    }
+    li { 
+      margin-bottom: 3px; 
+    }
+    .metadata {
+      border: 1px solid #000;
+      padding: 10px;
+      margin-bottom: 15px;
+      background: #f9f9f9;
+      font-size: 12px;
+    }
+    .tags {
+      margin-top: 8px;
+    }
+    .tag {
+      display: inline-block;
+      background: #000;
+      color: #fff;
+      padding: 2px 8px;
+      font-size: 11px;
+      margin-right: 5px;
+      margin-top: 5px;
+      border: 1px solid #000;
+    }
+    a {
+      color: #000;
+      text-decoration: underline;
+    }
+    a:hover {
+      background: #000;
+      color: #fff;
+    }
+    ul li a, ol li a {
+      display: inline;
+    }
+    p a {
+      display: inline;
+      padding: 2px 4px;
+    }
+    p a:hover {
+      background: #000;
+      color: #fff;
+    }
+    
+    img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #000;
+      margin: 10px 0;
+      display: block;
+    }
+    blockquote {
+      border-left: 2px solid #000;
+      padding-left: 15px;
+      margin: 15px 0;
+      color: #333;
+      font-style: italic;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+      border: 1px solid #000;
+    }
+    th, td {
+      border: 1px solid #000;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background: #000;
+      color: #fff;
+      font-weight: bold;
+    }
+    tr:nth-child(even) {
+      background: #f9f9f9;
+    }
+    .content {
+      line-height: 1.6;
+    }
+    
+    /* Aufklappbare Lösungen */
+    .solution-details {
+      margin: 15px 0;
+      border: 1px solid #000;
+    }
+    
+    .solution-toggle {
+      cursor: pointer;
+      padding: 10px;
+      background: #f5f5f5;
+      border-bottom: 1px solid #000;
+      font-weight: bold;
+      user-select: none;
+    }
+    
+    .solution-toggle:hover {
+      background: #e0e0e0;
+    }
+    
+    .solution-details[open] .solution-toggle {
+      background: #000;
+      color: #fff;
+    }
+    
+    .solution-details > *:not(summary) {
+      padding: 15px;
+    }
+    
+    /* Bilder in Lösungen ohne Rahmen */
+    .solution-details img {
+      border: none !important;
+      box-shadow: none !important;
+    }
+    
+    /* Paragraphen in Lösungen - genau wie sonst auch */
+    .solution-details p {
+      display: block;
+      margin: 10px 0;
+    }
+    
+    /* Lösung-Content soll Whitespace erhalten */
+    .solution-details {
+      white-space: pre-line;
+    }
+  </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        hljs.highlightAll();
+      });
+    </script>
+</head>
+<body>
+    
+<div class="navbar">
+    <div class="navbar-content">
+        <a href="index.html" class="home-link" title="Zur Hauptseite">⌂</a>
+        <div class="navbar-links">
+            <a href="Inf-Abi-Vorbereitung.html">Inf-Abi-Vorbereitung</a>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        <div class="content">
+            <h1>Arbeitsblatt: Logische Verknüpfungen AND, OR, NOT (mit und ohne Klammern)</h1>
+<p>Dieses Blatt soll dir helfen, <strong>logische Verknüpfungen</strong> so zu verstehen, dass du sie  </p>
+<ul>
+<li>in <strong>Python</strong>,  </li>
+<li>in <strong>SQL</strong>  </li>
+<li>und auch in <strong>Mengenlehre / Venn-Diagrammen</strong><br>anwenden kannst.</li>
+</ul>
+<p>Wir benutzen:</p>
+<ul>
+<li><code>A, B, C</code> als <strong>Aussagen</strong> (z.B. „es regnet“),</li>
+<li><code>AND</code>, <code>OR</code>, <code>NOT</code> als logische Operatoren.</li>
+</ul>
+<hr>
+<h3>Kurze Erinnerung</h3>
+<ul>
+<li><p><strong>AND</strong>: Wahr, <strong>wenn beide</strong> Aussagen wahr sind.<br>Beispiel: „Ich habe Mathe <strong>und</strong> Infoklausur bestanden.“ → <code>Mathe_bestanden AND Info_bestanden</code></p>
+</li>
+<li><p><strong>OR</strong>: Wahr, wenn <strong>mindestens eine</strong> Aussage wahr ist.<br>Beispiel: „Wir treffen uns im Park <strong>oder</strong> im Café.“ → <code>Park OR Cafe</code></p>
+</li>
+<li><p><strong>NOT</strong>: Dreht das Ergebnis um.<br>Beispiel: „Es regnet <strong>nicht</strong>.“ → <code>NOT regnet</code></p>
+</li>
+</ul>
+<p><strong>Mengenlehre (Venn-Diagramm)</strong></p>
+<p>Zwei Mengen <code>A</code> und <code>B</code>:</p>
+<ul>
+<li><code>A AND B</code> ↔ <code>A ∩ B</code>: <strong>Schnittmenge</strong>, Überlappung.</li>
+<li><code>A OR B</code> ↔ <code>A ∪ B</code>: <strong>Vereinigung</strong>, alles was in <code>A</code> oder <code>B</code> liegt (oder in beiden).</li>
+<li><code>NOT A</code>: alles, was <strong>nicht</strong> in <code>A</code> liegt (bezogen auf ein Universum <code>U</code>).</li>
+</ul>
+<hr>
+<h2>Aufgabe 1 – „und“ im Satz, AND oder OR in der Logik?</h2>
+<p>Im Deutschen taucht oft das Wort „und“ auf, obwohl in der Logik eher ein <code>OR</code> gemeint ist – oder umgekehrt. Entscheide, ob in der <strong>Bedingung</strong> logisch eher <code>AND</code> oder <code>OR</code> gemeint ist.</p>
+<p>Formuliere jeweils eine sinnvolle Bedingung in logischer Schreibweise (mit <code>AND</code> / <code>OR</code> / <code>NOT</code>).</p>
+<p>a) „Im Alter <strong>größer 70 und kleiner 18</strong> bekommen die Gäste eine ermäßigte Karte.“<br>   (gemeint ist: Senior*innen <strong>oder</strong> Kinder/Jugendliche)</p>
+<p>b) „Sie bekommen einen Bonus, <strong>wenn Sie seit mindestens 5 Jahren Kunde sind und Goldstatus haben</strong>.“  </p>
+<p>c) „Du darfst ins Konzert, <strong>wenn du 16 bist und deine Eltern einverstanden sind</strong>.“  </p>
+<p>d) „Das Special-Menü gilt <strong>für Schüler und Studierende</strong>.“</p>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><p>a) Gemeint ist: Alter &gt; 70 <strong>oder</strong> Alter &lt; 18<br>   → <code>Alter &gt; 70 OR Alter &lt; 18</code></p>
+<p>b) Beide Bedingungen nötig:<br>   → <code>Kunde_seit_5Jahren AND Goldstatus</code></p>
+<p>c) Ebenfalls beides nötig:<br>   → <code>Alter &gt;= 16 AND Eltern_einverstanden</code></p>
+<p>d) Meist als mindestens eine der Gruppen:<br>   → <code>ist_Schueler OR ist_Studierender</code></p>
+<hr></details><h2>Aufgabe 2 – Wahr oder falsch? (einfache Aussagen)</h2>
+<p>Gegeben seien zwei Aussagen:</p>
+<ul>
+<li><code>A</code>: „Heute ist Schultag.“  </li>
+<li><code>B</code>: „Heute ist Samstag.“</li>
+</ul>
+<p>Bewerte (wahr/falsch), wenn <strong>heute wirklich Samstag ist, aber keine Schule</strong>:</p>
+<p>a) <code>A</code><br>b) <code>B</code><br>c) <code>A AND B</code><br>d) <code>A OR B</code><br>e) <code>NOT A</code><br>f) <code>NOT B</code></p>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><p>Heute: Samstag, keine Schule ⇒ <code>A = falsch</code>, <code>B = wahr</code></p>
+<p>a) <code>A</code>: falsch<br>b) <code>B</code>: wahr<br>c) <code>A AND B</code>: falsch AND wahr = falsch<br>d) <code>A OR B</code>: falsch OR wahr = wahr<br>e) <code>NOT A</code>: NOT falsch = wahr<br>f) <code>NOT B</code>: NOT wahr = falsch</p>
+<hr></details><h2>Aufgabe 3 – Wahrheitstabelle AND / OR / NOT</h2>
+<p>Vervollständige die Wahrheitstabelle:</p>
+<p><code>A, B ∈ {wahr, falsch}</code></p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>NOT A</th>
+<th>A AND B</th>
+<th>A OR B</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>wahr</td>
+<td>wahr</td>
+<td>?</td>
+<td>?</td>
+<td>?</td>
+</tr>
+<tr>
+<td>wahr</td>
+<td>falsch</td>
+<td>?</td>
+<td>?</td>
+<td>?</td>
+</tr>
+<tr>
+<td>falsch</td>
+<td>wahr</td>
+<td>?</td>
+<td>?</td>
+<td>?</td>
+</tr>
+<tr>
+<td>falsch</td>
+<td>falsch</td>
+<td>?</td>
+<td>?</td>
+<td>?</td>
+</tr>
+</tbody></table>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>NOT A</th>
+<th>A AND B</th>
+<th>A OR B</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>wahr</td>
+<td>wahr</td>
+<td>falsch</td>
+<td>wahr</td>
+<td>wahr</td>
+</tr>
+<tr>
+<td>wahr</td>
+<td>falsch</td>
+<td>falsch</td>
+<td>falsch</td>
+<td>wahr</td>
+</tr>
+<tr>
+<td>falsch</td>
+<td>wahr</td>
+<td>wahr</td>
+<td>falsch</td>
+<td>wahr</td>
+</tr>
+<tr>
+<td>falsch</td>
+<td>falsch</td>
+<td>wahr</td>
+<td>falsch</td>
+<td>falsch</td>
+</tr>
+</tbody></table>
+<hr></details><h2>Aufgabe 4 – NOT in Alltagssprache</h2>
+<p>Formuliere die logische Verneinung (<code>NOT</code>) der Aussagen:</p>
+<p>a) „Ich gehe heute ins Fitnessstudio.“<br>b) „Alle Schüler haben ihre Hausaufgaben gemacht.“<br>c) „Mindestens eine Person in der Klasse hat heute Geburtstag.“</p>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><p>a) „Ich gehe <strong>heute nicht</strong> ins Fitnessstudio.“<br>b) „<strong>Nicht alle</strong> Schüler haben ihre Hausaufgaben gemacht.“<br>c) „<strong>Niemand</strong> in der Klasse hat heute Geburtstag.“</p>
+<hr></details><h2>Aufgabe 5 – Venn-Diagramm im Kopf (1)</h2>
+<p>Gegeben:</p>
+<ul>
+<li>Menge <code>A</code>: „Schüler, die Kaffee mögen“  </li>
+<li>Menge <code>B</code>: „Schüler, die Tee mögen“</li>
+</ul>
+<p>Beschreibe in Worten:</p>
+<p>a) <code>A AND B</code><br>b) <code>A OR B</code><br>c) <code>NOT A</code> (bezogen auf alle Schüler der Klasse)</p>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><p>a) <code>A AND B</code>: Schüler, die <strong>Kaffee und Tee</strong> mögen.<br>b) <code>A OR B</code>: Schüler, die <strong>Kaffee oder Tee (oder beides)</strong> mögen.<br>c) <code>NOT A</code>: Schüler, die <strong>keinen Kaffee</strong> mögen (egal ob sie Tee mögen oder nicht).</p>
+<hr></details><h2>Aufgabe 6 – Venn-Diagramm im Kopf (2)</h2>
+<p>Gegeben:</p>
+<ul>
+<li>Menge <code>A</code>: „Schüler mit Haustier“  </li>
+<li>Menge <code>B</code>: „Schüler, die ein Instrument spielen“</li>
+</ul>
+<p>Beschreibe jeweils in Worten:</p>
+<p>a) <code>NOT (A OR B)</code><br>b) <code>NOT A AND NOT B</code></p>
+<p>Überlege: Sind a) und b) inhaltlich gleich?</p>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><p>a) <code>NOT (A OR B)</code>: Es ist <strong>nicht wahr</strong>, dass jemand ein Haustier <strong>oder</strong> ein Instrument hat.<br>b) <code>NOT A AND NOT B</code>: Schüler, die <strong>kein Haustier</strong> und <strong>kein Instrument</strong> haben.</p>
+<p>Ja, inhaltlich gleich (De Morgan):<br><code>NOT (A OR B) = NOT A AND NOT B</code>.</p>
+<hr></details><h2>Aufgabe 7 – UND / ODER im Klausen-Wahnsinn</h2>
+<p>Gegeben:</p>
+<ul>
+<li><code>M</code>: „Ich habe die Matheklausur bestanden.“  </li>
+<li><code>I</code>: „Ich habe die Informatikklausur bestanden.“</li>
+</ul>
+<p>Welche logische Verknüpfung beschreibt:</p>
+<p>a) „Ich bekomme einen Kinogutschein, <strong>wenn ich beide Klausuren bestehe</strong>.“<br>b) „Ich bekomme einen Trost-Schokoriegel, <strong>wenn ich Mathe oder Info bestehe</strong> (mindestens eine).“<br>c) „Ich bekomme nichts Süßes, <strong>wenn ich keine der beiden bestanden</strong> habe.“</p>
+<p>Schreibe als logische Formeln mit <code>M, I</code>.</p>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><p>a) <code>M AND I</code><br>b) <code>M OR I</code><br>c) <code>NOT M AND NOT I</code></p>
+<hr></details><h2>Aufgabe 8 – Elternregeln</h2>
+<p>Gegeben:</p>
+<ul>
+<li><code>A</code>: „Zimmer ist aufgeräumt.“  </li>
+<li><code>B</code>: „Hausaufgaben sind gemacht.“</li>
+</ul>
+<p>Eltern-Regel 1: „Du darfst zocken, <strong>wenn Zimmer aufgeräumt AND Hausaufgaben gemacht sind</strong>.“<br>Eltern-Regel 2: „Du darfst zocken, <strong>wenn Zimmer aufgeräumt OR Hausaufgaben gemacht sind</strong>.“</p>
+<p>a) Schreibe beide Regeln als logische Ausdrücke.<br>b) Welche Regel ist <strong>strenger</strong>?</p>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><p>a)  </p>
+<ul>
+<li>Regel 1: <code>A AND B</code>  </li>
+<li>Regel 2: <code>A OR B</code></li>
+</ul>
+<p>b) Strenger: <code>A AND B</code> – beide Bedingungen müssen erfüllt sein.</p>
+<hr></details><h2>Aufgabe 9 – Klammern ändern alles (1)</h2>
+<p>Gegeben seien Aussagen <code>A, B, C</code>.</p>
+<p>Vergleiche die folgenden Ausdrücke:</p>
+<ol>
+<li><code>A AND (B OR C)</code>  </li>
+<li><code>(A AND B) OR C</code></li>
+</ol>
+<p>a) Beschreibe kurz in Worten, was jeweils gemeint ist.<br>b) Sind die beiden Ausdrücke immer logisch gleich?</p>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><p>a)  </p>
+<ol>
+<li><code>A AND (B OR C)</code>: <code>A</code> ist wahr <strong>und außerdem</strong> ist <strong>mindestens eine</strong> der Aussagen <code>B</code> oder <code>C</code> wahr.  </li>
+<li><code>(A AND B) OR C</code>: Entweder sind <strong>A und B beide wahr</strong>, <strong>oder</strong> <code>C</code> ist wahr (unabhängig von <code>A, B</code>).</li>
+</ol>
+<p>b) Nein, sie sind <strong>nicht immer</strong> gleich – Klammern verändern die Verknüpfung.</p>
+<hr></details><h2>Aufgabe 10 – Klammern ändern alles (2) – Wahrheitsvergleich</h2>
+<p>Überlege, ob <code>A AND (B OR C)</code> und <code>(A AND B) OR (A AND C)</code> <strong>immer</strong> gleich sind.</p>
+<p>a) Formuliere beide in Worten.<br>b) Überlege mit ein paar Beispielen (z.B. A/B/C wahr/falsch), ob sie denselben Wahrheitswert haben.<br>c) Was fällt dir auf?</p>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><p>a)  </p>
+<ul>
+<li><code>A AND (B OR C)</code>: <code>A</code> ist wahr und außerdem mindestens eine von <code>B, C</code>.  </li>
+<li><code>(A AND B) OR (A AND C)</code>: Entweder <code>A</code> und <code>B</code> sind wahr, <strong>oder</strong> <code>A</code> und <code>C</code> sind wahr.</li>
+</ul>
+<p>b) Beispiele zeigen: In allen Fällen gleich.  </p>
+<p>c) Das ist das <strong>Distributivgesetz</strong>:<br><code>A AND (B OR C) = (A AND B) OR (A AND C)</code>.</p>
+<hr></details><h2>Aufgabe 11 – De Morgan im Alltag (1)</h2>
+<p>Formuliere die Aussage:</p>
+<blockquote>
+<p>„Es ist <strong>nicht wahr</strong>, dass ich heute Mathe <strong>oder</strong> Sport habe.“</p>
+</blockquote>
+<p>als logischen Ausdruck mit  </p>
+<ul>
+<li><code>M</code>: „Ich habe Mathe.“  </li>
+<li><code>S</code>: „Ich habe Sport.“</li>
+</ul>
+<p>Formuliere dann eine <strong>äquivalente</strong> Aussage ohne großes NOT vorne (also mit NOT in den Einzelteilen).</p>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><p>Logischer Ausdruck: <code>NOT (M OR S)</code></p>
+<p>Äquivalente Aussage: <code>NOT M AND NOT S</code><br>In Worten: „Ich habe heute <strong>weder</strong> Mathe <strong>noch</strong> Sport.“</p>
+<hr></details><h2>Aufgabe 12 – De Morgan im Alltag (2)</h2>
+<p>Formuliere:</p>
+<blockquote>
+<p>„Es ist <strong>nicht wahr</strong>, dass ich <strong>beides</strong>: Kaffee und Energy-Drink trinke.“</p>
+</blockquote>
+<p>mit  </p>
+<ul>
+<li><code>K</code>: „Ich trinke Kaffee.“  </li>
+<li><code>E</code>: „Ich trinke Energy-Drink.“</li>
+</ul>
+<p>a) Als Ausdruck mit einem großen NOT vorne.<br>b) Als äquivalente Form mit NOT in den Einzelteilen.</p>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><p>a) <code>NOT (K AND E)</code>  </p>
+<p>b) <code>NOT K OR NOT E</code><br>In Worten: „Ich trinke <strong>nicht beide gleichzeitig</strong> – mindestens eines von beidem trinke ich nicht.“</p>
+<hr></details><h2>Aufgabe 13 – Drei Mengen in einem Diagramm (mental)</h2>
+<p>Gegeben:</p>
+<ul>
+<li>Menge <code>A</code>: „Schüler, die gern Pizza essen“  </li>
+<li>Menge <code>B</code>: „Schüler, die gern Salat essen“  </li>
+<li>Menge <code>C</code>: „Schüler, die gern Eis essen“</li>
+</ul>
+<p>Beschreibe in Worten:</p>
+<p>a) <code>A AND B AND C</code><br>b) <code>A AND NOT B AND C</code><br>c) <code>NOT A AND (B OR C)</code></p>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><p>a) Schüler, die <strong>Pizza, Salat und Eis</strong> mögen.<br>b) Schüler, die <strong>Pizza und Eis</strong>, aber <strong>keinen Salat</strong> mögen.<br>c) Schüler, die <strong>keine Pizza</strong> mögen, aber <strong>mindestens Salat oder Eis</strong> mögen.</p>
+<hr></details><h2>Aufgabe 14 – Verrückte Schulbus-Regel</h2>
+<p>Sei:</p>
+<ul>
+<li><code>R</code>: „Es regnet.“  </li>
+<li><code>S</code>: „Es schneit.“  </li>
+<li><code>B</code>: „Der Schulbus fährt.“</li>
+</ul>
+<p>Die Schulleitung sagt:<br>„Der Bus fährt, <strong>wenn es nicht schneit AND (es nicht regnet OR es nur leicht regnet)</strong>.“</p>
+<p>a) Übersetze grob in einen logischen Ausdruck mit <code>R, S</code> (vereinfache: benutze einfach NOT und AND/OR).<br>b) Gib ein Beispiel-Wetter, bei dem der Bus <strong>sicher nicht</strong> fährt.</p>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><p>Möglicher Ausdruck (vereinfacht):<br><code>B = NOT S AND (NOT R OR leichtes_R)</code> – genaue Modellierung von „leicht“ ist hier egal.</p>
+<p>Beispiel, wo der Bus sicher nicht fährt:  </p>
+<ul>
+<li>Starker Schneefall ⇒ <code>S</code> wahr ⇒ <code>NOT S</code> falsch ⇒ <code>B</code> falsch.</li>
+</ul>
+<hr></details><h2>Aufgabe 15 – Wahrheitstabelle für eine zusammengesetzte Aussage</h2>
+<p>Betrachte den Ausdruck:<br><code>(A OR B) AND NOT C</code></p>
+<p>Beantworte:</p>
+<p>a) Wann ist der Ausdruck <strong>wahr</strong>? (beschreibe in Worten)<br>b) Wann ist er <strong>falsch</strong>?</p>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><p>a) Wahr genau dann, wenn  </p>
+<ul>
+<li><strong>mindestens eine</strong> der Aussagen <code>A</code> oder <code>B</code> wahr ist  </li>
+<li><strong>und</strong> <code>C</code> falsch ist.</li>
+</ul>
+<p>b) Falsch in allen anderen Fällen, z.B.  </p>
+<ul>
+<li><code>C</code> ist wahr (egal was A/B sind),  </li>
+<li>oder <strong>sowohl</strong> <code>A</code> als auch <code>B</code> sind falsch.</li>
+</ul>
+<hr></details><h2>Aufgabe 16 – Gleich oder nicht gleich?</h2>
+<p>Vergleiche:</p>
+<ol>
+<li><code>NOT (A AND B)</code>  </li>
+<li><code>NOT A AND NOT B</code>  </li>
+<li><code>NOT A OR NOT B</code></li>
+</ol>
+<p>a) Welche zwei Ausdrücke sind <strong>logisch äquivalent</strong> (immer gleich wahr/falsch)?<br>b) Welche sind es <strong>nicht</strong>?</p>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><p>Nach De-Morgan-Gesetzen:<br><code>NOT (A AND B) = NOT A OR NOT B</code></p>
+<p>Also:</p>
+<ul>
+<li>1 und 3 sind äquivalent.  </li>
+<li>2 ist <strong>nicht</strong> zu 1 oder 3 äquivalent (strengere Bedingung: beide falsch).</li>
+</ul>
+<hr></details><h2>Aufgabe 17 – Schülernah: Handy-Regeln</h2>
+<p>Eltern-Regel für das Handy:</p>
+<ul>
+<li><code>H</code>: „Hausaufgaben sind fertig.“  </li>
+<li><code>T</code>: „Es ist nicht nach 22 Uhr.“</li>
+</ul>
+<p>Regel A: „Du darfst am Handy sein, <strong>wenn Hausaufgaben fertig AND es nicht nach 22 Uhr ist</strong>.“<br>Regel B: „Du darfst am Handy sein, <strong>wenn Hausaufgaben fertig sind OR es nicht nach 22 Uhr ist</strong>.“</p>
+<p>a) Schreibe Regel A und B als logische Ausdrücke.<br>b) Welche Regel ist „strenger“?</p>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><p>a)  </p>
+<ul>
+<li>Regel A: <code>H AND T</code>  </li>
+<li>Regel B: <code>H OR T</code></li>
+</ul>
+<p>b) Strenger: <code>H AND T</code>.</p>
+<hr></details><h2>Aufgabe 18 – Logik in einer Datenbank (gedanklich SQL)</h2>
+<p>In einer Tabelle <code>Schueler</code> gäbe es z.B. Spalten:</p>
+<ul>
+<li><code>hatFahrrad</code> (True/False) → Aussage <code>F</code>  </li>
+<li><code>hatBahnAbo</code> (True/False) → Aussage <code>B</code></li>
+</ul>
+<p>Überlege nur logisch:</p>
+<p>a) Welche logische Bedingung beschreibt: „Schüler, die <strong>kein Fahrrad AND kein Bahn-Abo</strong> haben“?<br>b) Welche Bedingung beschreibt: „Schüler, die <strong>mindestens eines von beidem</strong> haben“?</p>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><p>a) <code>NOT F AND NOT B</code><br>b) <code>F OR B</code></p>
+<hr></details><h2>Aufgabe 19 – WG-Regel</h2>
+<p>In einer WG gilt:</p>
+<ul>
+<li><code>P</code>: „Du hast den Müll runtergebracht.“  </li>
+<li><code>G</code>: „Du hast Geschirr gespült.“  </li>
+<li><code>S</code>: „Du hast Staub gesaugt.“</li>
+</ul>
+<p>Die WG-Regel lautet:  </p>
+<blockquote>
+<p>„Du darfst Netflix schauen, wenn du <strong>mindestens zwei</strong> der drei Aufgaben erledigt hast.“</p>
+</blockquote>
+<p>Formuliere eine mögliche logische Bedingung mit AND/OR, die das ausdrückt.</p>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><p>Eine mögliche Form:</p>
+<p><code>(P AND G) OR (P AND S) OR (G AND S)</code></p>
+<hr></details><h2>Aufgabe 20 – Eigene Beispiele (Meta-Übung)</h2>
+<p>Überlege dir <strong>zwei eigene</strong> kurze Alltagssituationen, in denen</p>
+<ul>
+<li>einmal <strong>AND</strong> und <strong>NOT</strong> vorkommt,  </li>
+<li>einmal <strong>OR</strong> und <strong>NOT</strong> vorkommt.</li>
+</ul>
+<p>Schreibe sie als Satz in Alltagssprache <strong>und</strong> darunter als logische Formel (z.B. mit <code>A, B</code>).</p>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><p>Beispiel (deine Antworten können anders lauten):</p>
+<ol>
+<li><p>AND + NOT  </p>
+<ul>
+<li>Satz: „Ich gehe nur joggen, <strong>wenn es nicht regnet AND ich nicht müde bin</strong>.“  </li>
+<li>Formel: <code>NOT R AND NOT M</code> (mit <code>R</code> = „es regnet“, <code>M</code> = „ich bin müde`)</li>
+</ul>
+</li>
+<li><p>OR + NOT  </p>
+<ul>
+<li>Satz: „Ich esse Nachtisch, <strong>wenn ich keinen riesigen Burger gegessen habe OR Geburtstag habe</strong>.“  </li>
+<li>Formel: <code>NOT B OR G</code> (mit <code>B</code> = „riesiger Burger gegessen“, <code>G</code> = „ich habe Geburtstag“)</li>
+</ul>
+</li>
+</ol></details>
+        </div>
+    </div>
+</body>
+</html>
