@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>16_WHILE-Schleife</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <style>
+@import url('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css');
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+    body {
+      font-family: 'Courier New', 'Consolas', 'Monaco', monospace;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #000;
+      background: #fff;
+      padding: 0;
+    }
+    
+    /* Navigation */
+    .navbar {
+      background: #f8f8f8;
+      border-bottom: 1px solid #ddd;
+      padding: 8px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    
+    .navbar-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+    }
+    
+    .home-link {
+      font-size: 16px;
+      color: #333;
+      text-decoration: none;
+      margin-right: 20px;
+      padding: 4px 8px;
+      border-radius: 3px;
+      transition: all 0.2s;
+    }
+    
+    .home-link:hover {
+      background: #e0e0e0;
+      color: #000;
+    }
+    
+    .navbar-links {
+      font-size: 13px;
+    }
+    
+    .navbar-links a {
+      color: #666;
+      text-decoration: none;
+      margin: 0 8px;
+      padding: 2px 6px;
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+    
+    .navbar-links a:hover {
+      background: #e0e0e0;
+      color: #000;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 30px;
+      border: 1px solid #000;
+      margin-top: 0;
+    }
+    h1 { 
+      color: #000; 
+      margin-bottom: 15px; 
+      font-size: 1.8em; 
+      font-weight: bold;
+      border-bottom: 2px solid #000;
+      padding-bottom: 5px;
+    }
+    h2 { 
+      color: #000; 
+      margin-top: 20px; 
+      margin-bottom: 10px; 
+      font-size: 1.4em;
+      font-weight: bold;
+    }
+    h3 { 
+      color: #000; 
+      margin-top: 15px; 
+      margin-bottom: 8px; 
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+    p { 
+      margin-bottom: 10px; 
+    }
+    pre {
+      background: #1e1e1e;
+      border: 1px solid #000;
+      padding: 12px;
+      overflow-x: auto;
+      margin: 15px 0;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+    }
+    pre code {
+      color: #d4d4d4;
+    }
+    code {
+      background: #f5f5f5;
+      border: 1px solid #ccc;
+      padding: 2px 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+    }
+    pre code {
+      background: none;
+      border: none;
+      padding: 0;
+    }
+    ul, ol { 
+      margin-left: 25px; 
+      margin-bottom: 10px; 
+    }
+    li { 
+      margin-bottom: 3px; 
+    }
+    .metadata {
+      border: 1px solid #000;
+      padding: 10px;
+      margin-bottom: 15px;
+      background: #f9f9f9;
+      font-size: 12px;
+    }
+    .tags {
+      margin-top: 8px;
+    }
+    .tag {
+      display: inline-block;
+      background: #000;
+      color: #fff;
+      padding: 2px 8px;
+      font-size: 11px;
+      margin-right: 5px;
+      margin-top: 5px;
+      border: 1px solid #000;
+    }
+    a {
+      color: #000;
+      text-decoration: underline;
+    }
+    a:hover {
+      background: #000;
+      color: #fff;
+    }
+    ul li a, ol li a {
+      display: inline;
+    }
+    p a {
+      display: inline;
+      padding: 2px 4px;
+    }
+    p a:hover {
+      background: #000;
+      color: #fff;
+    }
+    
+    img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #000;
+      margin: 10px 0;
+      display: block;
+    }
+    blockquote {
+      border-left: 2px solid #000;
+      padding-left: 15px;
+      margin: 15px 0;
+      color: #333;
+      font-style: italic;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+      border: 1px solid #000;
+    }
+    th, td {
+      border: 1px solid #000;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background: #000;
+      color: #fff;
+      font-weight: bold;
+    }
+    tr:nth-child(even) {
+      background: #f9f9f9;
+    }
+    .content {
+      line-height: 1.6;
+    }
+    
+    /* Aufklappbare Lösungen */
+    .solution-details {
+      margin: 15px 0;
+      border: 1px solid #000;
+    }
+    
+    .solution-toggle {
+      cursor: pointer;
+      padding: 10px;
+      background: #f5f5f5;
+      border-bottom: 1px solid #000;
+      font-weight: bold;
+      user-select: none;
+    }
+    
+    .solution-toggle:hover {
+      background: #e0e0e0;
+    }
+    
+    .solution-details[open] .solution-toggle {
+      background: #000;
+      color: #fff;
+    }
+    
+    .solution-details > *:not(summary) {
+      padding: 15px;
+    }
+    
+    /* Bilder in Lösungen ohne Rahmen */
+    .solution-details img {
+      border: none !important;
+      box-shadow: none !important;
+    }
+    
+    /* Paragraphen in Lösungen - genau wie sonst auch */
+    .solution-details p {
+      display: block;
+      margin: 10px 0;
+    }
+    
+    /* Lösung-Content soll Whitespace erhalten */
+    .solution-details {
+      white-space: pre-line;
+    }
+  </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        hljs.highlightAll();
+      });
+    </script>
+</head>
+<body>
+    
+<div class="navbar">
+    <div class="navbar-content">
+        <a href="index.html" class="home-link" title="Zur Hauptseite">⌂</a>
+        <div class="navbar-links">
+            <a href="Inf_J1_Python_SJ_2025_26.html">Inf_J1_Python_SJ_2025_26</a>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        <div class="content">
+            <h1>While-Schleife</h1>
+<p>In manchen Fällen muss ein Programm immer wieder die gleichen<br>Anweisungen viele Male hintereinander ausführen, bis ein bestimmtes<br>Ergebnis eintritt. Wie oft man diese Anweisungen wiederholen muss, hängt<br>dabei von einer Bedingung ab, welche am Anfang, bevor die Anweisungen<br>ausgeführt werden, überprüft wird. Solche Wiederholungen nennt man auch<br>Schleifen. Ist die Anzahl der Schleifendurchläufe vor dem Beginn des<br>Programms nicht exakt bekannt, benutzt man eine <strong>while-Schleife</strong>.</p>
+<p>Das folgende Programm simuliert einen Würfelvorgang und würfelt solange,<br>bis eine 6 gewürfelt wurde:</p>
+<pre><code class="language-python">from random import *
+zufallszahl = 0
+while zufallszahl != 6:
+    zufallszahl = randint(1, 6)
+    print (&quot;Wurf:&quot;, zufallszahl)
+</code></pre>
+<pre><code>Wurf: 4
+Wurf: 2
+Wurf: 2
+Wurf: 6
+</code></pre>
+<blockquote>
+<p><strong>Hinweis:</strong> In diesem Programm kommen zwei Anweisungen vor, die<br>benötigt werden, weil mit Zufallszahlen gearbeitet werden soll: In<br>Zeile 1 wird ein Modul in das Programm eingebunden, das<br>Zufallszahlenfunktionalität zur Verfügung stellt, in Zeile 4 wird dann<br>eine Funktion des Moduls genutzt, die Funktion randint(1, 6), die eine<br>ganzzahlige Zufallszahl aus dem Bereich 1 bis 6 erzeugt.</p>
+</blockquote>
+<h2>Erklärung des Programmablaufs:</h2>
+<p>In Zeile 2 erhält die Variable zufallszahl den Wert 0. Dann wird in<br>einer while-Schleife der Variablen zufallszahl solange ein Zufallswert<br>im Wertebereich von 1 bis 6 zugewiesen, bis zufallszahl=6 ist. Bei jedem<br>Durchlauf wird der jeweilige Wert von zufallszahl ausgegeben. <h2>Aufbau<br>der while-Schleife in Python: Eine while-Schleife wird in Python mit dem<br>Schlüsselwort <strong>while</strong> eingeleitet. Danach folgt die Bedingung, die<br>erfüllt sein muss, damit die Schleife wiederholt wird, d.h. die Schleife<br>wird wiederholt, solange die Bedingung erfüllt ist (hier im Beispiel:<br>solange zufallszahl ungleich 6 ist). Abschließend folgt ein Doppelpunkt,<br>und unter dem Doppelpunkt stehen eingerückt alle Anweisungen, die im<br>Rahmen der Schleife ausgeführt werden sollen.</p></h2>
+<h1>Struktogramm:</h1>
+<p>Andererseits lässt sich jede for-Schleife auch in eine while-Schleife übertragen. Wir vergleichen das Beispiel der for-Schleife aus der letzten Einheit mit der Umsetzung als while-Schleife.<br>Anwendungsbeispiel: Es soll ein Programm geschrieben werden, das die 5er-Reihe von 5 bis 50 ausgibt:</p>
+<pre><code class="language-python"># Variante 1 (FOR-Schleife)
+for zahl in range(1, 11):
+    produkt = zahl * 5
+    print(zahl, &quot;mal 5 =&quot;, produkt)
+</code></pre>
+<pre><code>1 mal 5 = 5
+2 mal 5 = 10
+3 mal 5 = 15
+4 mal 5 = 20
+5 mal 5 = 25
+6 mal 5 = 30
+7 mal 5 = 35
+8 mal 5 = 40
+9 mal 5 = 45
+10 mal 5 = 50
+</code></pre>
+<pre><code class="language-python"># Variante 2 (WHILE-Schleife)
+zahl = 1
+while zahl &lt; 11:
+   produkt = zahl * 5
+   print(zahl, &quot;mal 5 =&quot;, produkt)
+   zahl = zahl + 1
+</code></pre>
+<pre><code>1 mal 5 = 5
+2 mal 5 = 10
+3 mal 5 = 15
+4 mal 5 = 20
+5 mal 5 = 25
+6 mal 5 = 30
+7 mal 5 = 35
+8 mal 5 = 40
+9 mal 5 = 45
+10 mal 5 = 50
+</code></pre>
+<p>Im Vergleich ist ein wesentlicher Unterschied festzustellen:  In der for-Schleife greifen wir auf eine festgelegte Zahlenliste zurück. Diese nutzen wir bei der while-Schleife nicht. Daher muss dort der<br>Zähler zunächst deklariert und initialisiert werden. Ebenso muss in der while-Schleife der Zähler manuell verändert werden.</p>
+<h2>Struktogramm</h2>
+<img src="zubehoer/Pasted%20image%2020260318111425.png" alt="Pasted image 20260318111425.png" />
+
+
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funktionen-Vertiefung</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <style>
+@import url('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css');
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+    body {
+      font-family: 'Courier New', 'Consolas', 'Monaco', monospace;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #000;
+      background: #fff;
+      padding: 0;
+    }
+    
+    /* Navigation */
+    .navbar {
+      background: #f8f8f8;
+      border-bottom: 1px solid #ddd;
+      padding: 8px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    
+    .navbar-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+    }
+    
+    .home-link {
+      font-size: 16px;
+      color: #333;
+      text-decoration: none;
+      margin-right: 20px;
+      padding: 4px 8px;
+      border-radius: 3px;
+      transition: all 0.2s;
+    }
+    
+    .home-link:hover {
+      background: #e0e0e0;
+      color: #000;
+    }
+    
+    .navbar-links {
+      font-size: 13px;
+    }
+    
+    .navbar-links a {
+      color: #666;
+      text-decoration: none;
+      margin: 0 8px;
+      padding: 2px 6px;
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+    
+    .navbar-links a:hover {
+      background: #e0e0e0;
+      color: #000;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 30px;
+      border: 1px solid #000;
+      margin-top: 0;
+    }
+    h1 { 
+      color: #000; 
+      margin-bottom: 15px; 
+      font-size: 1.8em; 
+      font-weight: bold;
+      border-bottom: 2px solid #000;
+      padding-bottom: 5px;
+    }
+    h2 { 
+      color: #000; 
+      margin-top: 20px; 
+      margin-bottom: 10px; 
+      font-size: 1.4em;
+      font-weight: bold;
+    }
+    h3 { 
+      color: #000; 
+      margin-top: 15px; 
+      margin-bottom: 8px; 
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+    p { 
+      margin-bottom: 10px; 
+    }
+    pre {
+      background: #1e1e1e;
+      border: 1px solid #000;
+      padding: 12px;
+      overflow-x: auto;
+      margin: 15px 0;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+    }
+    pre code {
+      color: #d4d4d4;
+    }
+    code {
+      background: #f5f5f5;
+      border: 1px solid #ccc;
+      padding: 2px 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+    }
+    pre code {
+      background: none;
+      border: none;
+      padding: 0;
+    }
+    ul, ol { 
+      margin-left: 25px; 
+      margin-bottom: 10px; 
+    }
+    li { 
+      margin-bottom: 3px; 
+    }
+    .metadata {
+      border: 1px solid #000;
+      padding: 10px;
+      margin-bottom: 15px;
+      background: #f9f9f9;
+      font-size: 12px;
+    }
+    .tags {
+      margin-top: 8px;
+    }
+    .tag {
+      display: inline-block;
+      background: #000;
+      color: #fff;
+      padding: 2px 8px;
+      font-size: 11px;
+      margin-right: 5px;
+      margin-top: 5px;
+      border: 1px solid #000;
+    }
+    a {
+      color: #000;
+      text-decoration: underline;
+    }
+    a:hover {
+      background: #000;
+      color: #fff;
+    }
+    ul li a, ol li a {
+      display: inline;
+    }
+    p a {
+      display: inline;
+      padding: 2px 4px;
+    }
+    p a:hover {
+      background: #000;
+      color: #fff;
+    }
+    
+    img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #000;
+      margin: 10px 0;
+      display: block;
+    }
+    blockquote {
+      border-left: 2px solid #000;
+      padding-left: 15px;
+      margin: 15px 0;
+      color: #333;
+      font-style: italic;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+      border: 1px solid #000;
+    }
+    th, td {
+      border: 1px solid #000;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background: #000;
+      color: #fff;
+      font-weight: bold;
+    }
+    tr:nth-child(even) {
+      background: #f9f9f9;
+    }
+    .content {
+      line-height: 1.6;
+    }
+    
+    /* Aufklappbare Lösungen */
+    .solution-details {
+      margin: 15px 0;
+      border: 1px solid #000;
+    }
+    
+    .solution-toggle {
+      cursor: pointer;
+      padding: 10px;
+      background: #f5f5f5;
+      border-bottom: 1px solid #000;
+      font-weight: bold;
+      user-select: none;
+    }
+    
+    .solution-toggle:hover {
+      background: #e0e0e0;
+    }
+    
+    .solution-details[open] .solution-toggle {
+      background: #000;
+      color: #fff;
+    }
+    
+    .solution-details > *:not(summary) {
+      padding: 15px;
+    }
+    
+    /* Bilder in Lösungen ohne Rahmen */
+    .solution-details img {
+      border: none !important;
+      box-shadow: none !important;
+    }
+    
+    /* Paragraphen in Lösungen - genau wie sonst auch */
+    .solution-details p {
+      display: block;
+      margin: 10px 0;
+    }
+    
+    /* Lösung-Content soll Whitespace erhalten */
+    .solution-details {
+      white-space: pre-line;
+    }
+  </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        hljs.highlightAll();
+      });
+    </script>
+</head>
+<body>
+    
+<div class="navbar">
+    <div class="navbar-content">
+        <a href="index.html" class="home-link" title="Zur Hauptseite">⌂</a>
+        <div class="navbar-links">
+            <a href="Inf_J1_Python_SJ_2025_26.html">Inf_J1_Python_SJ_2025_26</a>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        <div class="content">
+            <h1>Funktionen in Python</h1>
+<p>Funktionen sind grundlegende Bausteine in Python, die es ermöglichen,<br>Code zu strukturieren und wiederzuverwenden. Sie können Parameter<br>entgegennehmen, Berechnungen durchführen und Werte zurückgeben. Es gibt<br>verschiedene Arten von Funktionen, abhängig davon, ob sie Parameter<br>haben und ob sie einen Wert zurückgeben.</p>
+<h2>1. Funktionen mit Parametern und Rückgabewert</h2>
+<p>Diese Art von Funktion nimmt Parameter entgegen, führt eine Operation<br>aus und gibt einen Wert zurück.</p>
+<p><strong>Beispiel:</strong></p>
+<pre><code class="language-python">def summe(a, b):
+    &quot;&quot;&quot;Gibt die Summe von a und b zurück.&quot;&quot;&quot;
+    erg = a + b
+    return erg
+
+# Aufruf der Funktion
+ergebnis = summe(5, 3) 
+print(&quot;Ergebnis:&quot;, ergebnis)  # Ausgabe: Ergebnis: 8
+</code></pre>
+<p>In diesem Beispiel nimmt die Funktion <code>summe</code> zwei Parameter <code>a</code> und <code>b</code><br>entgegen, addiert sie und gibt das Ergebnis zurück.</p>
+<h2>2. Funktionen ohne Parameter, aber mit Rückgabewert</h2>
+<p>Diese Funktionen nehmen keine Parameter entgegen, führen aber dennoch<br>eine Operation aus und geben einen Wert zurück.</p>
+<p><strong>Beispiel:</strong></p>
+<pre><code class="language-python">def get_pi():
+    &quot;&quot;&quot;Gibt den Wert von Pi zurück.&quot;&quot;&quot;
+    return 3.14159
+
+# Aufruf der Funktion
+pi_wert = get_pi()
+print(&quot;Pi:&quot;, pi_wert)  # Ausgabe: Pi: 3.14159
+</code></pre>
+<p>Die Funktion <code>get_pi</code> nimmt keine Parameter entgegen, gibt aber den Wert<br>von Pi zurück.</p>
+<h2>3. Funktionen mit Parametern, aber ohne Rückgabewert</h2>
+<p>Diese Funktionen nehmen Parameter entgegen, führen eine Operation aus,<br>geben aber keinen expliziten Wert zurück. Sie werden oft verwendet, um<br>Seiteneffekte zu erzeugen, z.B. Ausgaben auf der Konsole.</p>
+<p><strong>Beispiel:</strong></p>
+<pre><code class="language-python">def differenz(a, b):
+    &quot;&quot;&quot;Berechnet die Differenz von a und b und gibt das Ergebnis aus.&quot;&quot;&quot;
+    erg = a - b
+    print(&quot;Ergebnis:&quot;, erg)
+
+# Aufruf der Funktion
+differenz(10, 4)  # Ausgabe: Ergebnis: 6
+</code></pre>
+<p>Die Funktion <code>differenz</code> nimmt zwei Parameter entgegen, berechnet die<br>Differenz, gibt das Ergebnis aber nicht mit <code>return</code> zurück, sondern<br>gibt es direkt aus.</p>
+<h2>4. Funktionen ohne Parameter und ohne Rückgabewert</h2>
+<p>Diese Funktionen nehmen keine Parameter entgegen und geben auch keinen<br>Wert zurück. Sie werden oft verwendet, um eine bestimmte Aktion<br>auszuführen.</p>
+<p><strong>Beispiel:</strong></p>
+<pre><code class="language-python">def gruesse():
+    &quot;&quot;&quot;Gibt eine Begrüßung aus.&quot;&quot;&quot;
+    print(&quot;Hey Du!&quot;)
+
+# Aufruf der Funktion
+gruesse()  # Ausgabe: Hey Du!
+</code></pre>
+<p>Die Funktion <code>gruesse</code> nimmt keine Parameter entgegen und gibt keinen<br>Wert zurück, sondern gibt einfach eine Begrüßung aus.</p>
+<p>Diese Beispiele verdeutlichen die verschiedenen Arten von Funktionen in<br>Python und wie sie je nach Bedarf eingesetzt werden können.</p>
+<h1>Übung:</h1>
+<p>Bestimmen Sie für jede der folgenden Funktionen: * Ob sie Parameter hat<br>(ja/nein) * Ob sie einen Rückgabewert hat (ja/nein)</p>
+<h2>Aufgabe 1</h2>
+<pre><code class="language-python">def begruessung():
+    print(&quot;Willkommen zum Python-Kurs!&quot;)
+</code></pre>
+<h2>Aufgabe 2</h2>
+<pre><code class="language-python">
+def würfel():
+    import random
+    return random.randint(1, 6)
+</code></pre>
+<h2>Aufgabe 3</h2>
+<pre><code class="language-python">
+def addiere(a, b):
+    summe = a + b
+    print(f&quot;Die Summe ist: {summe}&quot;)
+</code></pre>
+<h2>Aufgabe 4</h2>
+<pre><code class="language-python">
+def berechne_flaeche(länge, breite):
+    return länge * breite
+</code></pre>
+<h2>Aufgabe 5</h2>
+<pre><code class="language-python">
+def zeige_uhrzeit():
+    from datetime import datetime
+    print(datetime.now().strftime(&quot;%H:%M:%S&quot;))
+</code></pre>
+<h2>Aufgabe 6</h2>
+<pre><code class="language-python">
+def generiere_zufallsname():
+    namen = [&quot;Anna&quot;, &quot;Max&quot;, &quot;Lisa&quot;, &quot;Tom&quot;]
+    import random
+    return random.choice(namen)
+</code></pre>
+<h2>Aufgabe 7</h2>
+<pre><code class="language-python">
+def drucke_info(name, alter, stadt):
+    print(f&quot;{name} ist {alter} Jahre alt und wohnt in {stadt}.&quot;)
+</code></pre>
+<h2>Aufgabe 8</h2>
+<pre><code class="language-python">
+def ist_volljährig(alter):
+    return alter &gt;= 18
+</code></pre>
+<h2>Aufgabe 9</h2>
+<pre><code class="language-python">
+def alarm():
+    for i in range(3):
+        print(&quot;ALARM!&quot;)
+</code></pre>
+<h2>Aufgabe 10</h2>
+<pre><code class="language-python">
+def berechne_note(punkte, maximalpunkte):
+    prozent = (punkte / maximalpunkte) * 100
+    return f&quot;Note: {prozent:.1f}%&quot;
+</code></pre>
+<h2>Lösungen</h2>
+<details>
+<summary>
+Klicke hier um die Lösungen anzuzeigen
+</summary>
+
+<pre><code>&gt; Begruessung:   
+    Parameter: nein   
+    Rückgabewert: nein   
+    
+
+&gt; Würfel:   
+    Parameter: nein   
+    Rückgabewert: ja   
+
+
+&gt; Addiere:   
+    Parameter: ja   
+    Rückgabewert: nein   
+    
+
+&gt; Berechne_flaeche:
+    Parameter: ja
+    Rückgabewert: ja
+
+
+&gt; Zeige_uhrzeit:
+    Parameter: nein
+    Rückgabewert: nein
+
+&gt; Generiere_zufallsname:
+    Parameter: nein
+    Rückgabewert: ja
+
+&gt; Drucke_info:
+    Parameter: ja
+    Rückgabewert: nein
+
+&gt; Ist_volljährig:
+    Parameter: ja
+    Rückgabewert: ja
+
+&gt; Alarm:
+    Parameter: nein
+    Rückgabewert: nein
+
+&gt; Berechne_note:
+    Parameter: ja
+    Rückgabewert: ja
+</code></pre>
+</details>
+
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>17-Vertiefungsaufgaben-LSG</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <style>
+@import url('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css');
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+    body {
+      font-family: 'Courier New', 'Consolas', 'Monaco', monospace;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #000;
+      background: #fff;
+      padding: 0;
+    }
+    
+    /* Navigation */
+    .navbar {
+      background: #f8f8f8;
+      border-bottom: 1px solid #ddd;
+      padding: 8px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    
+    .navbar-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+    }
+    
+    .home-link {
+      font-size: 16px;
+      color: #333;
+      text-decoration: none;
+      margin-right: 20px;
+      padding: 4px 8px;
+      border-radius: 3px;
+      transition: all 0.2s;
+    }
+    
+    .home-link:hover {
+      background: #e0e0e0;
+      color: #000;
+    }
+    
+    .navbar-links {
+      font-size: 13px;
+    }
+    
+    .navbar-links a {
+      color: #666;
+      text-decoration: none;
+      margin: 0 8px;
+      padding: 2px 6px;
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+    
+    .navbar-links a:hover {
+      background: #e0e0e0;
+      color: #000;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 30px;
+      border: 1px solid #000;
+      margin-top: 0;
+    }
+    h1 { 
+      color: #000; 
+      margin-bottom: 15px; 
+      font-size: 1.8em; 
+      font-weight: bold;
+      border-bottom: 2px solid #000;
+      padding-bottom: 5px;
+    }
+    h2 { 
+      color: #000; 
+      margin-top: 20px; 
+      margin-bottom: 10px; 
+      font-size: 1.4em;
+      font-weight: bold;
+    }
+    h3 { 
+      color: #000; 
+      margin-top: 15px; 
+      margin-bottom: 8px; 
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+    p { 
+      margin-bottom: 10px; 
+    }
+    pre {
+      background: #1e1e1e;
+      border: 1px solid #000;
+      padding: 12px;
+      overflow-x: auto;
+      margin: 15px 0;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+    }
+    pre code {
+      color: #d4d4d4;
+    }
+    code {
+      background: #f5f5f5;
+      border: 1px solid #ccc;
+      padding: 2px 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+    }
+    pre code {
+      background: none;
+      border: none;
+      padding: 0;
+    }
+    ul, ol { 
+      margin-left: 25px; 
+      margin-bottom: 10px; 
+    }
+    li { 
+      margin-bottom: 3px; 
+    }
+    .metadata {
+      border: 1px solid #000;
+      padding: 10px;
+      margin-bottom: 15px;
+      background: #f9f9f9;
+      font-size: 12px;
+    }
+    .tags {
+      margin-top: 8px;
+    }
+    .tag {
+      display: inline-block;
+      background: #000;
+      color: #fff;
+      padding: 2px 8px;
+      font-size: 11px;
+      margin-right: 5px;
+      margin-top: 5px;
+      border: 1px solid #000;
+    }
+    a {
+      color: #000;
+      text-decoration: underline;
+    }
+    a:hover {
+      background: #000;
+      color: #fff;
+    }
+    ul li a, ol li a {
+      display: inline;
+    }
+    p a {
+      display: inline;
+      padding: 2px 4px;
+    }
+    p a:hover {
+      background: #000;
+      color: #fff;
+    }
+    
+    img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #000;
+      margin: 10px 0;
+      display: block;
+    }
+    blockquote {
+      border-left: 2px solid #000;
+      padding-left: 15px;
+      margin: 15px 0;
+      color: #333;
+      font-style: italic;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+      border: 1px solid #000;
+    }
+    th, td {
+      border: 1px solid #000;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background: #000;
+      color: #fff;
+      font-weight: bold;
+    }
+    tr:nth-child(even) {
+      background: #f9f9f9;
+    }
+    .content {
+      line-height: 1.6;
+    }
+    
+    /* Aufklappbare Lösungen */
+    .solution-details {
+      margin: 15px 0;
+      border: 1px solid #000;
+    }
+    
+    .solution-toggle {
+      cursor: pointer;
+      padding: 10px;
+      background: #f5f5f5;
+      border-bottom: 1px solid #000;
+      font-weight: bold;
+      user-select: none;
+    }
+    
+    .solution-toggle:hover {
+      background: #e0e0e0;
+    }
+    
+    .solution-details[open] .solution-toggle {
+      background: #000;
+      color: #fff;
+    }
+    
+    .solution-details > *:not(summary) {
+      padding: 15px;
+    }
+    
+    /* Bilder in Lösungen ohne Rahmen */
+    .solution-details img {
+      border: none !important;
+      box-shadow: none !important;
+    }
+    
+    /* Paragraphen in Lösungen - genau wie sonst auch */
+    .solution-details p {
+      display: block;
+      margin: 10px 0;
+    }
+    
+    /* Lösung-Content soll Whitespace erhalten */
+    .solution-details {
+      white-space: pre-line;
+    }
+  </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        hljs.highlightAll();
+      });
+    </script>
+</head>
+<body>
+    
+<div class="navbar">
+    <div class="navbar-content">
+        <a href="index.html" class="home-link" title="Zur Hauptseite">⌂</a>
+        <div class="navbar-links">
+            <a href="Inf_J1_Python_SJ_2025_26.html">Inf_J1_Python_SJ_2025_26</a>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        <div class="content">
+            <h1>Aufgabe 1</h1>
+<p>Erstellen Sie ein Programm, das solange nach einem PIN-Code fragt, bis<br>die PIN richtig eingegeben wird. Nach der richtigen Eingabe erscheint<br>eine Meldung „Ihnen werden 1000 EUR überwiesen“</p>
+<pre><code class="language-python">#Hier den Programmcode eingeben und mit STRG+ENTER ausführen
+pin_richtig = 1234
+pin_benutzer = int(input(&quot;Bitte Ihren PIN-Code eingeben&quot;))
+
+while pin_richtig != pin_benutzer:
+    print(&quot;Ihre PIN ist leider falsch.&quot;)
+    pin_benutzer = int(input(&quot;Bitte Ihren PIN-Code eingeben&quot;))
+    
+print(&quot;Ihnen werden 1000 EUR überwiesen&quot;)
+</code></pre>
+<pre><code>Bitte Ihren PIN-Code eingeben 1234
+
+Ihnen werden 1000 EUR überwiesen
+</code></pre>
+<h1>Aufgabe 2</h1>
+<p>Erstellen Sie ein Programm mit dem Namen <code>ratemal</code>. Dieses Programm<br>erzeugt eine Zufallszahl im Bereich (1,100). Der Benutzer des Programms<br>soll diese Zahl mit möglichst wenigen Versuchen raten. Nach jedem<br>Versuch bekommt der Benutzer die Information, ob die geratene Zahl<br>größer, kleiner oder gleich der gesuchten Zahl ist.</p>
+<p>HINWEIS: Eine Zufallszahl (z) im Bereich (u,o) kann man mit folgendem<br>Befehl erzeugen:</p>
+<pre><code class="language-python">import random #aktiviert das random-Modul
+z=random.randint(u,o) #erzeugt eine ganzzahlige Zufallszahl zwischen u und o
+</code></pre>
+<pre><code class="language-python">#Hier den Programmcode eingeben und mit STRG+ENTER ausführen
+import random 
+z=random.randint(1,100)
+z_benutzer = int(input(&quot;Bitte eine Zahl eingeben:&quot;))
+while z != z_benutzer:
+    if z &gt; z_benutzer:
+        print(&quot;Die Zahl ist kleiner&quot;)
+    else: 
+        print(&quot;Die Zahl ist größer&quot;)
+print(&quot;Gewonnen!&quot;)
+</code></pre>
+<h3>Aufgabe 2.1</h3>
+<p>Wie viele Versuche hat der Benutzer gebraucht, um die Zahl zu erraten?<br>Programmieren Sie die Ausgabe von Anzahl der Versuche.</p>
+<h1>Aufgabe 3</h1>
+<p>3n+1 – Problem (Achterbahnzahlen):<br>Die 1. Zahl einer Zahlenreihe ist ein gegebener Startwert (=n)<br>Die jeweils nächste Zahl wird aus der letzten Zahl gemäß folgender Regel<br>gebildet:<br>Falls die letzte Zahl gerade war, wird sie durch 2 geteilt. Das Ergebnis<br>ist dann die nächste Zahl.<br>Falls die letzte Zahl ungerade war, wird sie mit 3 multipliziert und<br>anschließend 1 addiert. Das Ergebnis ist dann die nächste Zahl.</p>
+<blockquote>
+<p><strong>Beispiel: n=5</strong> 1) 5-ungerade 3<em>5+1=16<br>2) 16-gerade 16/2=8<br>3) 8-gerade 8/2=4<br>4) 4-gerade 4/2=2<br>5) 2-gerade 2/2=1<br>6) 1-ungerade 3</em>1+1=4<br>usw.</p>
+</blockquote>
+<p>Erstellen Sie eine Funktion achterbahn(n), die diese Zahlenfolge<br>berechnet.<br>Limitieren Sie die Iterationszahl (z.B. iz=100).</p>
+<pre><code class="language-python">def achterbahn(n):
+    zahlen = [n]
+    iz = 100
+    for i in range(iz):
+        if zahlen[len(zahlen)-1] % 2 == 0:
+            zahlen.append(zahlen[len(zahlen)-1] / 2)
+        else:
+            zahlen.append(zahlen[len(zahlen)-1] * 3 + 1)
+    return zahlen
+
+achterbahn(200)
+</code></pre>
+<pre><code>[200,
+ 100.0,
+ 50.0,
+ 25.0,
+ 76.0,
+ 38.0,
+ 19.0,
+ 58.0,
+ 29.0,
+ 88.0,
+ 44.0,
+ 22.0,
+ 11.0,
+ 34.0,
+ 17.0,
+ 52.0,
+ 26.0,
+ 13.0,
+ 40.0,
+ 20.0,
+ 10.0,
+ 5.0,
+ 16.0,
+ 8.0,
+ 4.0,
+ 2.0,
+ 1.0,
+ 4.0,
+ 2.0,
+ 1.0,
+ 4.0,
+ 2.0,
+ 1.0,
+ 4.0,
+ 2.0,
+ 1.0,
+ 4.0,
+ 2.0,
+ 1.0,
+ 4.0,
+ 2.0,
+ 1.0,
+ 4.0,
+ 2.0,
+ 1.0,
+ 4.0,
+ 2.0,
+ 1.0,
+ 4.0,
+ 2.0,
+ 1.0,
+ 4.0,
+ 2.0,
+ 1.0,
+ 4.0,
+ 2.0,
+ 1.0,
+ 4.0,
+ 2.0,
+ 1.0,
+ 4.0,
+ 2.0,
+ 1.0,
+ 4.0,
+ 2.0,
+ 1.0,
+ 4.0,
+ 2.0,
+ 1.0,
+ 4.0,
+ 2.0,
+ 1.0,
+ 4.0,
+ 2.0,
+ 1.0,
+ 4.0,
+ 2.0,
+ 1.0,
+ 4.0,
+ 2.0,
+ 1.0,
+ 4.0,
+ 2.0,
+ 1.0,
+ 4.0,
+ 2.0,
+ 1.0,
+ 4.0,
+ 2.0,
+ 1.0,
+ 4.0,
+ 2.0,
+ 1.0,
+ 4.0,
+ 2.0,
+ 1.0,
+ 4.0,
+ 2.0,
+ 1.0,
+ 4.0,
+ 2.0]
+</code></pre>
+
+        </div>
+    </div>
+</body>
+</html>
