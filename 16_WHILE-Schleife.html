@@ -279,25 +279,56 @@
     <div class="container">
         <div class="content">
             <h1>While-Schleife</h1>
-<p>In manchen Fällen muss ein Programm immer wieder die gleichen<br>Anweisungen viele Male hintereinander ausführen, bis ein bestimmtes<br>Ergebnis eintritt. Wie oft man diese Anweisungen wiederholen muss, hängt<br>dabei von einer Bedingung ab, welche am Anfang, bevor die Anweisungen<br>ausgeführt werden, überprüft wird. Solche Wiederholungen nennt man auch<br>Schleifen. Ist die Anzahl der Schleifendurchläufe vor dem Beginn des<br>Programms nicht exakt bekannt, benutzt man eine <strong>while-Schleife</strong>.</p>
-<p>Das folgende Programm simuliert einen Würfelvorgang und würfelt solange,<br>bis eine 6 gewürfelt wurde:</p>
-<pre><code class="language-python">from random import *
-zufallszahl = 0
-while zufallszahl != 6:
-    zufallszahl = randint(1, 6)
-    print (&quot;Wurf:&quot;, zufallszahl)
+<p>In manchen Fällen muss ein Programm immer wieder die gleichen Anweisungen viele Male hintereinander ausführen, bis ein bestimmtes Ergebnis eintritt. Wie oft man diese Anweisungen wiederholen muss, hängt dabei von einer Bedingung ab, welche am Anfang, bevor die Anweisungen ausgeführt werden, überprüft wird. Solche Wiederholungen nennt man auch Schleifen. Ist die Anzahl der Schleifendurchläufe vor dem Beginn des Programms nicht exakt bekannt, benutzt man eine <strong>while-Schleife</strong>.</p>
+<p>Das folgende Programm fragt einen (sehr geheimen und natürlich extrem sicheren) PIN-Code ab und wiederholt die Eingabe, bis der Code stimmt:</p>
+<pre><code class="language-python">pin_richtig = &quot;0420&quot;
+eingabe = &quot;&quot;
+
+while eingabe != pin_richtig:
+    eingabe = input(&quot;PIN eingeben: &quot;)
+    if eingabe != pin_richtig:
+        print(&quot;Falsch. Versuch&#39;s nochmal.&quot;)
+
+print(&quot;✅ Zugang erlaubt.&quot;)
 </code></pre>
-<pre><code>Wurf: 4
-Wurf: 2
-Wurf: 2
-Wurf: 6
+<p>Beispielausgabe:</p>
+<pre><code>PIN eingeben: 1111
+Falsch. Versuch&#39;s nochmal.
+PIN eingeben: 0420
+✅ Zugang erlaubt.
 </code></pre>
 <blockquote>
-<p><strong>Hinweis:</strong> In diesem Programm kommen zwei Anweisungen vor, die<br>benötigt werden, weil mit Zufallszahlen gearbeitet werden soll: In<br>Zeile 1 wird ein Modul in das Programm eingebunden, das<br>Zufallszahlenfunktionalität zur Verfügung stellt, in Zeile 4 wird dann<br>eine Funktion des Moduls genutzt, die Funktion randint(1, 6), die eine<br>ganzzahlige Zufallszahl aus dem Bereich 1 bis 6 erzeugt.</p>
+<p><strong>Hinweis:</strong> Das Beispiel nutzt nur Dinge, die ihr schon kennt: Variablen, <code>input(...)</code>, <code>print(...)</code> und eine Bedingung. Die <code>while</code>-Schleife ist hier genau richtig, weil man vorher nicht weiß, wie viele Versuche es braucht.</p>
 </blockquote>
 <h2>Erklärung des Programmablaufs:</h2>
-<p>In Zeile 2 erhält die Variable zufallszahl den Wert 0. Dann wird in<br>einer while-Schleife der Variablen zufallszahl solange ein Zufallswert<br>im Wertebereich von 1 bis 6 zugewiesen, bis zufallszahl=6 ist. Bei jedem<br>Durchlauf wird der jeweilige Wert von zufallszahl ausgegeben. <h2>Aufbau<br>der while-Schleife in Python: Eine while-Schleife wird in Python mit dem<br>Schlüsselwort <strong>while</strong> eingeleitet. Danach folgt die Bedingung, die<br>erfüllt sein muss, damit die Schleife wiederholt wird, d.h. die Schleife<br>wird wiederholt, solange die Bedingung erfüllt ist (hier im Beispiel:<br>solange zufallszahl ungleich 6 ist). Abschließend folgt ein Doppelpunkt,<br>und unter dem Doppelpunkt stehen eingerückt alle Anweisungen, die im<br>Rahmen der Schleife ausgeführt werden sollen.</p></h2>
+<ol>
+<li><p>Zuerst werden zwei Variablen festgelegt:</p>
+<ul>
+<li><code>pin_richtig</code> enthält den richtigen PIN (hier <code>&quot;0420&quot;</code>).</li>
+<li><code>eingabe</code> startet mit einem Wert, der <strong>nicht</strong> korrekt ist (hier <code>&quot;&quot;</code>).</li>
+</ul>
+</li>
+<li><p>Dann startet die <code>while</code>-Schleife:</p>
+<ul>
+<li>Die Bedingung lautet <code>eingabe != pin_richtig</code>.</li>
+<li>Das heißt: Die Schleife läuft <strong>solange</strong> die Eingabe <strong>nicht</strong> dem richtigen PIN entspricht.</li>
+</ul>
+</li>
+<li><p>In jedem Schleifendurchlauf:</p>
+<ul>
+<li>wird mit <code>input(...)</code> eine neue Eingabe abgefragt,</li>
+<li>und falls sie noch falsch ist, wird eine Fehlermeldung ausgegeben.</li>
+</ul>
+</li>
+<li><p>Sobald der PIN richtig eingegeben wurde, ist die Bedingung der <code>while</code>-Schleife nicht mehr erfüllt. Dann endet die Schleife und das Programm gibt „Zugang erlaubt“ aus.</p>
+</li>
+</ol>
+<h2>Aufbau der while-Schleife in Python:</h2>
+<p>Eine <code>while</code>-Schleife wird in Python mit dem Schlüsselwort <strong>while</strong> eingeleitet. Danach folgt die Bedingung, die erfüllt sein muss, damit die Schleife wiederholt wird. Die Schleife wird also wiederholt, <strong>solange</strong> die Bedingung wahr ist. Am Ende der <code>while</code>-Zeile steht ein Doppelpunkt. Alle Anweisungen, die zur Schleife gehören, sind darunter <strong>eingerückt</strong>.</p>
 <h1>Struktogramm:</h1>
+<img src="zubehoer/Pasted%20image%2020260318114007.png" alt="Pasted image 20260318114007.png" />
+
+
 <p>Andererseits lässt sich jede for-Schleife auch in eine while-Schleife übertragen. Wir vergleichen das Beispiel der for-Schleife aus der letzten Einheit mit der Umsetzung als while-Schleife.<br>Anwendungsbeispiel: Es soll ein Programm geschrieben werden, das die 5er-Reihe von 5 bis 50 ausgibt:</p>
 <pre><code class="language-python"># Variante 1 (FOR-Schleife)
 for zahl in range(1, 11):
