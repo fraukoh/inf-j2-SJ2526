@@ -279,9 +279,9 @@
     <div class="container">
         <div class="content">
             <h1>Funktionen in Python</h1>
-<p>Funktionen sind grundlegende Bausteine in Python, die es ermöglichen,<br>Code zu strukturieren und wiederzuverwenden. Sie können Parameter<br>entgegennehmen, Berechnungen durchführen und Werte zurückgeben. Es gibt<br>verschiedene Arten von Funktionen, abhängig davon, ob sie Parameter<br>haben und ob sie einen Wert zurückgeben.</p>
+<p>Funktionen sind grundlegende Bausteine in Python, die es ermöglichen, Code zu strukturieren und wiederzuverwenden. Sie können Parameter entgegennehmen, Berechnungen durchführen und Werte zurückgeben. Es gibt verschiedene Arten von Funktionen, abhängig davon, ob sie Parameter<br>haben und ob sie einen Wert zurückgeben.</p>
 <h2>1. Funktionen mit Parametern und Rückgabewert</h2>
-<p>Diese Art von Funktion nimmt Parameter entgegen, führt eine Operation<br>aus und gibt einen Wert zurück.</p>
+<p>Diese Art von Funktion nimmt Parameter entgegen, führt eine Operation aus und gibt einen Wert zurück.</p>
 <p><strong>Beispiel:</strong></p>
 <pre><code class="language-python">def summe(a, b):
     &quot;&quot;&quot;Gibt die Summe von a und b zurück.&quot;&quot;&quot;
@@ -292,9 +292,9 @@
 ergebnis = summe(5, 3) 
 print(&quot;Ergebnis:&quot;, ergebnis)  # Ausgabe: Ergebnis: 8
 </code></pre>
-<p>In diesem Beispiel nimmt die Funktion <code>summe</code> zwei Parameter <code>a</code> und <code>b</code><br>entgegen, addiert sie und gibt das Ergebnis zurück.</p>
+<p>In diesem Beispiel nimmt die Funktion <code>summe</code> zwei Parameter <code>a</code> und <code>b</code> entgegen, addiert sie und gibt das Ergebnis zurück.</p>
 <h2>2. Funktionen ohne Parameter, aber mit Rückgabewert</h2>
-<p>Diese Funktionen nehmen keine Parameter entgegen, führen aber dennoch<br>eine Operation aus und geben einen Wert zurück.</p>
+<p>Diese Funktionen nehmen keine Parameter entgegen, führen aber dennoch eine Operation aus und geben einen Wert zurück.</p>
 <p><strong>Beispiel:</strong></p>
 <pre><code class="language-python">def get_pi():
     &quot;&quot;&quot;Gibt den Wert von Pi zurück.&quot;&quot;&quot;
@@ -304,9 +304,9 @@ print(&quot;Ergebnis:&quot;, ergebnis)  # Ausgabe: Ergebnis: 8
 pi_wert = get_pi()
 print(&quot;Pi:&quot;, pi_wert)  # Ausgabe: Pi: 3.14159
 </code></pre>
-<p>Die Funktion <code>get_pi</code> nimmt keine Parameter entgegen, gibt aber den Wert<br>von Pi zurück.</p>
+<p>Die Funktion <code>get_pi</code> nimmt keine Parameter entgegen, gibt aber den Wert von Pi zurück.</p>
 <h2>3. Funktionen mit Parametern, aber ohne Rückgabewert</h2>
-<p>Diese Funktionen nehmen Parameter entgegen, führen eine Operation aus,<br>geben aber keinen expliziten Wert zurück. Sie werden oft verwendet, um<br>Seiteneffekte zu erzeugen, z.B. Ausgaben auf der Konsole.</p>
+<p>Diese Funktionen nehmen Parameter entgegen, führen eine Operation aus, geben aber keinen expliziten Wert zurück. Sie werden oft verwendet, um Seiteneffekte zu erzeugen, z.B. Ausgaben auf der Konsole.</p>
 <p><strong>Beispiel:</strong></p>
 <pre><code class="language-python">def differenz(a, b):
     &quot;&quot;&quot;Berechnet die Differenz von a und b und gibt das Ergebnis aus.&quot;&quot;&quot;
@@ -316,9 +316,9 @@ print(&quot;Pi:&quot;, pi_wert)  # Ausgabe: Pi: 3.14159
 # Aufruf der Funktion
 differenz(10, 4)  # Ausgabe: Ergebnis: 6
 </code></pre>
-<p>Die Funktion <code>differenz</code> nimmt zwei Parameter entgegen, berechnet die<br>Differenz, gibt das Ergebnis aber nicht mit <code>return</code> zurück, sondern<br>gibt es direkt aus.</p>
+<p>Die Funktion <code>differenz</code> nimmt zwei Parameter entgegen, berechnet die Differenz, gibt das Ergebnis aber nicht mit <code>return</code> zurück, sondern gibt es direkt aus.</p>
 <h2>4. Funktionen ohne Parameter und ohne Rückgabewert</h2>
-<p>Diese Funktionen nehmen keine Parameter entgegen und geben auch keinen<br>Wert zurück. Sie werden oft verwendet, um eine bestimmte Aktion<br>auszuführen.</p>
+<p>Diese Funktionen nehmen keine Parameter entgegen und geben auch keinen Wert zurück. Sie werden oft verwendet, um eine bestimmte Aktion auszuführen.</p>
 <p><strong>Beispiel:</strong></p>
 <pre><code class="language-python">def gruesse():
     &quot;&quot;&quot;Gibt eine Begrüßung aus.&quot;&quot;&quot;
@@ -327,21 +327,25 @@ differenz(10, 4)  # Ausgabe: Ergebnis: 6
 # Aufruf der Funktion
 gruesse()  # Ausgabe: Hey Du!
 </code></pre>
-<p>Die Funktion <code>gruesse</code> nimmt keine Parameter entgegen und gibt keinen<br>Wert zurück, sondern gibt einfach eine Begrüßung aus.</p>
-<p>Diese Beispiele verdeutlichen die verschiedenen Arten von Funktionen in<br>Python und wie sie je nach Bedarf eingesetzt werden können.</p>
+<p>Die Funktion <code>gruesse</code> nimmt keine Parameter entgegen und gibt keinen Wert zurück, sondern gibt einfach eine Begrüßung aus.</p>
+<p>Diese Beispiele verdeutlichen die verschiedenen Arten von Funktionen in Python und wie sie je nach Bedarf eingesetzt werden können.</p>
 <h1>Übung:</h1>
-<p>Bestimmen Sie für jede der folgenden Funktionen: * Ob sie Parameter hat<br>(ja/nein) * Ob sie einen Rückgabewert hat (ja/nein)</p>
+<p>Bestimmen Sie für jede der folgenden Funktionen: * Ob sie Parameter hat (ja/nein) * Ob sie einen Rückgabewert hat (ja/nein)</p>
 <h2>Aufgabe 1</h2>
 <pre><code class="language-python">def begruessung():
     print(&quot;Willkommen zum Python-Kurs!&quot;)
 </code></pre>
-<h2>Aufgabe 2</h2>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><blockquote>
+<p>Parameter: nein<br>Rückgabewert: nein</p>
+</blockquote></details><h2>Aufgabe 2</h2>
 <pre><code class="language-python">
 def würfel():
     import random
     return random.randint(1, 6)
 </code></pre>
-<h2>Aufgabe 3</h2>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><blockquote>
+<p>Parameter: nein<br>Rückgabewert: ja</p>
+</blockquote></details><h2>Aufgabe 3</h2>
 <pre><code class="language-python">
 def addiere(a, b):
     summe = a + b
