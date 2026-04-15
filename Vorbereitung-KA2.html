@@ -370,7 +370,14 @@ erstelle_rechnung(zb, &quot;kundennr-1234&quot;, &quot;10.04.2025&quot;)
   &quot;Das Volumen des Quaders ist gleich [Volumen]&quot; (wenn mindestens zwei Seiten unterschiedlich lang sind)
 </code></pre>
 </li>
-</ul>
+</ul></details><h2>Erwartete Ausgabe:</h2>
+<pre><code>Seitenlänge 1: 5
+Seitenlänge 2: 5
+Seitenlänge 3: 5
+
+Das Volumen des Würfels ist gleich 125.0
+</code></pre>
+<h2>Lösung:</h2>
 <pre><code class="language-python">seite1 = float(input(&quot;Seitenlänge 1:&quot;))
 seite2 = float(input(&quot;Seitenlänge 2:&quot;))
 seite3 = float(input(&quot;Seitenlänge 3:&quot;))
@@ -380,15 +387,16 @@ if seite1 == seite2 and seite2 == seite3:
 else:
     print(&quot;Das Volumen des Quaders Würfels ist gleich&quot;, volumen)
 </code></pre>
-<pre><code>Seitenlänge 1: 5
-Seitenlänge 2: 5
-Seitenlänge 3: 5
-
-Das Volumen des Würfels ist gleich 125.0
-</code></pre>
 <p><strong>Erweiterung (optional):</strong></p>
 <p>Erweitern Sie das Programm um eine Prüfung, die sicherstellt, dass nur<br>positive Werte für die Seitenlängen eingegeben werden können.</p>
-<pre><code class="language-python">seite1 = float(input(&quot;Seitenlänge 1:&quot;))
+<h2>Erwartete Ausgabe:</h2>
+<pre><code>Seitenlänge 1: 3
+Seitenlänge 2: -4
+Seitenlänge 3: 5
+
+Falsche Eingabe. Die Seitenlängen sollen &gt; 0 sein
+</code></pre>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">seite1 = float(input(&quot;Seitenlänge 1:&quot;))
 seite2 = float(input(&quot;Seitenlänge 2:&quot;))
 seite3 = float(input(&quot;Seitenlänge 3:&quot;))
 if seite1 &lt;= 0 or seite2 &lt;= 0 or seite3 &lt;= 0:
@@ -400,18 +408,9 @@ else:
     else:
         print(&quot;Das Volumen des Quaders Würfels ist gleich&quot;, volumen)
 </code></pre>
-<pre><code>Seitenlänge 1: 3
-Seitenlänge 2: -4
-Seitenlänge 3: 5
-
-Falsche Eingabe. Die Seitenlängen sollen &gt; 0 sein
-</code></pre>
 <h1>Aufgabe 6:</h1>
 <p>Entwickeln Sie ein Programm, das 10 mal den Satz “Ich wiederhole zum x.<br>mal” ausgibt, wobei x durch die aktuelle Wiederholungsnummer (1 bis 10)<br>ersetzt wird.</p>
-<p><code>Ich wiederhole zum 1. mal</code><br><code>Ich wiederhole zum 2. mal</code><br><code>...</code><br><code>Ich wiederhole zum 10. mal</code></p>
-<pre><code class="language-python">for x in range(1,11):
-    print(&quot;Ich wiederhole zum&quot;, x, &quot;. mal&quot;)
-</code></pre>
+<p><code>Ich wiederhole zum 1. mal</code><br><code>Ich wiederhole zum 2. mal</code><br><code>...</code><br><code>Ich wiederhole zum 10. mal</code></p></details><h2>Erwartete Ausgabe:</h2>
 <pre><code>Ich wiederhole zum 1 . mal
 Ich wiederhole zum 2 . mal
 Ich wiederhole zum 3 . mal
@@ -422,6 +421,9 @@ Ich wiederhole zum 7 . mal
 Ich wiederhole zum 8 . mal
 Ich wiederhole zum 9 . mal
 Ich wiederhole zum 10 . mal
+</code></pre>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">for x in range(1,11):
+    print(&quot;Ich wiederhole zum&quot;, x, &quot;. mal&quot;)
 </code></pre></details>
         </div>
     </div>
