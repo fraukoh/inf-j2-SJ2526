@@ -287,59 +287,42 @@ z = x * y
 for i in range(1,11):
     print(&quot;Nummer&quot;, i)
 </code></pre>
-<details>
-<summary>
-Lösung
-</summary>
-
-<figure>
-<img
-src="Vorbereitung-KA2_files/figure-markdown_strict/1524072b-12f3-40cd-bea1-8a520bcf3b78-1-8b1ddacb-17ee-479b-a0bf-2892b5f46aa8.png"
-alt="grafik.png" />
-<figcaption aria-hidden="true">grafik.png</figcaption>
-</figure>
-
-</details>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><img src="zubehoer/Pasted%20image%2020260415115721.png" alt="Pasted image 20260415115721.png" />
 
 <h1>Aufgabe 2:</h1>
 <p>Übersetzen Sie folgendes Struktogramm in python.</p>
-<figure>
-<img
-src="Vorbereitung-KA2_files/figure-markdown_strict/bd6e3f65-4a08-4fb5-b9f7-afd9941584fc-1-fa7e2cdb-d948-47f3-9fc3-20678e2367a8.png"
-alt="grafik.png" />
-<figcaption aria-hidden="true">grafik.png</figcaption>
-</figure>
-
-<pre><code class="language-python"># Lösung
+<img src="zubehoer/Pasted%20image%2020260415121856.png" alt="Pasted image 20260415121856.png" /></details><h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary>``` python
+# Lösung
 def test(a,b):
     erg = (a+b)/2
-    print(&quot;Das Ergebnis:&quot;, erg)
+    print("Das Ergebnis:", erg)
 
-zahl1 = int(input(&quot;Erste Zahl:&quot;))
-zahl2 = int(input(&quot;Zweite Zahl:&quot;))
-test(zahl1, zahl2)
-</code></pre>
-<pre><code>Erste Zahl: 3
-Zweite Zahl: 4
+<p>zahl1 = int(input(&quot;Erste Zahl:&quot;))<br>zahl2 = int(input(&quot;Zweite Zahl:&quot;))<br>test(zahl1, zahl2)</p>
+<pre><code>
+    Erste Zahl: 3
+    Zweite Zahl: 4
 
-Das Ergebnis: 3.5
-</code></pre>
-<h1>Aufgabe 3:</h1>
-<p>Erstellen Sie ein python-Programm, welches den Benutzern nach dem Namen,<br>Gewicht (in kg) und der Körpergröße (in m) fragt, den Body-Mass-Index<br>(BMI) berechnet und ausgibt.</p>
-<blockquote>
-<p>Hinweis: BMI kann man nach dem folgenden Satz berechnen: BMI =<br>Körpergewicht (in kg) / Körpergröße (in m)**2</p>
-</blockquote>
-<pre><code class="language-python">name = input(&quot;Ihr Name:&quot;)
+    Das Ergebnis: 3.5
+
+# Aufgabe 3:
+
+Erstellen Sie ein python-Programm, welches den Benutzern nach dem Namen,
+Gewicht (in kg) und der Körpergröße (in m) fragt, den Body-Mass-Index
+(BMI) berechnet und ausgibt.
+
+&gt; Hinweis: BMI kann man nach dem folgenden Satz berechnen: BMI =
+&gt; Körpergewicht (in kg) / Körpergröße (in m)\*\*2</details><h2>Erwartete Ausgabe:</h2>
+    Ihr Name: Julia
+    Ihr Gewicht in kg: 72
+    Ihre Körpergröße in m: 1.75
+
+    BMI für Julia beträgt: 23.510204081632654
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary>``` python
+name = input(&quot;Ihr Name:&quot;)
 gewicht = float(input(&quot;Ihr Gewicht in kg:&quot;))
 koerpergroesse = float(input(&quot;Ihre Körpergröße in m:&quot;))
 bmi = gewicht / koerpergroesse**2
 print(&quot;BMI für&quot;, name, &quot;beträgt:&quot;, bmi)
-</code></pre>
-<pre><code>Ihr Name: Julia
-Ihr Gewicht in kg: 72
-Ihre Körpergröße in m: 1.75
-
-BMI für Julia beträgt: 23.510204081632654
 </code></pre>
 <h1>Aufgabe 4:</h1>
 <p>Vervollständigen Sie den Code der beiden Funktionen so, dass das<br>Programm den Zahlungsbetrag berechnet und als Rechnung ausgibt.</p>
@@ -349,8 +332,14 @@ def erstelle_rechnung(zahlungsbetrag, kundennr, datum):
     # hier fehlt was ;-)
 zb = berechne_betrag(100, 2, 2)
 erstelle_rechnung(zb, &quot;kundennr-1234&quot;, &quot;10.04.2025&quot;)
+</code></pre></details><h2>Erwartete Ausgabe:</h2>
+<pre><code>------------------------------
+Rechnung vom 10.04.2025
+------------------------------
+Kundennummer: kundennr-1234
+Zu zahlender Betrag: 196.0 €
 </code></pre>
-<pre><code class="language-python"># Lösung
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python"># Lösung
 def berechne_betrag(preis, menge, rabatt_prozent):
     betrag = preis * menge * (100-rabatt_prozent)/100
     return betrag
@@ -364,12 +353,6 @@ def erstelle_rechnung(zahlungsbetrag, kundennr, datum):
 
 zb = berechne_betrag(100, 2, 2)
 erstelle_rechnung(zb, &quot;kundennr-1234&quot;, &quot;10.04.2025&quot;)
-</code></pre>
-<pre><code>------------------------------
-Rechnung vom 10.04.2025
-------------------------------
-Kundennummer: kundennr-1234
-Zu zahlender Betrag: 196.0 €
 </code></pre>
 <h1>Aufgabe 5:</h1>
 <p>Entwickeln Sie ein Python-Programm, das die Volumenberechnung eines<br>Quaders durchführt und zusätzlich erkennt, ob es sich bei dem Körper um<br>einen speziellen Quader - nämlich einen Würfel - handelt. Anforderungen:</p>
@@ -439,8 +422,7 @@ Ich wiederhole zum 7 . mal
 Ich wiederhole zum 8 . mal
 Ich wiederhole zum 9 . mal
 Ich wiederhole zum 10 . mal
-</code></pre>
-
+</code></pre></details>
         </div>
     </div>
 </body>
