@@ -278,7 +278,7 @@
 
     <div class="container">
         <div class="content">
-            <h1>Aufgabe 1:</h1>
+            <h2>Aufgabe 1</h2>
 <p>Erstellen Sie ein Struktogramm zu dem folgenden python-Code</p>
 <pre><code class="language-python">x = 253
 y = 100
@@ -287,11 +287,10 @@ z = x * y
 for i in range(1,11):
     print(&quot;Nummer&quot;, i)
 </code></pre>
-<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><img src="zubehoer/Pasted%20image%2020260415115721.png" alt="Pasted image 20260415115721.png" />
-
-<h1>Aufgabe 2:</h1>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><img src="zubehoer/Pasted%20image%2020260415115721.png" alt="Pasted image 20260415115721.png" /></details><h2>Aufgabe 2</h2>
 <p>Übersetzen Sie folgendes Struktogramm in python.</p>
-<img src="zubehoer/Pasted%20image%2020260415121856.png" alt="Pasted image 20260415121856.png" /></details><h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary>``` python
+<img src="zubehoer/Pasted%20image%2020260415121856.png" alt="Pasted image 20260415121856.png" />
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary>``` python
 # Lösung
 def test(a,b):
     erg = (a+b)/2
@@ -302,9 +301,7 @@ def test(a,b):
     Erste Zahl: 3
     Zweite Zahl: 4
 
-    Das Ergebnis: 3.5
-
-# Aufgabe 3:
+    Das Ergebnis: 3.5</details><h2>Aufgabe 3</h2>
 
 Erstellen Sie ein python-Programm, welches den Benutzern nach dem Namen,
 Gewicht (in kg) und der Körpergröße (in m) fragt, den Body-Mass-Index
@@ -313,7 +310,7 @@ Gewicht (in kg) und der Körpergröße (in m) fragt, den Body-Mass-Index
 &gt; Hinweis: BMI kann man nach dem folgenden Satz berechnen: BMI =
 &gt; Körpergewicht (in kg) / Körpergröße (in m)\*\*2
 
-##</details><h2>Erwartete Ausgabe:</h2>
+##<h2>Erwartete Ausgabe:</h2>
     Ihr Name: Julia
     Ihr Gewicht in kg: 72
     Ihre Körpergröße in m: 1.75
@@ -325,8 +322,7 @@ gewicht = float(input(&quot;Ihr Gewicht in kg:&quot;))
 koerpergroesse = float(input(&quot;Ihre Körpergröße in m:&quot;))
 bmi = gewicht / koerpergroesse**2
 print(&quot;BMI für&quot;, name, &quot;beträgt:&quot;, bmi)
-</code></pre>
-<h1>Aufgabe 4:</h1>
+</code></pre></details><h2>Aufgabe 4</h2>
 <p>Vervollständigen Sie den Code der beiden Funktionen so, dass das<br>Programm den Zahlungsbetrag berechnet und als Rechnung ausgibt.</p>
 <pre><code class="language-python">def berechne_betrag(preis, menge, rabatt_prozent):
     # hier fehlt was ;-)
@@ -341,7 +337,8 @@ Rechnung vom 10.04.2025
 ------------------------------
 Kundennummer: kundennr-1234
 Zu zahlender Betrag: 196.0 €
-</code></pre></details><h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python"># Lösung
+</code></pre>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python"># Lösung
 def berechne_betrag(preis, menge, rabatt_prozent):
     betrag = preis * menge * (100-rabatt_prozent)/100
     return betrag
@@ -355,8 +352,7 @@ def erstelle_rechnung(zahlungsbetrag, kundennr, datum):
 
 zb = berechne_betrag(100, 2, 2)
 erstelle_rechnung(zb, &quot;kundennr-1234&quot;, &quot;10.04.2025&quot;)
-</code></pre>
-<h1>Aufgabe 5:</h1>
+</code></pre></details><h2>Aufgabe 5</h2>
 <p>Entwickeln Sie ein Python-Programm, das die Volumenberechnung eines<br>Quaders durchführt und zusätzlich erkennt, ob es sich bei dem Körper um<br>einen speziellen Quader - nämlich einen Würfel - handelt. Anforderungen:</p>
 <ul>
 <li><p>Das Programm soll den Benutzer nach drei Seitenlängen fragen.</p>
@@ -379,7 +375,8 @@ Seitenlänge 2: 5
 Seitenlänge 3: 5
 
 Das Volumen des Würfels ist gleich 125.0
-</code></pre></details><h2>Lösung:</h2>
+</code></pre>
+<h2>Lösung:</h2>
 <pre><code class="language-python">seite1 = float(input(&quot;Seitenlänge 1:&quot;))
 seite2 = float(input(&quot;Seitenlänge 2:&quot;))
 seite3 = float(input(&quot;Seitenlänge 3:&quot;))
@@ -409,8 +406,7 @@ else:
         print(&quot;Das Volumen des Würfels ist gleich&quot;, volumen)
     else:
         print(&quot;Das Volumen des Quaders Würfels ist gleich&quot;, volumen)
-</code></pre>
-<h1>Aufgabe 6:</h1>
+</code></pre></details><h2>Aufgabe 6</h2>
 <p>Entwickeln Sie ein Programm, das 10 mal den Satz “Ich wiederhole zum x.<br>mal” ausgibt, wobei x durch die aktuelle Wiederholungsnummer (1 bis 10)<br>ersetzt wird.</p>
 <p><code>Ich wiederhole zum 1. mal</code><br><code>Ich wiederhole zum 2. mal</code><br><code>...</code><br><code>Ich wiederhole zum 10. mal</code></p>
 <h4>Erwartete Ausgabe:</h4>
@@ -424,7 +420,8 @@ Ich wiederhole zum 7 . mal
 Ich wiederhole zum 8 . mal
 Ich wiederhole zum 9 . mal
 Ich wiederhole zum 10 . mal
-</code></pre></details><h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">for x in range(1,11):
+</code></pre>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">for x in range(1,11):
     print(&quot;Ich wiederhole zum&quot;, x, &quot;. mal&quot;)
 </code></pre></details>
         </div>
