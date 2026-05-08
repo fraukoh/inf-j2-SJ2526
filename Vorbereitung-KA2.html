@@ -290,34 +290,31 @@ for i in range(1,11):
 <h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><img src="zubehoer/Pasted%20image%2020260415115721.png" alt="Pasted image 20260415115721.png" /></details><h2>Aufgabe 2</h2>
 <p>Übersetzen Sie folgendes Struktogramm in python.</p>
 <img src="zubehoer/Pasted%20image%2020260415121856.png" alt="Pasted image 20260415121856.png" />
-<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary>``` python
-# Lösung
+<h2>Lösung#</h2>
+
+<pre><code class="language-python"># Lösung
 def test(a,b):
     erg = (a+b)/2
-    print("Das Ergebnis:", erg)
+    print(&quot;Das Ergebnis:&quot;, erg)
 
-<p>zahl1 = int(input(&quot;Erste Zahl:&quot;))<br>zahl2 = int(input(&quot;Zweite Zahl:&quot;))<br>test(zahl1, zahl2)</p>
-<pre><code>
-    Erste Zahl: 3
-    Zweite Zahl: 4
-    Das Ergebnis: 3.5</details><h2>Aufgabe 3</h2>
+zahl1 = int(input(&quot;Erste Zahl:&quot;))
+zahl2 = int(input(&quot;Zweite Zahl:&quot;))
+test(zahl1, zahl2)
+</code></pre>
+<pre><code>Erste Zahl: 3
+Zweite Zahl: 4
+Das Ergebnis: 3.5
+</code></pre>
+<h2>Aufgabe 3</h2>
+<p>Erstellen Sie ein python-Programm, welches den Benutzern nach dem Namen, Gewicht (in kg) und der Körpergröße (in m) fragt, den Body-Mass-Index (BMI) berechnet und ausgibt.<br>Hinweis: BMI kann man nach dem folgenden Satz berechnen: BMI =  Körpergewicht (in kg) / Körpergröße (in m)**2</p>
+<h4>Erwartete Ausgabe:</h4>
+<pre><code>Ihr Name: Julia
+Ihr Gewicht in kg: 72
+Ihre Körpergröße in m: 1.75
 
-Erstellen Sie ein python-Programm, welches den Benutzern nach dem Namen, Gewicht (in kg) und der Körpergröße (in m) fragt, den Body-Mass-Index (BMI) berechnet und ausgibt.
-
-
-&gt; Hinweis: BMI kann man nach dem folgenden Satz berechnen: 
-&gt; BMI =  Körpergewicht (in kg) / Körpergröße (in m)\*\*2
-
-##<h2>Erwartete Ausgabe:</h2>
-
-    Ihr Name: Julia
-    Ihr Gewicht in kg: 72
-    Ihre Körpergröße in m: 1.75
-
-    BMI für Julia beträgt: 23.510204081632654
-
-<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary>``` python
-name = input(&quot;Ihr Name:&quot;)
+BMI für Julia beträgt: 23.510204081632654
+</code></pre>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">name = input(&quot;Ihr Name:&quot;)
 gewicht = float(input(&quot;Ihr Gewicht in kg:&quot;))
 koerpergroesse = float(input(&quot;Ihre Körpergröße in m:&quot;))
 bmi = gewicht / koerpergroesse**2
