@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vorbereitung-KA2</title>
+    <title>Aufgabe-Lesepunkte-Belohnung-if-else-LSG</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
     <style>
 @import url('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css');
@@ -278,80 +278,39 @@
 
     <div class="container">
         <div class="content">
-            <h2>Aufgabe 1</h2>
-<p>Erstellen Sie ein Struktogramm zu dem folgenden python-Code:</p>
-<pre><code class="language-python">x = int(input(&quot;Bitte den Wert für x eingeben&quot;))
-y = 100
-z = x - y
-z = x * y
-if z &lt;= 1000:
-    print(&quot;Der Wert der Variable z ist kleiner 1000&quot;)
-</code></pre>
-<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><img src="zubehoer/Pasted%20image%2020260518095150.png" alt="Pasted image 20260518095150.png" /></details><h2>Aufgabe 2</h2>
-
-<p>Übersetzen Sie folgendes Struktogramm in python.</p>
-<img src="zubehoer/Pasted%20image%2020260415121856.png" alt="Pasted image 20260415121856.png" />
-<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">def test(a,b):
-    erg = (a+b)/2
-    print(&quot;Das Ergebnis:&quot;, erg)
-
-zahl1 = int(input(&quot;Erste Zahl:&quot;))
-zahl2 = int(input(&quot;Zweite Zahl:&quot;))
-test(zahl1, zahl2)
-</code></pre>
-<pre><code>Erste Zahl: 3
-Zweite Zahl: 4
-Das Ergebnis: 3.5
-</code></pre></details><h2>Aufgabe 3</h2>
-<p>Erstellen Sie ein python-Programm, welches den Benutzern nach dem Namen, Gewicht (in kg) und der Körpergröße (in m) fragt, den Body-Mass-Index (BMI) berechnet und ausgibt.</p>
+            <h1>Aufgabe: Lesepunkte – Bronze-Sticker?</h1>
+<p>An eurer Schule läuft ein <strong>Lesewettbewerb</strong>. Wer <strong>mindestens 50 Lesepunkte</strong> hat, bekommt einen <strong>Bronze-Sticker</strong>. Alle anderen bekommen einen Motivationsspruch.</p>
+<p>Schreiben Sie ein Programm, das die Lesepunkte abfragt und <strong>eine</strong> passende Meldung ausgibt.</p>
+<h2>Anforderungen</h2>
+<ul>
+<li>Der Benutzer gibt seine <strong>Lesepunkte</strong> als Ganzzahl (<code>int</code>) ein.</li>
+<li>Verwenden Sie <strong>genau ein</strong> <code>if</code>-<code>else</code> (kein <code>elif</code>, kein zweites <code>if</code>).</li>
+<li>In der Bedingung steht nur <strong>ein</strong> Vergleich (z. B. <code>punkte &gt;= 50</code>).</li>
+<li><strong>Keine</strong> verschachtelten <code>if</code>-Anweisungen.</li>
+<li><strong>Kein</strong> <code>and</code> und <strong>kein</strong> <code>or</code>.</li>
+</ul>
 <blockquote>
-<p>Hinweis: BMI kann man nach dem folgenden Satz berechnen:<br>BMI =  Körpergewicht (in kg) / Körpergröße (in m)**2</p>
+<p>Übung mit <strong>verschachteltem</strong> <code>if</code> (Quader/Würfel): </p>
 </blockquote>
-<h4>Erwartete Ausgabe:</h4>
-<pre><code>Ihr Name: Julia
-Ihr Gewicht in kg: 72
-Ihre Körpergröße in m: 1.75
+<p><a href="Aufgabe-Quader-Wuerfel-Volumen-LSG.html">Aufgabe-Quader-Wuerfel-Volumen-LSG</a></p>
+<h4>Welche Eigenschaften haben die Daten? (Variablenliste)</h4>
+<table>
+<thead>
+<tr class="header">
+<th>Bedeutung</th>
+<th>Datentyp</th>
+<th>Variable</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Eingabe: gelesene Punkte</td>
+<td>Ganzzahl</td>
+<td>punkte</td>
+</tr>
+</tbody>
+</table>
 
-BMI für Julia beträgt: 23.510204081632654
-</code></pre>
-<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">name = input(&quot;Ihr Name:&quot;)
-gewicht = float(input(&quot;Ihr Gewicht in kg:&quot;))
-koerpergroesse = float(input(&quot;Ihre Körpergröße in m:&quot;))
-bmi = gewicht / koerpergroesse**2
-print(&quot;BMI für&quot;, name, &quot;beträgt:&quot;, bmi)
-</code></pre></details><h2>Aufgabe 4</h2>
-<p>Vervollständigen Sie den Code der beiden Funktionen so, dass das Programm den Zahlungsbetrag berechnet und als Rechnung ausgibt.</p>
-<pre><code class="language-python">def berechne_betrag(preis, menge, rabatt_prozent):
-    # hier fehlt was ;-)
-def erstelle_rechnung(zahlungsbetrag, kundennr, datum):
-    # hier fehlt was ;-)
-zb = berechne_betrag(100, 2, 2)
-erstelle_rechnung(zb, &quot;kundennr-1234&quot;, &quot;10.04.2025&quot;)
-</code></pre>
-<h4>Erwartete Ausgabe:</h4>
-<pre><code>------------------------------
-Rechnung vom 10.04.2025
-------------------------------
-Kundennummer: kundennr-1234
-Zu zahlender Betrag: 196.0 €
-</code></pre>
-<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python"># Lösung
-def berechne_betrag(preis, menge, rabatt_prozent):
-    betrag = preis * menge * (100-rabatt_prozent)/100
-    return betrag
-
-def erstelle_rechnung(zahlungsbetrag, kundennr, datum):
-    print(30*&quot;-&quot;)
-    print(&quot;Rechnung vom&quot;, datum)
-    print(30*&quot;-&quot;)
-    print(&quot;Kundennummer:&quot;, kundennr)
-    print(&quot;Zu zahlender Betrag:&quot;, zahlungsbetrag, &quot;€&quot;)
-
-zb = berechne_betrag(100, 2, 2)
-erstelle_rechnung(zb, &quot;kundennr-1234&quot;, &quot;10.04.2025&quot;)
-</code></pre></details><h2>Aufgabe 5</h2>
-<p>In eurer Schule läuft ein <strong>Lesewettbewerb</strong>. Wer <strong>mindestens 50 Lesepunkte</strong> hat, bekommt einen <strong>Bronze-Sticker</strong>. Alle anderen bekommen einen Motivationsspruch.</p>
-<p>Schreiben Sie ein Programm, das die Lesepunkte abfragt und eine passende Meldung ausgibt.</p>
 <p><strong>Erwartete Ausgabe (Beispiel 1):</strong></p>
 <pre><code class="language-text">Deine Lesepunkte: 35
 Noch nicht genug gelesen. Lies weiter – ab 50 Punkte gibt es den Bronze-Sticker!
@@ -367,7 +326,7 @@ if punkte &gt;= 50:
 else:
     print(&quot;Noch nicht genug gelesen. Lies weiter – ab 50 Punkte gibt es den Bronze-Sticker!&quot;)
 </code></pre>
-<img src="zubehoer/Pasted%20image%2020260518095105.png" alt="Pasted image 20260518095105.png" /></details>
+<p><strong>Hinweis:</strong> Es gibt nur <strong>zwei</strong> Möglichkeiten – Sticker ja oder nein. Dafür reicht ein einziges <code>if</code>-<code>else</code> mit einem Vergleich.</p></details>
         </div>
     </div>
 </body>
