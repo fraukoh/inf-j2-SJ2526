@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02_Array</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <style>
+@import url('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css');
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+    body {
+      font-family: 'Courier New', 'Consolas', 'Monaco', monospace;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #000;
+      background: #fff;
+      padding: 0;
+    }
+    
+    /* Navigation */
+    .navbar {
+      background: #f8f8f8;
+      border-bottom: 1px solid #ddd;
+      padding: 8px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    
+    .navbar-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+    }
+    
+    .home-link {
+      font-size: 16px;
+      color: #333;
+      text-decoration: none;
+      margin-right: 20px;
+      padding: 4px 8px;
+      border-radius: 3px;
+      transition: all 0.2s;
+    }
+    
+    .home-link:hover {
+      background: #e0e0e0;
+      color: #000;
+    }
+    
+    .navbar-links {
+      font-size: 13px;
+    }
+    
+    .navbar-links a {
+      color: #666;
+      text-decoration: none;
+      margin: 0 8px;
+      padding: 2px 6px;
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+    
+    .navbar-links a:hover {
+      background: #e0e0e0;
+      color: #000;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 30px;
+      border: 1px solid #000;
+      margin-top: 0;
+    }
+    h1 { 
+      color: #000; 
+      margin-bottom: 15px; 
+      font-size: 1.8em; 
+      font-weight: bold;
+      border-bottom: 2px solid #000;
+      padding-bottom: 5px;
+    }
+    h2 { 
+      color: #000; 
+      margin-top: 20px; 
+      margin-bottom: 10px; 
+      font-size: 1.4em;
+      font-weight: bold;
+    }
+    h3 { 
+      color: #000; 
+      margin-top: 15px; 
+      margin-bottom: 8px; 
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+    p { 
+      margin-bottom: 10px; 
+    }
+    pre {
+      background: #1e1e1e;
+      border: 1px solid #000;
+      padding: 12px;
+      overflow-x: auto;
+      margin: 15px 0;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+    }
+    pre code {
+      color: #d4d4d4;
+    }
+    code {
+      background: #f5f5f5;
+      border: 1px solid #ccc;
+      padding: 2px 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+    }
+    pre code {
+      background: none;
+      border: none;
+      padding: 0;
+    }
+    ul, ol { 
+      margin-left: 25px; 
+      margin-bottom: 10px; 
+    }
+    li { 
+      margin-bottom: 3px; 
+    }
+    .metadata {
+      border: 1px solid #000;
+      padding: 10px;
+      margin-bottom: 15px;
+      background: #f9f9f9;
+      font-size: 12px;
+    }
+    .tags {
+      margin-top: 8px;
+    }
+    .tag {
+      display: inline-block;
+      background: #000;
+      color: #fff;
+      padding: 2px 8px;
+      font-size: 11px;
+      margin-right: 5px;
+      margin-top: 5px;
+      border: 1px solid #000;
+    }
+    a {
+      color: #000;
+      text-decoration: underline;
+    }
+    a:hover {
+      background: #000;
+      color: #fff;
+    }
+    ul li a, ol li a {
+      display: inline;
+    }
+    p a {
+      display: inline;
+      padding: 2px 4px;
+    }
+    p a:hover {
+      background: #000;
+      color: #fff;
+    }
+    
+    img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #000;
+      margin: 10px 0;
+      display: block;
+    }
+    blockquote {
+      border-left: 2px solid #000;
+      padding-left: 15px;
+      margin: 15px 0;
+      color: #333;
+      font-style: italic;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+      border: 1px solid #000;
+    }
+    th, td {
+      border: 1px solid #000;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background: #000;
+      color: #fff;
+      font-weight: bold;
+    }
+    tr:nth-child(even) {
+      background: #f9f9f9;
+    }
+    .content {
+      line-height: 1.6;
+    }
+    
+    /* Aufklappbare Lösungen */
+    .solution-details {
+      margin: 15px 0;
+      border: 1px solid #000;
+    }
+    
+    .solution-toggle {
+      cursor: pointer;
+      padding: 10px;
+      background: #f5f5f5;
+      border-bottom: 1px solid #000;
+      font-weight: bold;
+      user-select: none;
+    }
+    
+    .solution-toggle:hover {
+      background: #e0e0e0;
+    }
+    
+    .solution-details[open] .solution-toggle {
+      background: #000;
+      color: #fff;
+    }
+    
+    .solution-details > *:not(summary) {
+      padding: 15px;
+    }
+    
+    /* Bilder in Lösungen ohne Rahmen */
+    .solution-details img {
+      border: none !important;
+      box-shadow: none !important;
+    }
+    
+    /* Paragraphen in Lösungen - genau wie sonst auch */
+    .solution-details p {
+      display: block;
+      margin: 10px 0;
+    }
+    
+    /* Lösung-Content soll Whitespace erhalten */
+    .solution-details {
+      white-space: pre-line;
+    }
+  </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        hljs.highlightAll();
+      });
+    </script>
+</head>
+<body>
+    
+<div class="navbar">
+    <div class="navbar-content">
+        <a href="index.html" class="home-link" title="Zur Hauptseite">⌂</a>
+        <div class="navbar-links">
+            <a href="Inf_J2_SJ_2025_26.html">Inf_J2_SJ_2025_26</a>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        <div class="content">
+            <h1>Arrays</h1>
+<p>Arrays sind spezielle Datenstrukturen, die nicht nur einen Wert, sondern eine Vielzahl von Werten speichern können.  Arrays sind vergleichbar mit einem Schrank: Ein Schrank hat Schubladen. Die verschiedenen Schubladen des Schranks bieten Platz für die Werte, mit denen man arbeiten will, z.B. die Vornamen verschiedener Personen.<br>Man kann die Werte quasi in den Schubladen ablegen. Um die Werte später wiederfinden zu können bzw. mit ihnen arbeiten zu können, haben alle Schubladen eine Nummer, die man sich auch als Beschriftung vorstellen kann.</p>
+<h3>Beispiel:</h3>
+<blockquote>
+<p>Ein „Schrank“ für das Abspeichern von Vornamen:</p>
+</blockquote>
+<table>
+<tbody>
+<tr>
+<td style="text-align: right;">Nummer der Schublade:</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr>
+<td style="text-align: right;">Inhalt:</td>
+<td>“Uli”</td>
+<td>“Anna”</td>
+<td>“Emil”</td>
+<td>“Sophia”</td>
+<td>“Luise”</td>
+<td>“Hans”</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Wichtig:</h3>
+<ol>
+<li>Die Nummerierung der „Schubladen“ wird in der Fachsprache als „Index“ bezeichnet, d.h. die verschiedenen Speicherplätze des Arrays sind „indiziert“.</li>
+<li>Die Nummerierung der Schubladen beginnt immer bei dem Index „0“, d.h. die erste Schublade hat die Beschriftung 0, die zweite Schublade die Beschriftung 1, die sechste Schublade hat die Beschriftung 5.</li>
+</ol>
+<h3>Deklarierung und Initialisierung in Python</h3>
+<p>In Python werden Arrays mit Hilfe von sogenannten Listen umgesetzt. Dabei gibt es in Python verschiedene Möglichkeiten, diese zu erzeugen. Der Einfachheit halber werden wir immer von einem Array sprechen. Zwei Möglichkeiten werden hier vorgestellt:</p>
+<h4>Möglichkeit 1:</h4>
+<p>Erzeugen eines Arrays und direktes Füllen mit Werten:</p>
+<p><code>namensliste = [&quot;Uli&quot;, &quot;Anna&quot;, &quot;Emil&quot;, &quot;Sophia&quot;]</code></p>
+<img src="zubehoer/Pasted%20image%2020260915162121.png" alt="Pasted image 20260915162121.png" />
+
+<h4>Möglichkeit 2:</h4>
+<p>Hier wird zunächst ein leeres Array erzeugt und dann schrittweise mit<br>Werten gefüllt, indem die Werte mit Hilfe der Funktion append()nach und<br>nach an das Ende des bestehenden Arrays angehängt werden:</p>
+<pre><code>#Deklaration
+himmelsrichtungen = []
+
+#Initialisierung
+himmelsrichtungen.append(&quot;Nord&quot;)
+himmelsrichtungen.append(&quot;Ost&quot;)
+himmelsrichtungen.append(&quot;Süd&quot;)
+himmelsrichtungen.append(&quot;West&quot;)
+</code></pre>
+<figure>
+<img
+src="02_Array_files/figure-markdown_strict/cell-6-1-1ed58d19-1ce4-4906-861a-ba805f018a2d.png"
+alt="image.png" />
+<figcaption aria-hidden="true">image.png</figcaption>
+</figure>
+
+<p>Im Ergebnis ist hier das folgende Array<br>entstanden:<code>[&quot;Nord&quot;, &quot;Ost&quot;, &quot;Süd&quot;, &quot;West&quot;]</code> #<h2>Zugriff auf die<br>einzelnen Arraywerte mit dem Index Auf die einzelnen Arrayelemente kann<br>mit dem Index zugegriffen werden. Dazu gibt man den Namen des Arrays an<br>und direkt dahinter in eckigen Klammern die Nummer des gewünschten<br>Arrayelementes, z.B.: <code>array[3]</code><br>Dabei gilt es zu beachten, dass auf das erste Element in einem Array mit<br>dem Index 0 zugegriffen wird (vgl. oben). Für das zweite Element wird<br>der Index 1 benutzt, für das dritte Element der Index 2, usw.:</p></h2>
+<table>
+<tbody>
+<tr>
+<td style="text-align: right;">Nummer des Arrayelements / Index:</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr>
+<td style="text-align: right;"></td>
+<td>1.Wert</td>
+<td>2.Wert</td>
+<td>3.Wert</td>
+<td>4.Wert</td>
+<td>5.Wert</td>
+<td>6.Wert</td>
+</tr>
+</tbody>
+</table>
+
+<p>Folglich wird auf das letzte Element (hier das sechste Element bzw. n-te<br>Element) in einem Array mit dem Index n-1 zugegriffen, in diesem<br>Beispiel also mit dem Index 6-1 = 5.</p>
+<pre><code>himmelsrichtungen = [&quot;Nord&quot;, &quot;Ost&quot;, &quot;Süd&quot;, &quot;West&quot;]
+print(himmelsrichtungen[3])
+print(himmelsrichtungen[0])
+
+West
+Nord
+</code></pre>
+<figure>
+<img
+src="02_Array_files/figure-markdown_strict/cell-9-1-edfd57c4-f912-4ded-a36e-2ddc5259240a.png"
+alt="image.png" />
+<figcaption aria-hidden="true">image.png</figcaption>
+</figure>
+
+<h3>Hinzufügen und Verändern von Elementen</h3>
+<p>Arrays (Listen) sind in Python nicht abschließend, das heißt, es können,<br>wie schon oben gezeigt, mit append() weitere Elemente hinzugefügt<br>werden. Außerdem sind die Elemente auch nicht fest. Dadurch können<br>bereits bestehende Elemente mit neuen Werten überschrieben werden. Das<br>geschieht wie beim Auslesen der einzelnen Felder mit dem Index:</p>
+<pre><code>training = [&quot;Montag&quot;, &quot; Donnerstag&quot;]
+print(training)
+
+[&#39;Montag&#39;, &#39; Donnerstag&#39;]
+
+#Verändern des ersten Wertes
+training[0] = &quot;Dienstag&quot;
+print(training)
+
+[&#39;Dienstag&#39;, &#39; Donnerstag&#39;]
+
+#Hinzufügen am Ende
+training.append(&quot;Freitag&quot;)
+print(training)
+
+[&#39;Dienstag&#39;, &#39; Donnerstag&#39;, &#39;Freitag&#39;]
+
+#Verändern des dritten Wertes
+training[2]= &quot;Samstag&quot;
+print(training)
+
+[&#39;Dienstag&#39;, &#39; Donnerstag&#39;, &#39;Samstag&#39;]
+</code></pre>
+<figure>
+<img
+src="02_Array_files/figure-markdown_strict/cell-15-1-67a3b5dd-d05c-4186-a3c1-abab6768e66f.png"
+alt="image.png" />
+<figcaption aria-hidden="true">image.png</figcaption>
+</figure>
+
+<h3>Anzahl der Elemente eines Arrays</h3>
+<p>Bei der Programmierung ist es oft wichtig, die Anzahl der Arrayelemente<br>(Feldelemente) zu kennen. In Python kann dies mit der Funktion<br>len(array) ermittelt werden:</p>
+<pre><code>training = [&quot;Montag&quot;, &quot;Mittwoch&quot;, &quot;Freitag&quot;]
+anzahl = len(training)
+print(&quot;Trainingstage:&quot;, anzahl)
+
+Trainingstage: 3
+</code></pre>
+<p>Hinweis: &gt; In der Programmierung wird statt der Formulierung „Anzahl<br>der Elemente eines Arrays“ auch oft die Formulierung „Länge des Arrays“<br>verwendet.</p>
+<figure>
+<img
+src="02_Array_files/figure-markdown_strict/cell-19-1-7262af94-bc40-41d3-8556-5b2d442b3865.png"
+alt="image.png" />
+<figcaption aria-hidden="true">image.png</figcaption>
+</figure>
+
+<h3>Zugriff auf die Elemente eines Arrays mit einer for-Schleife</h3>
+<p>Häufig müssen in einem Programm alle Elemente eines Arrays ausgegeben<br>werden. Betrachten Sie das folgende Array:</p>
+<pre><code>zahlenliste = [12, 9, 17, 31, 8, 24, 51, 67, 2, 34]
+</code></pre>
+<p>Um dieses Array vollständig auszugeben, wäre folgender Programmcode<br>denkbar:</p>
+<pre><code>print(zahlenliste[0])
+print(zahlenliste[1])
+print(zahlenliste[2])
+print(zahlenliste[3])
+print(zahlenliste[4])
+print(zahlenliste[5])
+print(zahlenliste[6])
+print(zahlenliste[7])
+print(zahlenliste[8])
+print(zahlenliste[9])
+
+12
+9
+17
+31
+8
+24
+51
+67
+2
+34
+</code></pre>
+<p>Die Wiederholungsroutine kann man aber viel besser mit der Schleife<br>programmieren.</p>
+<pre><code>for i in range(len(zahlenliste)):
+    print(zahlenliste[i])
+
+12
+9
+17
+31
+8
+24
+51
+67
+2
+34
+</code></pre>
+
+        </div>
+    </div>
+</body>
+</html>

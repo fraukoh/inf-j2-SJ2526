@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inf_J2_SJ_2025_26</title>
+    <title>02-1-Aufgabe-LSG</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
     <style>
 @import url('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css');
@@ -271,29 +271,85 @@
     <div class="navbar-content">
         <a href="index.html" class="home-link" title="Zur Hauptseite">⌂</a>
         <div class="navbar-links">
-            
+            <a href="Inf_J2_SJ_2025_26.html">Inf_J2_SJ_2025_26</a>
         </div>
     </div>
 </div>
 
     <div class="container">
         <div class="content">
-            <h1>Arrays 🔢</h1>
-<h3>📚 Arbeitsblatt: Arrays anlegen und die Werte ausgeben</h3>
-<p><a href="02_Array.html">02_Array</a></p>
-<h3>🖥️ Übung</h3>
-<p><a href="02-1-Aufgabe-LSG.html">02-1-Aufgabe-LSG</a></p>
-<h3>📚 Arbeitsblatt: Wiederholung zu Arrays in Python</h3>
-<p><a href="Wiederholung-Array.html">Wiederholung-Array</a></p>
-<h3>🖥️ Übung</h3>
-<p><a href="Array-Aufgaben.html">Array-Aufgaben</a></p>
-<h1>Sortieralgorithmen ⬆️⬇️</h1>
-<p><a href="BubbleSort.html">BubbleSort</a></p>
-<p><a href="SelectionSort.html">SelectionSort</a></p>
-<h1>Suchalgorithmen 🔍</h1>
-<p><a href="Lineare%20Suche.html">Lineare Suche</a></p>
-<p><a href="Bin%C3%A4re%20Suche.html">Binäre Suche</a></p>
-<h1>Dynamische Datenstrunkturen 📊</h1>
+            <h1>Aufgabe 1:</h1>
+<p>Formulieren Sie den Code, der die nachfolgend beschriebenen Anweisungen<br>ausführt.</p>
+<h2>Aufgabe 1.1:</h2>
+<p>Erzeugen Sie ein Array mit dem Namen <code>weltmeister</code> und den Werten 1954,<br>1974, 1990 und 2014.</p>
+<pre><code>weltmeister=[1954, 1974,1990,2014]
+</code></pre>
+<h2>Aufgabe 1.2:</h2>
+<p>Erzeugen Sie ein Array <code>wmtrainer</code> und den Werten „Sepp Herberger“,<br>„Helmut Schön“ und „Franz Beckenbauer“:</p>
+<pre><code>wmtrainer=[&quot;Sepp Herberger&quot;,&quot;Helmut Schön&quot;,&quot;Franz Beckenbauer&quot;]
+</code></pre>
+<h2>Aufgabe 1.3:</h2>
+<p>Fügen Sie in die Liste <code>wmtrainer</code> den Namen „Joachim Löw“ am Ende ein:</p>
+<pre><code>wmtrainer.append(&quot;Joachim Löw&quot;)
+</code></pre>
+<h2>Aufgabe 1.4:</h2>
+<p>Im Array <code>weltmeister</code> sind die Jahre gespeichert, in denen die deutsche<br>Fußball-Nationalmannschaft Weltmeister geworden ist. Die Anzahl der<br>Weltmeistertitel soll in der Konsole ausgegeben werden.</p>
+<pre><code>anz=len(weltmeister)
+print(&quot;Anzahl der Weltmeistertitel =&quot;, anz)
+
+Anzahl der Weltmeistertitel = 4
+</code></pre>
+<h2>Aufgabe 1.5:</h2>
+<p>Alle im Array <code>wmtrainer</code> gespeicherten Namen sollen in der Konsole<br>angezeigt werden.</p>
+<pre><code>for i in range(len(wmtrainer)):
+    print(wmtrainer[i])
+
+Sepp Herberger
+Helmut Schön
+Franz Beckenbauer
+Joachim Löw
+</code></pre>
+<h1>Aufgabe 2:</h1>
+<p>Gegeben ist das folgende Array <code>a = [1, 5, 20, 9, 4, 3, 1]</code> Schreiben<br>Sie die aktuellen Werte des Arrays a, nach den folgenden Anweisungen:</p>
+<p><code>a[1] = a[2]</code></p>
+<details>
+<summary>
+Klicke hier um die Lösungen anzuzeigen
+</summary>
+Array-Inhalt: `a = [1, 20, 20, 9, 4, 3, 1]`
+</details>
+
+<p><code>a[5] = a[5] + a[6]</code></p>
+<details>
+<summary>
+Klicke hier um die Lösungen anzuzeigen
+</summary>
+Array-Inhalt: `a = [1, 20, 20, 9, 4, 4, 1]`
+</details>
+
+<p><code>a[6] = 4</code></p>
+<details>
+<summary>
+Klicke hier um die Lösungen anzuzeigen
+</summary>
+Array-Inhalt: `a = [1, 20, 20, 9, 4, 4, 4]`
+</details>
+
+<p><code>a.append(4)</code></p>
+<details>
+<summary>
+Klicke hier um die Lösungen anzuzeigen
+</summary>
+Array-Inhalt: `a = [1, 20, 20, 9, 4, 4, 4, 4]`
+</details>
+
+<p><code>i = 3</code><br><code>a[i] = i</code></p>
+<details>
+<summary>
+Klicke hier um die Lösungen anzuzeigen
+</summary>
+Array-Inhalt: `a = [1, 20, 20, 3, 4, 4, 4, 4]`
+</details>
 
         </div>
     </div>
