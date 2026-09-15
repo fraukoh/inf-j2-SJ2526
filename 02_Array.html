@@ -333,7 +333,7 @@ himmelsrichtungen.append(&quot;West&quot;)
 </code></pre>
 <img src="zubehoer/Pasted%20image%2020260915162504.png" alt="Pasted image 20260915162504.png" />
 
-<p>Im Ergebnis ist hier das folgende Array<br>entstanden:<code>[&quot;Nord&quot;, &quot;Ost&quot;, &quot;Süd&quot;, &quot;West&quot;]</code> #<h2>Zugriff auf die<br>einzelnen Arraywerte mit dem Index Auf die einzelnen Arrayelemente kann<br>mit dem Index zugegriffen werden. Dazu gibt man den Namen des Arrays an<br>und direkt dahinter in eckigen Klammern die Nummer des gewünschten<br>Arrayelementes, z.B.: <code>array[3]</code><br>Dabei gilt es zu beachten, dass auf das erste Element in einem Array mit<br>dem Index 0 zugegriffen wird (vgl. oben). Für das zweite Element wird<br>der Index 1 benutzt, für das dritte Element der Index 2, usw.:</p></h2>
+<p>Im Ergebnis ist hier das folgende Array entstanden:<code>[&quot;Nord&quot;, &quot;Ost&quot;, &quot;Süd&quot;, &quot;West&quot;]</code> Zugriff auf die einzelnen Arraywerte mit dem Index Auf die einzelnen Arrayelemente kann<br>mit dem Index zugegriffen werden. Dazu gibt man den Namen des Arrays an und direkt dahinter in eckigen Klammern die Nummer des gewünschten Arrayelementes, z.B.:  array[3]`<br>Dabei gilt es zu beachten, dass auf das erste Element in einem Array mit dem Index 0 zugegriffen wird (vgl. oben). Für das zweite Element wird der Index 1 benutzt, für das dritte Element der Index 2, usw.:</p>
 <table>
 <tbody>
 <tr>
@@ -357,7 +357,7 @@ himmelsrichtungen.append(&quot;West&quot;)
 </tbody>
 </table>
 
-<p>Folglich wird auf das letzte Element (hier das sechste Element bzw. n-te<br>Element) in einem Array mit dem Index n-1 zugegriffen, in diesem<br>Beispiel also mit dem Index 6-1 = 5.</p>
+<p>Folglich wird auf das letzte Element (hier das sechste Element bzw. n-te Element) in einem Array mit dem Index n-1 zugegriffen, in diesem Beispiel also mit dem Index 6-1 = 5.</p>
 <pre><code>himmelsrichtungen = [&quot;Nord&quot;, &quot;Ost&quot;, &quot;Süd&quot;, &quot;West&quot;]
 print(himmelsrichtungen[3])
 print(himmelsrichtungen[0])
@@ -365,15 +365,10 @@ print(himmelsrichtungen[0])
 West
 Nord
 </code></pre>
-<figure>
-<img
-src="02_Array_files/figure-markdown_strict/cell-9-1-edfd57c4-f912-4ded-a36e-2ddc5259240a.png"
-alt="image.png" />
-<figcaption aria-hidden="true">image.png</figcaption>
-</figure>
+<img src="zubehoer/Pasted%20image%2020260915163004.png" alt="Pasted image 20260915163004.png" />
 
 <h3>Hinzufügen und Verändern von Elementen</h3>
-<p>Arrays (Listen) sind in Python nicht abschließend, das heißt, es können,<br>wie schon oben gezeigt, mit append() weitere Elemente hinzugefügt<br>werden. Außerdem sind die Elemente auch nicht fest. Dadurch können<br>bereits bestehende Elemente mit neuen Werten überschrieben werden. Das<br>geschieht wie beim Auslesen der einzelnen Felder mit dem Index:</p>
+<p>Arrays (Listen) sind in Python nicht abschließend, das heißt, es können, wie schon oben gezeigt, mit append() weitere Elemente hinzugefügt werden. Außerdem sind die Elemente auch nicht fest. Dadurch können bereits bestehende Elemente mit neuen Werten überschrieben werden. Das geschieht wie beim Auslesen der einzelnen Felder mit dem Index:</p>
 <pre><code>training = [&quot;Montag&quot;, &quot; Donnerstag&quot;]
 print(training)
 
@@ -397,34 +392,24 @@ print(training)
 
 [&#39;Dienstag&#39;, &#39; Donnerstag&#39;, &#39;Samstag&#39;]
 </code></pre>
-<figure>
-<img
-src="02_Array_files/figure-markdown_strict/cell-15-1-67a3b5dd-d05c-4186-a3c1-abab6768e66f.png"
-alt="image.png" />
-<figcaption aria-hidden="true">image.png</figcaption>
-</figure>
+<img src="zubehoer/Pasted%20image%2020260915163031.png" alt="Pasted image 20260915163031.png" />
 
 <h3>Anzahl der Elemente eines Arrays</h3>
-<p>Bei der Programmierung ist es oft wichtig, die Anzahl der Arrayelemente<br>(Feldelemente) zu kennen. In Python kann dies mit der Funktion<br>len(array) ermittelt werden:</p>
+<p>Bei der Programmierung ist es oft wichtig, die Anzahl der Arrayelemente (Feldelemente) zu kennen. In Python kann dies mit der Funktion len(array) ermittelt werden:</p>
 <pre><code>training = [&quot;Montag&quot;, &quot;Mittwoch&quot;, &quot;Freitag&quot;]
 anzahl = len(training)
 print(&quot;Trainingstage:&quot;, anzahl)
 
 Trainingstage: 3
 </code></pre>
-<p>Hinweis: &gt; In der Programmierung wird statt der Formulierung „Anzahl<br>der Elemente eines Arrays“ auch oft die Formulierung „Länge des Arrays“<br>verwendet.</p>
-<figure>
-<img
-src="02_Array_files/figure-markdown_strict/cell-19-1-7262af94-bc40-41d3-8556-5b2d442b3865.png"
-alt="image.png" />
-<figcaption aria-hidden="true">image.png</figcaption>
-</figure>
+<p>Hinweis: &gt; In der Programmierung wird statt der Formulierung „Anzahl der Elemente eines Arrays“ auch oft die Formulierung „Länge des Arrays“ verwendet.</p>
+<img src="zubehoer/Pasted%20image%2020260915163044.png" alt="Pasted image 20260915163044.png" />
 
 <h3>Zugriff auf die Elemente eines Arrays mit einer for-Schleife</h3>
-<p>Häufig müssen in einem Programm alle Elemente eines Arrays ausgegeben<br>werden. Betrachten Sie das folgende Array:</p>
+<p>Häufig müssen in einem Programm alle Elemente eines Arrays ausgegeben werden. Betrachten Sie das folgende Array:</p>
 <pre><code>zahlenliste = [12, 9, 17, 31, 8, 24, 51, 67, 2, 34]
 </code></pre>
-<p>Um dieses Array vollständig auszugeben, wäre folgender Programmcode<br>denkbar:</p>
+<p>Um dieses Array vollständig auszugeben, wäre folgender Programmcode denkbar:</p>
 <pre><code>print(zahlenliste[0])
 print(zahlenliste[1])
 print(zahlenliste[2])
@@ -447,7 +432,9 @@ print(zahlenliste[9])
 2
 34
 </code></pre>
-<p>Die Wiederholungsroutine kann man aber viel besser mit der Schleife<br>programmieren.</p>
+<img src="zubehoer/Pasted%20image%2020260915163348.png" alt="Pasted image 20260915163348.png" />
+
+<p>Die Wiederholungsroutine kann man aber viel besser mit der Schleife programmieren.</p>
 <pre><code>for i in range(len(zahlenliste)):
     print(zahlenliste[i])
 
@@ -462,7 +449,7 @@ print(zahlenliste[9])
 2
 34
 </code></pre>
-
+<img src="zubehoer/Pasted%20image%2020260915163303.png" alt="Pasted image 20260915163303.png" />
         </div>
     </div>
 </body>
