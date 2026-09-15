@@ -313,7 +313,7 @@
 <li>Die Nummerierung der Schubladen beginnt immer bei dem Index „0“, d.h. die erste Schublade hat die Beschriftung 0, die zweite Schublade die Beschriftung 1, die sechste Schublade hat die Beschriftung 5.</li>
 </ol>
 <h3>Deklarierung und Initialisierung in Python</h3>
-<p>In Python werden Arrays mit Hilfe von sogenannten Listen umgesetzt. Dabei gibt es in Python verschiedene Möglichkeiten, diese zu erzeugen. Der Einfachheit halber werden wir immer von einem Array sprechen. Zwei Möglichkeiten werden hier vorgestellt:</p>
+<p>In Python werden Arrays mithilfe von sogenannten Listen umgesetzt. Dabei gibt es in Python verschiedene Möglichkeiten, diese zu erzeugen. Der Einfachheit halber werden wir immer von einem Array sprechen. Zwei Möglichkeiten werden hier vorgestellt:</p>
 <h4>Möglichkeit 1:</h4>
 <p>Erzeugen eines Arrays und direktes Füllen mit Werten:</p>
 <pre><code>namensliste = [&quot;Uli&quot;, &quot;Anna&quot;, &quot;Emil&quot;, &quot;Sophia&quot;]
@@ -321,7 +321,7 @@
 <img src="zubehoer/Pasted%20image%2020260915162121.png" alt="Pasted image 20260915162121.png" />
 
 <h4>Möglichkeit 2:</h4>
-<p>Hier wird zunächst ein leeres Array erzeugt und dann schrittweise mit<br>Werten gefüllt, indem die Werte mit Hilfe der Funktion append()nach und<br>nach an das Ende des bestehenden Arrays angehängt werden:</p>
+<p>Hier wird zunächst ein leeres Array erzeugt und dann schrittweise mit Werten gefüllt, indem die Werte mithilfe der Funktion <code>append()</code> nach und nach an das Ende des bestehenden Arrays angehängt werden:</p>
 <pre><code>#Deklaration
 himmelsrichtungen = []
 
@@ -333,7 +333,7 @@ himmelsrichtungen.append(&quot;West&quot;)
 </code></pre>
 <img src="zubehoer/Pasted%20image%2020260915162504.png" alt="Pasted image 20260915162504.png" />
 
-<p>Im Ergebnis ist hier das folgende Array entstanden:<code>[&quot;Nord&quot;, &quot;Ost&quot;, &quot;Süd&quot;, &quot;West&quot;]</code> Zugriff auf die einzelnen Arraywerte mit dem Index Auf die einzelnen Arrayelemente kann<br>mit dem Index zugegriffen werden. Dazu gibt man den Namen des Arrays an und direkt dahinter in eckigen Klammern die Nummer des gewünschten Arrayelementes, z.B.:  array[3]`<br>Dabei gilt es zu beachten, dass auf das erste Element in einem Array mit dem Index 0 zugegriffen wird (vgl. oben). Für das zweite Element wird der Index 1 benutzt, für das dritte Element der Index 2, usw.:</p>
+<p>Im Ergebnis ist hier das folgende Array entstanden:<code>[&quot;Nord&quot;, &quot;Ost&quot;, &quot;Süd&quot;, &quot;West&quot;]</code> Zugriff auf die einzelnen Arraywerte mit dem Index. Auf die einzelnen Arrayelemente kann<br>mit dem Index zugegriffen werden. Dazu gibt man den Namen des Arrays an und direkt dahinter in eckigen Klammern die Nummer des gewünschten Arrayelementes, z.B.: <code>array[3]</code><br>Dabei gilt es zu beachten, dass auf das erste Element in einem Array mit dem Index 0 zugegriffen wird (vgl. oben). Für das zweite Element wird der Index 1 benutzt, für das dritte Element der Index 2, usw.:</p>
 <table>
 <tbody>
 <tr>
@@ -368,7 +368,7 @@ Nord
 <img src="zubehoer/Pasted%20image%2020260915163004.png" alt="Pasted image 20260915163004.png" />
 
 <h3>Hinzufügen und Verändern von Elementen</h3>
-<p>Arrays (Listen) sind in Python nicht abschließend, das heißt, es können, wie schon oben gezeigt, mit append() weitere Elemente hinzugefügt werden. Außerdem sind die Elemente auch nicht fest. Dadurch können bereits bestehende Elemente mit neuen Werten überschrieben werden. Das geschieht wie beim Auslesen der einzelnen Felder mit dem Index:</p>
+<p>Arrays (Listen) sind in Python nicht abschließend, das heißt, es können, wie schon oben gezeigt, mit <code>append()</code> weitere Elemente hinzugefügt werden. Außerdem sind die Elemente auch nicht fest. Dadurch können bereits bestehende Elemente mit neuen Werten überschrieben werden. Das geschieht wie beim Auslesen der einzelnen Felder mit dem Index:</p>
 <pre><code>training = [&quot;Montag&quot;, &quot; Donnerstag&quot;]
 print(training)
 
@@ -395,14 +395,16 @@ print(training)
 <img src="zubehoer/Pasted%20image%2020260915163031.png" alt="Pasted image 20260915163031.png" />
 
 <h3>Anzahl der Elemente eines Arrays</h3>
-<p>Bei der Programmierung ist es oft wichtig, die Anzahl der Arrayelemente (Feldelemente) zu kennen. In Python kann dies mit der Funktion len(array) ermittelt werden:</p>
+<p>Bei der Programmierung ist es oft wichtig, die Anzahl der Arrayelemente (Feldelemente) zu kennen. In Python kann dies mit der Funktion <code>len(array)</code> ermittelt werden:</p>
 <pre><code>training = [&quot;Montag&quot;, &quot;Mittwoch&quot;, &quot;Freitag&quot;]
 anzahl = len(training)
 print(&quot;Trainingstage:&quot;, anzahl)
 
 Trainingstage: 3
 </code></pre>
-<p>Hinweis: &gt; In der Programmierung wird statt der Formulierung „Anzahl der Elemente eines Arrays“ auch oft die Formulierung „Länge des Arrays“ verwendet.</p>
+<blockquote>
+<p>Hinweis: In der Programmierung wird statt der Formulierung „Anzahl der Elemente eines Arrays“ auch oft die Formulierung „Länge des Arrays“ verwendet.</p>
+</blockquote>
 <img src="zubehoer/Pasted%20image%2020260915163044.png" alt="Pasted image 20260915163044.png" />
 
 <h3>Zugriff auf die Elemente eines Arrays mit einer for-Schleife</h3>
