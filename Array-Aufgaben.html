@@ -281,23 +281,36 @@
             <h1>Übungsaufgaben zu Arrays in python</h1>
 <h1>Aufgabe 1</h1>
 <h2>Ausgabe von Arrays – Vereinsmeisterschaften</h2>
-<p>Der Mühlberger SC ist ein Sportverein mit mehreren Abteilungen. Im Jahr<br>2016 eröffnete der Mühlberger SC die Abteilung DART. Seit dem Jahr 2017<br>finden auch Vereinsmeisterschaften statt.</p>
-<p>Die Vereinsmeisterschaft in diesem Jahr war ein großer Erfolg. Die<br>Spieler lieferten sich einen spannenden Wettkampf vor vielen Zuschauern.<br>Der Mühlberger SC möchte die Ergebnisse des Wettkampfs veröffentlichen.<br>Nutzer sollen die Möglichkeit haben, sich an einem Computer eine<br>Platzierung ausgeben zu lassen. Möchte der Nutzer den Erstplatzierten<br>ausgegeben bekommen, muss er bspw. eine „1“ eingeben. Außerdem soll die<br>Teilnehmerzahl angezeigt werden. Die Teilnehmer an der Meisterschaft<br>sind in dem Array platzierungen in der Reihenfolge ihrer Platzierung<br>gespeichert:</p>
-<p>[“Matthias Schmitt”, “Felix Holzmann”, “Sabrina Eggers”, “Sebastian<br>Wolf”, “Niklas Eisenbaum”, “Florian Kuster”, “Jan Ackerman”, “Erika<br>Ebersbacher”]</p>
-<pre><code class="language-python">platzierungen = [&quot;Matthias Schmitt&quot;, &quot;Felix Holzmann&quot;, &quot;Sabrina Eggers&quot;, &quot;Sebastian Wolf&quot;, &quot;Niklas Eisenbaum&quot;, &quot;Florian Kuster&quot;, &quot;Jan Ackerman&quot;, &quot;Erika Ebersbacher&quot;]
-platz=int(input(&quot;Platzierung?: &quot;))
-print(&quot;Platzierung:&quot;, platzierungen[platz-1])
-print(&quot;Teilnehmerzahl:&quot;, len(platzierungen))
-</code></pre>
+<p>Der Mühlberger SC ist ein Sportverein mit mehreren Abteilungen. Im Jahr 2016 eröffnete der Mühlberger SC die Abteilung DART. Seit dem Jahr 2017 finden auch Vereinsmeisterschaften statt.</p>
+<p>Die Vereinsmeisterschaft in diesem Jahr war ein großer Erfolg. Die Spieler lieferten sich einen spannenden Wettkampf vor vielen Zuschauern.<br>Der Mühlberger SC möchte die Ergebnisse des Wettkampfs veröffentlichen. Nutzer sollen die Möglichkeit haben, sich an einem Computer eine Platzierung ausgeben zu lassen. Möchte der Nutzer den Erstplatzierten ausgegeben bekommen, muss er bspw. eine „1“ eingeben. Außerdem soll die Teilnehmerzahl angezeigt werden. Die Teilnehmer an der Meisterschaft sind in dem Array platzierungen in der Reihenfolge ihrer Platzierung<br>gespeichert:</p>
+<p>[“Matthias Schmitt”, “Felix Holzmann”, “Sabrina Eggers”, “Sebastian Wolf”, “Niklas Eisenbaum”, “Florian Kuster”, “Jan Ackerman”, “Erika Ebersbacher”]</p>
+<p><strong>Erwartete Ausgabe</strong></p>
 <pre><code>Platzierung?:  1
 Platzierung: Matthias Schmitt
 Teilnehmerzahl: 8
 </code></pre>
-<p><a href="Array-Aufgaben_files/figure-html/d84b5e0c-15f0-49ea-b46c-3460aa237d32-1-4fa2810a-0460-4e1b-beda-b3213590157d.png">Struktogramm</a></p>
-<h1>Aufgabe 2:</h1>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">platzierungen = [&quot;Matthias Schmitt&quot;, &quot;Felix Holzmann&quot;, &quot;Sabrina Eggers&quot;, &quot;Sebastian Wolf&quot;, &quot;Niklas Eisenbaum&quot;, &quot;Florian Kuster&quot;, &quot;Jan Ackerman&quot;, &quot;Erika Ebersbacher&quot;]
+platz=int(input(&quot;Platzierung?: &quot;))
+print(&quot;Platzierung:&quot;, platzierungen[platz-1])
+print(&quot;Teilnehmerzahl:&quot;, len(platzierungen))
+</code></pre>
+<img src="zubehoer/Pasted%20image%2020260920203416.png" alt="Pasted image 20260920203416.png" /></details><h1>Aufgabe 2:</h1>
 <h3>Implementierung von Arrays – Gewinnziehung</h3>
-<p>Der Mühlberger SC ist ein Sportverein mit mehreren Abteilungen. Im Jahr<br>2016 eröffnete der Mühlberger SC die Abteilung DART. Seit 2016<br>veranstaltet der Verein jährlich einen großen Darts-Event. Bei dem<br>Dart-Event gibt es eine große Gewinnlotterie mit großartigen<br>Sachpreisen. Dafür konnten sich Interessierte ein Los kaufen. Am Abend<br>des Dart-Events findet die Ziehung der Gewinnerlose statt. Der<br>Ziehungsleiter soll die Möglichkeit erhalten, die gezogenen Losnummern<br>in einem Array zu speichern. Nachdem die fünf Losnummern mit Gewinnen<br>gezogen worden sind, sollen sie ausgegeben werden.</p>
-<pre><code class="language-python"># Deklaration und Initialisierung des Arrays
+<p>Der Mühlberger SC ist ein Sportverein mit mehreren Abteilungen. Im Jahr 2016 eröffnete der Mühlberger SC die Abteilung DART. Seit 2016 veranstaltet der Verein jährlich einen großen Darts-Event. Bei dem Dart-Event gibt es eine große Gewinnlotterie mit großartigen<br>Sachpreisen. Dafür konnten sich Interessierte ein Los kaufen. Am Abend des Dart-Events findet die Ziehung der Gewinnerlose statt. Der Ziehungsleiter soll die Möglichkeit erhalten, die gezogenen Losnummern in einem Array zu speichern. Nachdem die fünf Losnummern mit Gewinnen gezogen worden sind, sollen sie ausgegeben werden.</p>
+<p><strong>Erwartete Ausgabe</strong></p>
+<pre><code>Gezogene Losnummer:  1254
+Gezogene Losnummer:  2365
+Gezogene Losnummer:  4587
+Gezogene Losnummer:  5698
+Gezogene Losnummer:  3146
+---Gewinnlose---
+1254
+2365
+4587
+5698
+3146
+</code></pre>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python"># Deklaration und Initialisierung des Arrays
 losnummern = []
 
 # Einlesen von 5 Gewinnerlosen
@@ -311,23 +324,21 @@ print(&quot;---Gewinnlose---&quot;)
 for i in range(5):
     print(losnummern[i])
 </code></pre>
-<pre><code>Gezogene Losnummer:  1254
-Gezogene Losnummer:  2365
-Gezogene Losnummer:  4587
-Gezogene Losnummer:  5698
-Gezogene Losnummer:  3146
----Gewinnlose---
-1254
-2365
-4587
-5698
-3146
+<img src="zubehoer/Pasted%20image%2020260920203922.png" alt="Pasted image 20260920203922.png" />
+# Aufgabe 3:</details><h1>Implementierung von Arrays – Trainingsanalyse</h1>
+<p>Im Training für die Vereinsmeisterschaften wirft jeder Dartspieler 6 Pfeile auf die Dartscheibe bevor der nächste Dartspieler an der Reihe ist. Sie sollen ein Programm schreiben, das aufgrund der 6 geworfenen Pfeile eine Analyse durchführt.<br>Es sollen folgende Angaben in der Konsole ausgegeben werden: Höchste Punktzahl, niedrigste Punktzahl und die durchschnittliche Punktzahl. Die Eingaben der Wurfergebnisse erfolgten ebenfalls über die Konsole (Bei einem Wurf sind maximal 60 Punkte erreichbar.)</p>
+<p><strong>Erwartete Ausgabe</strong></p>
+<pre><code>Wurf:  5
+Wurf:  40
+Wurf:  3
+Wurf:  60
+Wurf:  30
+Wurf:  20
+Bester Wurf: 60
+Schlechtester Wurf: 3
+Durchschnittliche Punktzahl: 26.333333333333332
 </code></pre>
-<p><a href="Array-Aufgaben_files/figure-html/156a1a61-6407-41fd-9109-8c75ba776514-1-187ffba3-305f-43ff-abe9-677e6d14b14b.png">Struktogramm</a></p>
-<h1>Aufgabe 3:</h1>
-<h1>Implementierung von Arrays – Trainingsanalyse</h1>
-<p>Im Training für die Vereinsmeisterschaften wirft jeder Dartspieler 6<br>Pfeile auf die Dartscheibe bevor der nächste Dartspieler an der Reihe<br>ist. Sie sollen ein Programm schreiben, das aufgrund der 6 geworfenen<br>Pfeile eine Analyse durchführt.<br>Es sollen folgende Angaben in der Konsole ausgegeben werden: Höchste<br>Punktzahl, niedrigste Punktzahl und die durchschnittliche Punktzahl. Die<br>Eingaben der Wurfergebnisse erfolgten ebenfalls über die Konsole (Bei<br>einem Wurf sind maximal 60 Punkte erreichbar.)</p>
-<pre><code class="language-python">#Deklaration und Initialisierung leeres Array
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">#Deklaration und Initialisierung leeres Array
 wuerfe = []
 
 # Einlesen der Würfe
@@ -361,18 +372,7 @@ print(&quot;Bester Wurf:&quot;, maxP)
 print(&quot;Schlechtester Wurf:&quot;, minP)
 print(&quot;Durchschnittliche Punktzahl:&quot;, mittelP)
 </code></pre>
-<pre><code>Wurf:  5
-Wurf:  40
-Wurf:  3
-Wurf:  60
-Wurf:  30
-Wurf:  20
-Bester Wurf: 60
-Schlechtester Wurf: 3
-Durchschnittliche Punktzahl: 26.333333333333332
-</code></pre>
-<p><a href="Array-Aufgaben_files/figure-html/e1f15f8b-c1a7-4a15-a428-e44cb9319f06-1-78615a06-b0ad-4257-aaa2-e7ac6f09fae3.png">Struktogramm</a></p>
-
+<img src="zubehoer/Pasted%20image%2020260920204106.png" alt="Pasted image 20260920204106.png" /></details>
         </div>
     </div>
 </body>
