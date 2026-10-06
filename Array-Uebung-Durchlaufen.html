@@ -287,7 +287,7 @@
 28
 </code></pre>
 <h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">punkte = [12, 45, 7, 33, 28]
-for ind in range(len(punkte)):
+for ind in range(0,len(punkte)):
     print(punkte[ind])
 </code></pre></details><h1>Aufgabe 2:</h1>
 <p>Gegeben ist das Array <code>namen = [&quot;Mia&quot;, &quot;Leo&quot;, &quot;Nora&quot;, &quot;Tim&quot;, &quot;Ella&quot;]</code>.<br>Durchlaufe das Array <strong>von hinten nach vorne</strong> und gib jedes Element aus.<br><strong>Erwartete Ausgabe</strong></p>
@@ -308,7 +308,7 @@ for ind in range(len(namen) - 1, -1, -1):
 2
 </code></pre>
 <h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">zahlen = [8, 3, 15, 2, 11, 6, 9]
-for ind in range(4):
+for ind in range(0,4):
     print(zahlen[ind])
 </code></pre></details><h1>Aufgabe 4:</h1>
 <p>Gegeben ist das Array <code>zahlen = [8, 3, 15, 2, 11, 6, 9]</code>.<br>Durchlaufe das Array <strong>ab Index 3 bis zum Ende</strong> und gib die Elemente aus.<br><strong>Erwartete Ausgabe</strong></p>
@@ -326,7 +326,7 @@ for ind in range(3, len(zahlen)):
 </code></pre>
 <h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">werte = [14, 9, 27, 5, 18]
 groesste = werte[0]
-for ind in range(len(werte)):
+for ind in range(0,len(werte)):
     if werte[ind] &gt; groesste:
         groesste = werte[ind]
 print(&quot;Größte Zahl:&quot;, groesste)
@@ -336,7 +336,7 @@ print(&quot;Größte Zahl:&quot;, groesste)
 </code></pre>
 <h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">werte = [14, 9, 27, 5, 18]
 min_index = 0
-for ind in range(len(werte)):
+for ind in range(0,len(werte)):
     if werte[ind] &lt; werte[min_index]:
         min_index = ind
 print(&quot;Index der kleinsten Zahl:&quot;, min_index)
@@ -367,7 +367,7 @@ print(werte)
 9 &gt; 2
 </code></pre>
 <h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">zahlen = [4, 1, 7, 3, 9, 2]
-for ind in range(len(zahlen) - 1):
+for ind in range(0,len(zahlen) - 1):
     if zahlen[ind] &gt; zahlen[ind + 1]:
         print(zahlen[ind], &quot;&gt;&quot;, zahlen[ind + 1])
 </code></pre></details><h1>Aufgabe 10:</h1>
@@ -375,7 +375,7 @@ for ind in range(len(zahlen) - 1):
 <pre><code>[1, 4, 3, 7, 2, 9]
 </code></pre>
 <h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">zahlen = [4, 1, 7, 3, 9, 2]
-for ind in range(len(zahlen) - 1):
+for ind in range(0,len(zahlen) - 1):
     if zahlen[ind] &gt; zahlen[ind + 1]:
         hilf = zahlen[ind]
         zahlen[ind] = zahlen[ind + 1]
