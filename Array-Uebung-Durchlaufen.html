@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Array-Aufgaben</title>
+    <title>Array-Uebung-Durchlaufen</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
     <style>
 @import url('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css');
@@ -278,101 +278,110 @@
 
     <div class="container">
         <div class="content">
-            <h1>Übungsaufgaben zu Arrays in python</h1>
-<h1>Aufgabe 1</h1>
-<h3>Ausgabe von Arrays – Vereinsmeisterschaften</h3>
-<p>Der Mühlberger SC ist ein Sportverein mit mehreren Abteilungen. Im Jahr 2016 eröffnete der Mühlberger SC die Abteilung DART. Seit dem Jahr 2017 finden auch Vereinsmeisterschaften statt.</p>
-<p>Die Vereinsmeisterschaft in diesem Jahr war ein großer Erfolg. Die Spieler lieferten sich einen spannenden Wettkampf vor vielen Zuschauern.<br>Der Mühlberger SC möchte die Ergebnisse des Wettkampfs veröffentlichen. Nutzer sollen die Möglichkeit haben, sich an einem Computer eine Platzierung ausgeben zu lassen. Möchte der Nutzer den Erstplatzierten ausgegeben bekommen, muss er bspw. eine „1“ eingeben. Außerdem soll die Teilnehmerzahl angezeigt werden. Die Teilnehmer an der Meisterschaft sind in dem Array platzierungen in der Reihenfolge ihrer Platzierung<br>gespeichert:</p>
-<p>[“Matthias Schmitt”, “Felix Holzmann”, “Sabrina Eggers”, “Sebastian Wolf”, “Niklas Eisenbaum”, “Florian Kuster”, “Jan Ackerman”, “Erika Ebersbacher”]</p>
-<p><strong>Erwartete Ausgabe</strong></p>
-<pre><code>Platzierung?:  1
-Platzierung: Matthias Schmitt
-Teilnehmerzahl: 8
+            <h1>Aufgabe 1:</h1>
+<p>Gegeben ist das Array <code>punkte = [12, 45, 7, 33, 28]</code>.<br>Durchlaufe das Array <strong>von vorne nach hinten</strong> und gib jedes Element aus.<br><strong>Erwartete Ausgabe</strong></p>
+<pre><code>12
+45
+7
+33
+28
 </code></pre>
-<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">platzierungen = [&quot;Matthias Schmitt&quot;, &quot;Felix Holzmann&quot;, &quot;Sabrina Eggers&quot;, &quot;Sebastian Wolf&quot;, &quot;Niklas Eisenbaum&quot;, &quot;Florian Kuster&quot;, &quot;Jan Ackerman&quot;, &quot;Erika Ebersbacher&quot;]
-platz=int(input(&quot;Platzierung?: &quot;))
-print(&quot;Platzierung:&quot;, platzierungen[platz-1])
-print(&quot;Teilnehmerzahl:&quot;, len(platzierungen))
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">punkte = [12, 45, 7, 33, 28]
+for ind in range(len(punkte)):
+    print(punkte[ind])
+</code></pre></details><h1>Aufgabe 2:</h1>
+<p>Gegeben ist das Array <code>namen = [&quot;Mia&quot;, &quot;Leo&quot;, &quot;Nora&quot;, &quot;Tim&quot;, &quot;Ella&quot;]</code>.<br>Durchlaufe das Array <strong>von hinten nach vorne</strong> und gib jedes Element aus.<br><strong>Erwartete Ausgabe</strong></p>
+<pre><code>Ella
+Tim
+Nora
+Leo
+Mia
 </code></pre>
-<img src="zubehoer/Pasted%20image%2020260920203416.png" alt="Pasted image 20260920203416.png" /></details><h1>Aufgabe 2:</h1>
-<h3>Implementierung von Arrays – Gewinnziehung</h3>
-<p>Der Mühlberger SC ist ein Sportverein mit mehreren Abteilungen. Im Jahr 2016 eröffnete der Mühlberger SC die Abteilung DART. Seit 2016 veranstaltet der Verein jährlich einen großen Darts-Event. Bei dem Dart-Event gibt es eine große Gewinnlotterie mit großartigen<br>Sachpreisen. Dafür konnten sich Interessierte ein Los kaufen. Am Abend des Dart-Events findet die Ziehung der Gewinnerlose statt. Der Ziehungsleiter soll die Möglichkeit erhalten, die gezogenen Losnummern in einem Array zu speichern. Nachdem die fünf Losnummern mit Gewinnen gezogen worden sind, sollen sie ausgegeben werden.</p>
-<p><strong>Erwartete Ausgabe</strong></p>
-<pre><code>Gezogene Losnummer:  1254
-Gezogene Losnummer:  2365
-Gezogene Losnummer:  4587
-Gezogene Losnummer:  5698
-Gezogene Losnummer:  3146
----Gewinnlose---
-1254
-2365
-4587
-5698
-3146
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">namen = [&quot;Mia&quot;, &quot;Leo&quot;, &quot;Nora&quot;, &quot;Tim&quot;, &quot;Ella&quot;]
+for ind in range(len(namen) - 1, -1, -1):
+    print(namen[ind])
+</code></pre></details><h1>Aufgabe 3:</h1>
+<p>Gegeben ist das Array <code>zahlen = [8, 3, 15, 2, 11, 6, 9]</code>.<br>Durchlaufe <strong>nur die ersten vier</strong> Elemente und gib sie aus.<br><strong>Erwartete Ausgabe</strong></p>
+<pre><code>8
+3
+15
+2
 </code></pre>
-<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python"># Deklaration und Initialisierung des Arrays
-losnummern = []
-
-# Einlesen von 5 Gewinnerlosen
-for i in range(5):
-    nr = input(&quot;Gezogene Losnummer: &quot;)
-    losnummern.append(nr)
-
-# Ausgabe des Arrays
-print(&quot;---Gewinnlose---&quot;)
-
-for i in range(5):
-    print(losnummern[i])
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">zahlen = [8, 3, 15, 2, 11, 6, 9]
+for ind in range(4):
+    print(zahlen[ind])
+</code></pre></details><h1>Aufgabe 4:</h1>
+<p>Gegeben ist das Array <code>zahlen = [8, 3, 15, 2, 11, 6, 9]</code>.<br>Durchlaufe das Array <strong>ab Index 3 bis zum Ende</strong> und gib die Elemente aus.<br><strong>Erwartete Ausgabe</strong></p>
+<pre><code>2
+11
+6
+9
 </code></pre>
-<img src="zubehoer/Pasted%20image%2020260920203922.png" alt="Pasted image 20260920203922.png" /></details><h1>Aufgabe 3:</h1>
-<h3>Implementierung von Arrays – Trainingsanalyse</h3>
-<p>Im Training für die Vereinsmeisterschaften wirft jeder Dartspieler 6 Pfeile auf die Dartscheibe bevor der nächste Dartspieler an der Reihe ist. Sie sollen ein Programm schreiben, das aufgrund der 6 geworfenen Pfeile eine Analyse durchführt.<br>Es sollen folgende Angaben in der Konsole ausgegeben werden: Höchste Punktzahl, niedrigste Punktzahl und die durchschnittliche Punktzahl. Die Eingaben der Wurfergebnisse erfolgten ebenfalls über die Konsole (Bei einem Wurf sind maximal 60 Punkte erreichbar.)</p>
-<p><strong>Erwartete Ausgabe</strong></p>
-<pre><code>Wurf:  5
-Wurf:  40
-Wurf:  3
-Wurf:  60
-Wurf:  30
-Wurf:  20
-Bester Wurf: 60
-Schlechtester Wurf: 3
-Durchschnittliche Punktzahl: 26.333333333333332
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">zahlen = [8, 3, 15, 2, 11, 6, 9]
+for ind in range(3, len(zahlen)):
+    print(zahlen[ind])
+</code></pre></details><h1>Aufgabe 5:</h1>
+<p>Gegeben ist das Array <code>werte = [14, 9, 27, 5, 18]</code>.<br>Finde die <strong>größte</strong> Zahl im Array, indem du das Array einmal von vorne nach hinten durchläufst.<br><strong>Erwartete Ausgabe</strong></p>
+<pre><code>Größte Zahl: 27
 </code></pre>
-<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">#Deklaration und Initialisierung leeres Array
-wuerfe = []
-
-# Einlesen der Würfe
-for i in range(6):
-    wurf = int(input(&quot;Wurf: &quot;))
-    wuerfe.append(wurf)
-
-#Deklaration und Initialisierung der Variablen
-maxP = wuerfe[0]
-minP = wuerfe[0]
-mittelP = 0
-
-# Bester Wurf
-for i in range(len(wuerfe)):
-    if wuerfe[i] &gt; maxP:
-        maxP = wuerfe[i]
-
-# Schlechtester Wurf
-for i in range(len(wuerfe)):
-    if wuerfe[i] &lt; minP:
-        minP = wuerfe[i]
-        
-# Durchschnittliche Punktzahl pro Wurf
-for i in range(len(wuerfe)):
-    mittelP = mittelP + wuerfe[i]
-
-mittelP = mittelP / len(wuerfe)
-
-#Ausgabe
-print(&quot;Bester Wurf:&quot;, maxP)
-print(&quot;Schlechtester Wurf:&quot;, minP)
-print(&quot;Durchschnittliche Punktzahl:&quot;, mittelP)
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">werte = [14, 9, 27, 5, 18]
+groesste = werte[0]
+for ind in range(len(werte)):
+    if werte[ind] &gt; groesste:
+        groesste = werte[ind]
+print(&quot;Größte Zahl:&quot;, groesste)
+</code></pre></details><h1>Aufgabe 6:</h1>
+<p>Gegeben ist das Array <code>werte = [14, 9, 27, 5, 18]</code>.<br>Finde den <strong>Index der kleinsten</strong> Zahl im gesamten Array.<br><strong>Erwartete Ausgabe</strong></p>
+<pre><code>Index der kleinsten Zahl: 3
 </code></pre>
-<img src="zubehoer/Pasted%20image%2020260920204106.png" alt="Pasted image 20260920204106.png" /></details>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">werte = [14, 9, 27, 5, 18]
+min_index = 0
+for ind in range(len(werte)):
+    if werte[ind] &lt; werte[min_index]:
+        min_index = ind
+print(&quot;Index der kleinsten Zahl:&quot;, min_index)
+</code></pre></details><h1>Aufgabe 7:</h1>
+<p>Gegeben ist das Array <code>werte = [14, 9, 27, 5, 18]</code>.<br>Finde den Index der kleinsten Zahl <strong>nur im Teilbereich ab Index 2</strong> (also in <code>[27, 5, 18]</code>).<br><strong>Erwartete Ausgabe</strong></p>
+<pre><code>Index der kleinsten Zahl ab Index 2: 3
+</code></pre>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">werte = [14, 9, 27, 5, 18]
+start = 2
+min_index = start
+for ind in range(start, len(werte)):
+    if werte[ind] &lt; werte[min_index]:
+        min_index = ind
+print(&quot;Index der kleinsten Zahl ab Index 2:&quot;, min_index)
+</code></pre></details><h1>Aufgabe 8:</h1>
+<p>Gegeben ist das Array <code>werte = [14, 9, 27, 5, 18]</code>.<br>Tausche die Elemente an den Indizes <code>0</code> und <code>3</code> und gib das Array danach aus.<br><strong>Erwartete Ausgabe</strong></p>
+<pre><code>[5, 9, 27, 14, 18]
+</code></pre>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">werte = [14, 9, 27, 5, 18]
+hilf = werte[0]
+werte[0] = werte[3]
+werte[3] = hilf
+print(werte)
+</code></pre></details><h1>Aufgabe 9:</h1>
+<p>Gegeben ist das Array <code>zahlen = [4, 1, 7, 3, 9, 2]</code>.<br>Vergleiche jeweils <strong>zwei benachbarte</strong> Elemente. Wenn das linke Element größer ist als das rechte, gib das Paar aus.<br><strong>Erwartete Ausgabe</strong></p>
+<pre><code>4 &gt; 1
+7 &gt; 3
+9 &gt; 2
+</code></pre>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">zahlen = [4, 1, 7, 3, 9, 2]
+for ind in range(len(zahlen) - 1):
+    if zahlen[ind] &gt; zahlen[ind + 1]:
+        print(zahlen[ind], &quot;&gt;&quot;, zahlen[ind + 1])
+</code></pre></details><h1>Aufgabe 10:</h1>
+<p>Gegeben ist das Array <code>zahlen = [4, 1, 7, 3, 9, 2]</code>.<br>Gehe einmal von vorne nach hinten durch das Array. Tausche jeweils zwei benachbarte Elemente, wenn das linke größer ist als das rechte. Gib das Array danach aus.<br><strong>Erwartete Ausgabe</strong></p>
+<pre><code>[1, 4, 3, 7, 2, 9]
+</code></pre>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">zahlen = [4, 1, 7, 3, 9, 2]
+for ind in range(len(zahlen) - 1):
+    if zahlen[ind] &gt; zahlen[ind + 1]:
+        hilf = zahlen[ind]
+        zahlen[ind] = zahlen[ind + 1]
+        zahlen[ind + 1] = hilf
+print(zahlen)
+</code></pre></details>
         </div>
     </div>
 </body>
