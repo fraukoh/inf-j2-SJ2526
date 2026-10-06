@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wiederholung-Array-2</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <style>
+@import url('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css');
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+    body {
+      font-family: 'Courier New', 'Consolas', 'Monaco', monospace;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #000;
+      background: #fff;
+      padding: 0;
+    }
+    
+    /* Navigation */
+    .navbar {
+      background: #f8f8f8;
+      border-bottom: 1px solid #ddd;
+      padding: 8px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    
+    .navbar-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+    }
+    
+    .home-link {
+      font-size: 16px;
+      color: #333;
+      text-decoration: none;
+      margin-right: 20px;
+      padding: 4px 8px;
+      border-radius: 3px;
+      transition: all 0.2s;
+    }
+    
+    .home-link:hover {
+      background: #e0e0e0;
+      color: #000;
+    }
+    
+    .navbar-links {
+      font-size: 13px;
+    }
+    
+    .navbar-links a {
+      color: #666;
+      text-decoration: none;
+      margin: 0 8px;
+      padding: 2px 6px;
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+    
+    .navbar-links a:hover {
+      background: #e0e0e0;
+      color: #000;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 30px;
+      border: 1px solid #000;
+      margin-top: 0;
+    }
+    h1 { 
+      color: #000; 
+      margin-bottom: 15px; 
+      font-size: 1.8em; 
+      font-weight: bold;
+      border-bottom: 2px solid #000;
+      padding-bottom: 5px;
+    }
+    h2 { 
+      color: #000; 
+      margin-top: 20px; 
+      margin-bottom: 10px; 
+      font-size: 1.4em;
+      font-weight: bold;
+    }
+    h3 { 
+      color: #000; 
+      margin-top: 15px; 
+      margin-bottom: 8px; 
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+    p { 
+      margin-bottom: 10px; 
+    }
+    pre {
+      background: #1e1e1e;
+      border: 1px solid #000;
+      padding: 12px;
+      overflow-x: auto;
+      margin: 15px 0;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+    }
+    pre code {
+      color: #d4d4d4;
+    }
+    code {
+      background: #f5f5f5;
+      border: 1px solid #ccc;
+      padding: 2px 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+    }
+    pre code {
+      background: none;
+      border: none;
+      padding: 0;
+    }
+    ul, ol { 
+      margin-left: 25px; 
+      margin-bottom: 10px; 
+    }
+    li { 
+      margin-bottom: 3px; 
+    }
+    .metadata {
+      border: 1px solid #000;
+      padding: 10px;
+      margin-bottom: 15px;
+      background: #f9f9f9;
+      font-size: 12px;
+    }
+    .tags {
+      margin-top: 8px;
+    }
+    .tag {
+      display: inline-block;
+      background: #000;
+      color: #fff;
+      padding: 2px 8px;
+      font-size: 11px;
+      margin-right: 5px;
+      margin-top: 5px;
+      border: 1px solid #000;
+    }
+    a {
+      color: #000;
+      text-decoration: underline;
+    }
+    a:hover {
+      background: #000;
+      color: #fff;
+    }
+    ul li a, ol li a {
+      display: inline;
+    }
+    p a {
+      display: inline;
+      padding: 2px 4px;
+    }
+    p a:hover {
+      background: #000;
+      color: #fff;
+    }
+    
+    img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #000;
+      margin: 10px 0;
+      display: block;
+    }
+    blockquote {
+      border-left: 2px solid #000;
+      padding-left: 15px;
+      margin: 15px 0;
+      color: #333;
+      font-style: italic;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+      border: 1px solid #000;
+    }
+    th, td {
+      border: 1px solid #000;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background: #000;
+      color: #fff;
+      font-weight: bold;
+    }
+    tr:nth-child(even) {
+      background: #f9f9f9;
+    }
+    .content {
+      line-height: 1.6;
+    }
+    
+    /* Aufklappbare Lösungen */
+    .solution-details {
+      margin: 15px 0;
+      border: 1px solid #000;
+    }
+    
+    .solution-toggle {
+      cursor: pointer;
+      padding: 10px;
+      background: #f5f5f5;
+      border-bottom: 1px solid #000;
+      font-weight: bold;
+      user-select: none;
+    }
+    
+    .solution-toggle:hover {
+      background: #e0e0e0;
+    }
+    
+    .solution-details[open] .solution-toggle {
+      background: #000;
+      color: #fff;
+    }
+    
+    .solution-details > *:not(summary) {
+      padding: 15px;
+    }
+    
+    /* Bilder in Lösungen ohne Rahmen */
+    .solution-details img {
+      border: none !important;
+      box-shadow: none !important;
+    }
+    
+    /* Paragraphen in Lösungen - genau wie sonst auch */
+    .solution-details p {
+      display: block;
+      margin: 10px 0;
+    }
+    
+    /* Lösung-Content soll Whitespace erhalten */
+    .solution-details {
+      white-space: pre-line;
+    }
+  </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        hljs.highlightAll();
+      });
+    </script>
+</head>
+<body>
+    
+<div class="navbar">
+    <div class="navbar-content">
+        <a href="index.html" class="home-link" title="Zur Hauptseite">⌂</a>
+        <div class="navbar-links">
+            <a href="Inf_J2_SJ_2025_26.html">Inf_J2_SJ_2025_26</a>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        <div class="content">
+            <h1>Aufgabe 1:</h1>
+<p>Gegeben ist das Array <code>punkte = [12, 45, 7, 33, 28]</code>.<br>Durchlaufe das Array <strong>von vorne nach hinten</strong> und gib jedes Element aus.<br><strong>Erwartete Ausgabe</strong></p>
+<pre><code>12
+45
+7
+33
+28
+</code></pre>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">punkte = [12, 45, 7, 33, 28]
+for ind in range(len(punkte)):
+    print(punkte[ind])
+</code></pre></details><h1>Aufgabe 2:</h1>
+<p>Gegeben ist das Array <code>namen = [&quot;Mia&quot;, &quot;Leo&quot;, &quot;Nora&quot;, &quot;Tim&quot;, &quot;Ella&quot;]</code>.<br>Durchlaufe das Array <strong>von hinten nach vorne</strong> und gib jedes Element aus.<br><strong>Erwartete Ausgabe</strong></p>
+<pre><code>Ella
+Tim
+Nora
+Leo
+Mia
+</code></pre>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">namen = [&quot;Mia&quot;, &quot;Leo&quot;, &quot;Nora&quot;, &quot;Tim&quot;, &quot;Ella&quot;]
+for ind in range(len(namen) - 1, -1, -1):
+    print(namen[ind])
+</code></pre></details><h1>Aufgabe 3:</h1>
+<p>Gegeben ist das Array <code>zahlen = [8, 3, 15, 2, 11, 6, 9]</code>.<br>Durchlaufe <strong>nur die ersten vier</strong> Elemente und gib sie aus.<br><strong>Erwartete Ausgabe</strong></p>
+<pre><code>8
+3
+15
+2
+</code></pre>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">zahlen = [8, 3, 15, 2, 11, 6, 9]
+for ind in range(4):
+    print(zahlen[ind])
+</code></pre></details><h1>Aufgabe 4:</h1>
+<p>Gegeben ist das Array <code>zahlen = [8, 3, 15, 2, 11, 6, 9]</code>.<br>Durchlaufe das Array <strong>ab Index 3 bis zum Ende</strong> und gib die Elemente aus.<br><strong>Erwartete Ausgabe</strong></p>
+<pre><code>2
+11
+6
+9
+</code></pre>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">zahlen = [8, 3, 15, 2, 11, 6, 9]
+for ind in range(3, len(zahlen)):
+    print(zahlen[ind])
+</code></pre></details><h1>Aufgabe 5:</h1>
+<p>Gegeben ist das Array <code>werte = [14, 9, 27, 5, 18]</code>.<br>Finde die <strong>größte</strong> Zahl im Array, indem du das Array einmal von vorne nach hinten durchläufst.<br><strong>Erwartete Ausgabe</strong></p>
+<pre><code>Größte Zahl: 27
+</code></pre>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">werte = [14, 9, 27, 5, 18]
+groesste = werte[0]
+for ind in range(len(werte)):
+    if werte[ind] &gt; groesste:
+        groesste = werte[ind]
+print(&quot;Größte Zahl:&quot;, groesste)
+</code></pre></details><h1>Aufgabe 6:</h1>
+<p>Gegeben ist das Array <code>werte = [14, 9, 27, 5, 18]</code>.<br>Finde den <strong>Index der kleinsten</strong> Zahl im gesamten Array.<br><strong>Erwartete Ausgabe</strong></p>
+<pre><code>Index der kleinsten Zahl: 3
+</code></pre>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">werte = [14, 9, 27, 5, 18]
+min_index = 0
+for ind in range(len(werte)):
+    if werte[ind] &lt; werte[min_index]:
+        min_index = ind
+print(&quot;Index der kleinsten Zahl:&quot;, min_index)
+</code></pre></details><h1>Aufgabe 7:</h1>
+<p>Gegeben ist das Array <code>werte = [14, 9, 27, 5, 18]</code>.<br>Finde den Index der kleinsten Zahl <strong>nur im Teilbereich ab Index 2</strong> (also in <code>[27, 5, 18]</code>).<br><strong>Erwartete Ausgabe</strong></p>
+<pre><code>Index der kleinsten Zahl ab Index 2: 3
+</code></pre>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">werte = [14, 9, 27, 5, 18]
+start = 2
+min_index = start
+for ind in range(start, len(werte)):
+    if werte[ind] &lt; werte[min_index]:
+        min_index = ind
+print(&quot;Index der kleinsten Zahl ab Index 2:&quot;, min_index)
+</code></pre></details><h1>Aufgabe 8:</h1>
+<p>Gegeben ist das Array <code>werte = [14, 9, 27, 5, 18]</code>.<br>Tausche die Elemente an den Indizes <code>0</code> und <code>3</code> und gib das Array danach aus.<br><strong>Erwartete Ausgabe</strong></p>
+<pre><code>[5, 9, 27, 14, 18]
+</code></pre>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">werte = [14, 9, 27, 5, 18]
+hilf = werte[0]
+werte[0] = werte[3]
+werte[3] = hilf
+print(werte)
+</code></pre></details><h1>Aufgabe 9:</h1>
+<p>Gegeben ist das Array <code>zahlen = [4, 1, 7, 3, 9, 2]</code>.<br>Vergleiche jeweils <strong>zwei benachbarte</strong> Elemente. Wenn das linke Element größer ist als das rechte, gib das Paar aus.<br><strong>Erwartete Ausgabe</strong></p>
+<pre><code>4 &gt; 1
+7 &gt; 3
+9 &gt; 2
+</code></pre>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">zahlen = [4, 1, 7, 3, 9, 2]
+for ind in range(len(zahlen) - 1):
+    if zahlen[ind] &gt; zahlen[ind + 1]:
+        print(zahlen[ind], &quot;&gt;&quot;, zahlen[ind + 1])
+</code></pre></details><h1>Aufgabe 10:</h1>
+<p>Gegeben ist das Array <code>zahlen = [4, 1, 7, 3, 9, 2]</code>.<br>Gehe einmal von vorne nach hinten durch das Array. Tausche jeweils zwei benachbarte Elemente, wenn das linke größer ist als das rechte. Gib das Array danach aus.<br><strong>Erwartete Ausgabe</strong></p>
+<pre><code>[1, 4, 3, 7, 2, 9]
+</code></pre>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">zahlen = [4, 1, 7, 3, 9, 2]
+for ind in range(len(zahlen) - 1):
+    if zahlen[ind] &gt; zahlen[ind + 1]:
+        hilf = zahlen[ind]
+        zahlen[ind] = zahlen[ind + 1]
+        zahlen[ind + 1] = hilf
+print(zahlen)
+</code></pre></details>
+        </div>
+    </div>
+</body>
+</html>
