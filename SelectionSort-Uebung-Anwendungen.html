@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SelectionSort-Uebung-Anwendungen</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <style>
+@import url('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css');
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+    body {
+      font-family: 'Courier New', 'Consolas', 'Monaco', monospace;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #000;
+      background: #fff;
+      padding: 0;
+    }
+    
+    /* Navigation */
+    .navbar {
+      background: #f8f8f8;
+      border-bottom: 1px solid #ddd;
+      padding: 8px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    
+    .navbar-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+    }
+    
+    .home-link {
+      font-size: 16px;
+      color: #333;
+      text-decoration: none;
+      margin-right: 20px;
+      padding: 4px 8px;
+      border-radius: 3px;
+      transition: all 0.2s;
+    }
+    
+    .home-link:hover {
+      background: #e0e0e0;
+      color: #000;
+    }
+    
+    .navbar-links {
+      font-size: 13px;
+    }
+    
+    .navbar-links a {
+      color: #666;
+      text-decoration: none;
+      margin: 0 8px;
+      padding: 2px 6px;
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+    
+    .navbar-links a:hover {
+      background: #e0e0e0;
+      color: #000;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 30px;
+      border: 1px solid #000;
+      margin-top: 0;
+    }
+    h1 { 
+      color: #000; 
+      margin-bottom: 15px; 
+      font-size: 1.8em; 
+      font-weight: bold;
+      border-bottom: 2px solid #000;
+      padding-bottom: 5px;
+    }
+    h2 { 
+      color: #000; 
+      margin-top: 20px; 
+      margin-bottom: 10px; 
+      font-size: 1.4em;
+      font-weight: bold;
+    }
+    h3 { 
+      color: #000; 
+      margin-top: 15px; 
+      margin-bottom: 8px; 
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+    p { 
+      margin-bottom: 10px; 
+    }
+    pre {
+      background: #1e1e1e;
+      border: 1px solid #000;
+      padding: 12px;
+      overflow-x: auto;
+      margin: 15px 0;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+    }
+    pre code {
+      color: #d4d4d4;
+    }
+    code {
+      background: #f5f5f5;
+      border: 1px solid #ccc;
+      padding: 2px 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+    }
+    pre code {
+      background: none;
+      border: none;
+      padding: 0;
+    }
+    ul, ol { 
+      margin-left: 25px; 
+      margin-bottom: 10px; 
+    }
+    li { 
+      margin-bottom: 3px; 
+    }
+    .metadata {
+      border: 1px solid #000;
+      padding: 10px;
+      margin-bottom: 15px;
+      background: #f9f9f9;
+      font-size: 12px;
+    }
+    .tags {
+      margin-top: 8px;
+    }
+    .tag {
+      display: inline-block;
+      background: #000;
+      color: #fff;
+      padding: 2px 8px;
+      font-size: 11px;
+      margin-right: 5px;
+      margin-top: 5px;
+      border: 1px solid #000;
+    }
+    a {
+      color: #000;
+      text-decoration: underline;
+    }
+    a:hover {
+      background: #000;
+      color: #fff;
+    }
+    ul li a, ol li a {
+      display: inline;
+    }
+    p a {
+      display: inline;
+      padding: 2px 4px;
+    }
+    p a:hover {
+      background: #000;
+      color: #fff;
+    }
+    
+    img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #000;
+      margin: 10px 0;
+      display: block;
+    }
+    blockquote {
+      border-left: 2px solid #000;
+      padding-left: 15px;
+      margin: 15px 0;
+      color: #333;
+      font-style: italic;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+      border: 1px solid #000;
+    }
+    th, td {
+      border: 1px solid #000;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background: #000;
+      color: #fff;
+      font-weight: bold;
+    }
+    tr:nth-child(even) {
+      background: #f9f9f9;
+    }
+    .content {
+      line-height: 1.6;
+    }
+    
+    /* Aufklappbare Lösungen */
+    .solution-details {
+      margin: 15px 0;
+      border: 1px solid #000;
+    }
+    
+    .solution-toggle {
+      cursor: pointer;
+      padding: 10px;
+      background: #f5f5f5;
+      border-bottom: 1px solid #000;
+      font-weight: bold;
+      user-select: none;
+    }
+    
+    .solution-toggle:hover {
+      background: #e0e0e0;
+    }
+    
+    .solution-details[open] .solution-toggle {
+      background: #000;
+      color: #fff;
+    }
+    
+    .solution-details > *:not(summary) {
+      padding: 15px;
+    }
+    
+    /* Bilder in Lösungen ohne Rahmen */
+    .solution-details img {
+      border: none !important;
+      box-shadow: none !important;
+    }
+    
+    /* Paragraphen in Lösungen - genau wie sonst auch */
+    .solution-details p {
+      display: block;
+      margin: 10px 0;
+    }
+    
+    /* Lösung-Content soll Whitespace erhalten */
+    .solution-details {
+      white-space: pre-line;
+    }
+  </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        hljs.highlightAll();
+      });
+    </script>
+</head>
+<body>
+    
+<div class="navbar">
+    <div class="navbar-content">
+        <a href="index.html" class="home-link" title="Zur Hauptseite">⌂</a>
+        <div class="navbar-links">
+            <a href="Inf_J2_SJ_2025_26.html">Inf_J2_SJ_2025_26</a>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        <div class="content">
+            <h1>Übungsaufgaben zu Selection Sort</h1>
+<h1>Aufgabe 1:</h1>
+<h3>Selection Sort – Lottozahlen</h3>
+<p>Die Zahlen der aktuellen Lottoziehung liegen in der Reihenfolge der Ziehung in einem Array <code>lotto</code> vor <code>[48, 5, 17, 32, 7, 29]</code> und sollen noch sortiert werden. Sie erhalten den Auftrag, ein entsprechendes Programm zu entwickeln, das die Lottozahlen mit Hilfe des Sortieralgorithmus <strong>Selection Sort</strong> sortiert und die sortierten Zahlen in der Konsole ausgibt.</p>
+<p>Zeichnen Sie außerdem ein Struktogramm zu dem Programm.</p>
+<p><strong>Erwartete Ausgabe</strong></p>
+<pre><code>[5, 7, 17, 29, 32, 48]
+</code></pre>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">lotto = [48, 5, 17, 32, 7, 29]
+laenge = len(lotto)
+
+for akt_idx in range(laenge - 1):
+    min_idx = akt_idx
+    for j in range(akt_idx + 1, laenge):
+        # Suche nach der niedrigsten Zahl
+        if lotto[j] &lt; lotto[min_idx]:
+            min_idx = j
+    # Tausch
+    zwischenspeicher = lotto[akt_idx]
+    lotto[akt_idx] = lotto[min_idx]
+    lotto[min_idx] = zwischenspeicher
+
+# Ausgabe
+print(lotto)
+</code></pre></details><h1>Aufgabe 2:</h1>
+<h3>Sortieren von Büchern</h3>
+<p>In einer Bibliothek sind die Bücher einer Kategorie durcheinandergeraten. Die Bücher sind durch ihre ISBN-Nummern repräsentiert und in einem Array <code>buecher</code> gespeichert, z. B. <code>[9783866801929, 9783957311320, 9783442267743, 9783423214599, 9783442314928]</code>.</p>
+<p>Schreiben Sie ein Programm, das die ISBN-Nummern mit dem Selectionsort-Algorithmus <strong>aufsteigend</strong> sortiert und die sortierten ISBN-Nummern in der Konsole ausgibt.</p>
+<p><strong>Erwartete Ausgabe</strong></p>
+<pre><code>[9783423214599, 9783442267743, 9783442314928, 9783866801929, 9783957311320]
+</code></pre>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">isbn = [9783866801929, 9783957311320, 9783442267743, 9783423214599, 9783442314928]
+laenge = len(isbn)
+
+for akt_idx in range(laenge - 1):
+    min_idx = akt_idx
+    for j in range(akt_idx + 1, laenge):
+        # Suche nach der niedrigsten Zahl
+        if isbn[j] &lt; isbn[min_idx]:
+            min_idx = j
+    # Tausch
+    zwischenspeicher = isbn[akt_idx]
+    isbn[akt_idx] = isbn[min_idx]
+    isbn[min_idx] = zwischenspeicher
+
+# Ausgabe
+print(isbn)
+</code></pre></details><h1>Aufgabe 3:</h1>
+<h3>Sortieren von Messwerten</h3>
+<p>In einem wissenschaftlichen Experiment wurden Messwerte erfasst und in einem Array <code>messwerte</code> gespeichert, z. B. <code>[12.5, 7.8, 3.14, 9.7, 6.2]</code>. Die Messwerte sollen nun für die weitere Analyse aufsteigend sortiert werden.</p>
+<p>Entwickeln Sie ein Programm, welches die Messwerte mittels Selectionsort sortiert und <strong>sowohl die unsortierten als auch die sortierten Werte</strong> in der Konsole ausgibt.</p>
+<p><strong>Erwartete Ausgabe</strong></p>
+<pre><code>Unsortiert: [12.5, 7.8, 3.14, 9.7, 6.2]
+Sortiert: [3.14, 6.2, 7.8, 9.7, 12.5]
+</code></pre>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">messwerte = [12.5, 7.8, 3.14, 9.7, 6.2]
+laenge = len(messwerte)
+
+print(&quot;Unsortiert:&quot;, messwerte)
+
+for akt_idx in range(laenge - 1):
+    min_idx = akt_idx
+    for j in range(akt_idx + 1, laenge):
+        # Suche nach der niedrigsten Zahl
+        if messwerte[j] &lt; messwerte[min_idx]:
+            min_idx = j
+    # Tausch
+    zwischenspeicher = messwerte[akt_idx]
+    messwerte[akt_idx] = messwerte[min_idx]
+    messwerte[min_idx] = zwischenspeicher
+
+# Ausgabe
+print(&quot;Sortiert:&quot;, messwerte)
+</code></pre></details>
+        </div>
+    </div>
+</body>
+</html>
