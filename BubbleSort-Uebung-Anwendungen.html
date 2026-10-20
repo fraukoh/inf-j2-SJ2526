@@ -345,7 +345,116 @@ for i in range(1, laenge):
 # Ausgabe
 print(&quot;Sortiert:&quot;, messwerte)
 </code></pre>
-<img src="zubehoer/Pasted%20image%2020261012171848.png" alt="Pasted image 20261012171848.png" /></details>
+<img src="zubehoer/Pasted%20image%2020261012171848.png" alt="Pasted image 20261012171848.png" /></details><h1>Aufgabe 4:</h1>
+<h3>Zwischenstand untersuchen</h3>
+<p>Um Bubble Sort besser zu verstehen, sollt ihr den Algorithmus <strong>nicht bis zum Ende</strong> laufen lassen, sondern nach einer festgelegten Anzahl äußerer Durchläufe anhalten und den Zwischenstand betrachten.</p>
+<p>Gegeben ist das Array <code>zahlen = [9, 3, 7, 1, 5, 2]</code>. Schreibt ein Programm, das <strong>genau drei äußere Durchläufe</strong> von Bubble Sort ausführt und danach den aktuellen Zustand des Arrays ausgibt.</p>
+<p><strong>Tipp:</strong> Die äußere Schleife läuft sonst bis <code>laenge - 1</code>. Begrenzt sie so, dass nur drei Durchläufe stattfinden.</p>
+<p><strong>Erwartete Ausgabe</strong></p>
+<pre><code>Nach 3 Durchläufen: [1, 3, 2, 5, 7, 9]
+</code></pre>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">zahlen = [9, 3, 7, 1, 5, 2]
+laenge = len(zahlen)
+durchlaeufe = 3
+
+for i in range(1, durchlaeufe + 1):
+    for j in range(0, laenge - i):
+        if zahlen[j] &gt; zahlen[j + 1]:
+            zwischenspeicher = zahlen[j]
+            zahlen[j] = zahlen[j + 1]
+            zahlen[j + 1] = zwischenspeicher
+
+print(&quot;Nach 3 Durchläufen:&quot;, zahlen)
+</code></pre></details><h1>Aufgabe 5:</h1>
+<h3>Aufwand messen – Täusche zählen</h3>
+<p>Bei Sortieralgorithmen ist nicht nur das Ergebnis interessant, sondern auch der <strong>Aufwand</strong>. Ein einfaches Maß dafür ist die Anzahl der Täusche.</p>
+<p>Gegeben ist das Array <code>zahlen = [6, 2, 8, 1, 4]</code>. Schreibt ein Programm, das die Zahlen mit Bubble Sort sortiert und dabei <strong>mitzählt, wie oft</strong> zwei benachbarte Elemente getauscht werden. Am Ende sollen das sortierte Array und die Anzahl der Täusche ausgegeben werden.</p>
+<p><strong>Erwartete Ausgabe</strong></p>
+<pre><code>Sortiert: [1, 2, 4, 6, 8]
+Anzahl Täusche: 6
+</code></pre>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">zahlen = [6, 2, 8, 1, 4]
+laenge = len(zahlen)
+tausche = 0
+
+for i in range(1, laenge):
+    for j in range(0, laenge - i):
+        if zahlen[j] &gt; zahlen[j + 1]:
+            zwischenspeicher = zahlen[j]
+            zahlen[j] = zahlen[j + 1]
+            zahlen[j + 1] = zwischenspeicher
+            tausche = tausche + 1
+
+print(&quot;Sortiert:&quot;, zahlen)
+print(&quot;Anzahl Täusche:&quot;, tausche)
+</code></pre></details><h1>Aufgabe 6:</h1>
+<h3>Protokoll nach jedem Durchlauf</h3>
+<p>Beim Lernen von Bubble Sort hilft ein <strong>Protokoll</strong>: Nach jedem äußeren Durchlauf sieht man, wie sich das Array verändert – besonders, dass die größten Werte nach rechts „wandern“.</p>
+<p>Gegeben ist das Array <code>zahlen = [4, 1, 3, 2]</code>. Erweitert den Bubble Sort so, dass <strong>nach jedem äußeren Durchlauf</strong> der aktuelle Zustand des Arrays ausgegeben wird.</p>
+<p><strong>Erwartete Ausgabe</strong></p>
+<pre><code>Nach Durchlauf 1: [1, 3, 2, 4]
+Nach Durchlauf 2: [1, 2, 3, 4]
+Nach Durchlauf 3: [1, 2, 3, 4]
+</code></pre>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">zahlen = [4, 1, 3, 2]
+laenge = len(zahlen)
+
+for i in range(1, laenge):
+    for j in range(0, laenge - i):
+        if zahlen[j] &gt; zahlen[j + 1]:
+            zwischenspeicher = zahlen[j]
+            zahlen[j] = zahlen[j + 1]
+            zahlen[j + 1] = zwischenspeicher
+    print(&quot;Nach Durchlauf&quot;, i, &quot;:&quot;, zahlen)
+</code></pre></details><h1>Aufgabe 7:</h1>
+<h3>Highscore-Liste absteigend sortieren</h3>
+<p>Für ein Computerspiel soll eine Highscore-Liste angezeigt werden. Die höchsten Punktzahlen sollen <strong>oben</strong> stehen, also <strong>absteigend</strong> sortiert sein.</p>
+<p>Gegeben ist das Array <code>scores = [12, 5, 9, 3, 15, 7]</code>. Passt den Bubble Sort so an, dass die Werte absteigend sortiert werden. Es ändert sich nur die Vergleichsbedingung.</p>
+<p><strong>Erwartete Ausgabe</strong></p>
+<pre><code>[15, 12, 9, 7, 5, 3]
+</code></pre>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">scores = [12, 5, 9, 3, 15, 7]
+laenge = len(scores)
+
+for i in range(1, laenge):
+    for j in range(0, laenge - i):
+        if scores[j] &lt; scores[j + 1]:
+            zwischenspeicher = scores[j]
+            scores[j] = scores[j + 1]
+            scores[j + 1] = zwischenspeicher
+
+print(scores)
+</code></pre></details><h1>Aufgabe 8:</h1>
+<h3>Nach wie vielen Durchläufen ist das Array sortiert?</h3>
+<p>Die äußere Schleife von Bubble Sort läuft oft weiter, obwohl das Array <strong>bereits sortiert</strong> ist. Für das Verständnis ist wichtig zu wissen: Nach dem wievielten Durchlauf war das Array erstmals sortiert?</p>
+<p>Gegeben ist das Array <code>zahlen = [8, 3, 5, 1, 2]</code>. Schreibt ein Programm, das Bubble Sort ausführt und <strong>nach jedem Durchlauf prüft</strong>, ob das Array bereits aufsteigend sortiert ist. Speichert in einer Variablen, beim <strong>wievielten</strong> Durchlauf das Array erstmals sortiert war. Am Ende gebt ihr diese Anzahl und das sortierte Array aus.</p>
+<p><strong>Tipp:</strong> Nach einem Durchlauf prüft ihr mit einer Schleife, ob jedes Element kleiner oder gleich dem nächsten ist. Merkt euch den ersten Durchlauf, bei dem das zutrifft (z. B. nur speichern, wenn die Variable noch <code>0</code> ist). Verwendet <strong>kein</strong> <code>break</code>.</p>
+<p><strong>Erwartete Ausgabe</strong></p>
+<pre><code>Fertig nach 3 Durchläufen: [1, 2, 3, 5, 8]
+</code></pre>
+<h2>Lösung</h2><details class="solution-details"><summary class="solution-toggle">▼ Lösung anzeigen</summary><pre><code class="language-python">zahlen = [8, 3, 5, 1, 2]
+laenge = len(zahlen)
+fertig_nach = 0
+
+for i in range(1, laenge):
+    for j in range(0, laenge - i):
+        if zahlen[j] &gt; zahlen[j + 1]:
+            zwischenspeicher = zahlen[j]
+            zahlen[j] = zahlen[j + 1]
+            zahlen[j + 1] = zwischenspeicher
+
+    # Prüfen, ob bereits sortiert
+    schon_sortiert = True
+    for k in range(laenge - 1):
+        if zahlen[k] &gt; zahlen[k + 1]:
+            schon_sortiert = False
+
+    if schon_sortiert:
+        if fertig_nach == 0:
+            fertig_nach = i
+
+print(&quot;Fertig nach&quot;, fertig_nach, &quot;Durchläufen:&quot;, zahlen)
+</code></pre></details>
         </div>
     </div>
 </body>
