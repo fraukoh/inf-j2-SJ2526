@@ -357,7 +357,7 @@ print(&quot;Sortiert:&quot;, messwerte)
 laenge = len(zahlen)
 durchlaeufe = 3
 
-for i in range(1, durchlaeufe + 1):
+for i in range(0, durchlaeufe):
     for j in range(0, laenge - i):
         if zahlen[j] &gt; zahlen[j + 1]:
             zwischenspeicher = zahlen[j]
